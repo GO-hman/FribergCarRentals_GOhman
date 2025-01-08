@@ -1,3 +1,6 @@
+using FribergCarRentals_GOhman.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace FribergCarRentals_GOhman
 {
     public class Program
@@ -8,6 +11,14 @@ namespace FribergCarRentals_GOhman
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<ApplicationDbContext>(
+                options => 
+                options.UseSqlServer(new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build()
+                .GetSection("ConnectionStrings")["CarsDb"]));
+            builder.Services.AddTransient<ICar, CarRepository>();
 
             var app = builder.Build();
 

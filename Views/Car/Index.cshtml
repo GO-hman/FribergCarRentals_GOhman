@@ -1,0 +1,32 @@
+﻿@model IEnumerable<FribergCarRentals_GOhman.Models.Car>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All Cars</h1>
+
+
+@foreach (var item in Model)
+{
+
+    <div class="container-fluid">
+        <div class="row row-cols-3">
+                <div class="card" style="width: 20rem">
+                    <div class="card-body">
+                        <img src="@Url.Content(item.ImgURL)" class="card-img-top">
+                        <h5 class="card-title">@item.Model</h5>
+                        <p class="card-text">
+                            <ul>
+                                <li>@item.Color</li>
+                                <li>@item.ModelYear</li>
+                            </ul>
+                        </p>
+                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-circle-info"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+}
