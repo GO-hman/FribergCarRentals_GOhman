@@ -19,6 +19,7 @@ namespace FribergCarRentals_GOhman
                 .Build()
                 .GetSection("ConnectionStrings")["CarsDb"]));
             builder.Services.AddTransient<ICar, CarRepository>();
+            builder.Services.AddTransient<IUser, UserRepository>();
 
             var app = builder.Build();
 

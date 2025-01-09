@@ -1,46 +1,42 @@
 ﻿using FribergCarRentals_GOhman.Data;
 using FribergCarRentals_GOhman.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FribergCarRentals_GOhman.Controllers
 {
-    public class CarController : Controller
+    public class UserController : Controller
     {
-        private readonly ICar carRepository;
+        private readonly IUser userRepository;
 
-        public CarController(ICar carRepository) 
+        public UserController(IUser userRepository) 
         {
-            this.carRepository = carRepository;
+            this.userRepository = userRepository;
         }
-        // GET: CarController
+
         public ActionResult Index()
         {
-            return View(carRepository.GetAll());
+            return View(userRepository.GetAll());
         }
 
-        // GET: CarController/Details/5
         public ActionResult Details(int id)
         {
-            return View(carRepository.GetById(id));
+            return View(userRepository.GetById(id));
         }
 
-        // GET: CarController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: CarController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Car car)
+        public ActionResult Create(User user)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    carRepository.Add(car);
+                    userRepository.Add(user);
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -50,24 +46,23 @@ namespace FribergCarRentals_GOhman.Controllers
             }
         }
 
-        // GET: CarController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View(carRepository.GetById(id));
+            return View(userRepository.GetById(id));
         }
 
-        // POST: CarController/Edit/5
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Car car)
+        public ActionResult Edit(User user)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    carRepository.Update(car);
+                    userRepository.Update(user);
                 }
-                return RedirectToAction();
+                return RedirectToAction(nameof(Index));
             }
             catch
             {
@@ -75,20 +70,19 @@ namespace FribergCarRentals_GOhman.Controllers
             }
         }
 
-        // GET: CarController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View(carRepository.GetById(id));
+            return View(userRepository.GetById(id));
         }
 
         // POST: CarController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Car car)
+        public ActionResult Delete(User user)
         {
             try
             {
-                carRepository.Delete(car);
+                userRepository.Delete(user);
                 return RedirectToAction(nameof(Index));
             }
             catch

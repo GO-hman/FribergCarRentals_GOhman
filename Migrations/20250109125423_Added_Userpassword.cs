@@ -5,14 +5,14 @@
 namespace FribergCarRentals_GOhman.Migrations
 {
     /// <inheritdoc />
-    public partial class Added_ImageURL : Migration
+    public partial class Added_Userpassword : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "ImgURL",
-                table: "Cars",
+                name: "Password",
+                table: "Users",
                 type: "nvarchar(max)",
                 nullable: false,
                 defaultValue: "");
@@ -22,8 +22,8 @@ namespace FribergCarRentals_GOhman.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "ImgURL",
-                table: "Cars");
+                name: "Password",
+                table: "Users");
         }
     }
 }
