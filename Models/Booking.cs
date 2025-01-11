@@ -5,6 +5,7 @@
         public int Id { get; set; }
         public User User { get; set; }
         public Car Car { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime StopDate { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace FribergCarRentals_GOhman
                 options.UseSqlServer(new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build()
-                .GetSection("ConnectionStrings")["CarsDb"]));
+                .GetSection("ConnectionStrings")["FribergRentalsDb"]));
             builder.Services.AddTransient<ICar, CarRepository>();
             builder.Services.AddTransient<IUser, UserRepository>();
 
