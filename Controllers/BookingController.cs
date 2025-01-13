@@ -3,6 +3,8 @@ using FribergCarRentals_GOhman.Models;
 using FribergCarRentals_GOhman.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace FribergCarRentals_GOhman.Controllers
 {
@@ -13,7 +15,7 @@ namespace FribergCarRentals_GOhman.Controllers
         private readonly IUser userRepository;
 
         private Booking currBooking = new Booking();
-        private BookingViewModel bookingVM;
+        private BookingViewModel bookingVM = new BookingViewModel();
 
         public BookingController(IBooking bookingRepository, ICar carRepository, IUser userRepository)
         {
@@ -24,7 +26,7 @@ namespace FribergCarRentals_GOhman.Controllers
         // GET: BookingController
         public ActionResult Index()
         {
-            return View(carRepository.GetAll());
+            return View();
         }
 
         //// GET: BookingController/Details/5
@@ -34,24 +36,33 @@ namespace FribergCarRentals_GOhman.Controllers
         //}
 
         // GET: BookingController/Create
-        public ActionResult Create(int id)
+        public ActionResult Create()
         {
-            currBooking.Car = carRepository.GetById(id);
-            return View(currBooking);
+            List<Car> cars = carRepository.GetAll().ToList();
+            List<SelectListItem> items = new List<SelectListItem>();
+            foreach (var car in cars)
+            {
+                items.Add(new SelectListItem { Value=car.Id.ToString(), Text= car.Model});
+            }
+            bookingVM.Cars = items;
+            
+            return View(bookingVM);
         }
 
         // POST: BookingController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Booking tempBooking)
+        public ActionResult Create(BookingViewModel tempBooking)
         {
             try
             {
-                currBooking.Car = tempBooking.Car;
-                currBooking.StartDate = tempBooking.StartDate;
-                currBooking.StopDate = tempBooking.StopDate;
-                currBooking.User = userRepository.GetById(1);
-                bookingRepository.Add(currBooking);
+                Booking booking = new Booking();
+                booking.StartDate = tempBooking.StartDate;
+                booking.StopDate = tempBooking.StopDate;
+                booking.Car = carRepository.GetById(tempBooking.CarId);
+                booking.User = userRepository.GetById(1);
+                //bookingVM.Car = carRepository.GetById(tempBooking.CarId);
+                bookingRepository.Add(booking);
                 return RedirectToAction(nameof(Confirmation));
             }
             catch
@@ -62,7 +73,10 @@ namespace FribergCarRentals_GOhman.Controllers
 
         public ActionResult Confirmation()
         {
-            return View(bookingRepository.GetById(1));
+            Booking booking = bookingRepository.GetById(1);
+
+
+            return View(booking);
         }
 
         //// GET: BookingController/Edit/5

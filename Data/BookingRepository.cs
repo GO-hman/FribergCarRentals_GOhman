@@ -1,4 +1,5 @@
 ﻿using FribergCarRentals_GOhman.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FribergCarRentals_GOhman.Data
 {
@@ -29,7 +30,10 @@ namespace FribergCarRentals_GOhman.Data
 
         public Booking GetById(int id)
         {
-            return appDbContext.Bookings.FirstOrDefault(b => b.Id == id);
+            return appDbContext.Bookings
+                    .Include(b=>b.Car)
+                    .Include(b=>b.User)
+                    .FirstOrDefault(b => b.Id == id);
         }
 
         public void Update(Booking booking)

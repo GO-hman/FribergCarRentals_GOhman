@@ -8,43 +8,4 @@
 <p>
     <a asp-action="Create">Create New Booking</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Model)
-            </th>
-@*             <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModelYear)
-            </th> *@
-            <th>
-                @Html.DisplayNameFor(model => model.ImgURL)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-@*             <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModelYear)
-            </td> *@
-            <td>
-                @Html.DisplayFor(modelItem => item.ImgURL)
-            </td>
-            <td>
-                <a asp-action="Create" asp-route-id="@item.Id">Create Booking</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
