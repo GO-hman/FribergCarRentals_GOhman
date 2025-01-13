@@ -115,7 +115,7 @@ namespace FribergCarRentals_GOhman.Migrations
             modelBuilder.Entity("FribergCarRentals_GOhman.Models.Booking", b =>
                 {
                     b.HasOne("FribergCarRentals_GOhman.Models.Car", "Car")
-                        .WithMany("Bookings")
+                        .WithMany()
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -129,11 +129,6 @@ namespace FribergCarRentals_GOhman.Migrations
                     b.Navigation("Car");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("FribergCarRentals_GOhman.Models.Car", b =>
-                {
-                    b.Navigation("Bookings");
                 });
 
             modelBuilder.Entity("FribergCarRentals_GOhman.Models.User", b =>
