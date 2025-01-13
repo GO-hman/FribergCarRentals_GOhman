@@ -1,4 +1,4 @@
-﻿@model FribergCarRentals_GOhman.ViewModels.BookingViewModel;
+﻿@model FribergCarRentals_GOhman.Models.Booking;
 
 
 @{
@@ -8,5 +8,5 @@
 <h1>Success!</h1>
 
 <p>
-    car @Html.DisplayNameFor(model => model.Car.Model) is booked @Html.DisplayNameFor(model => model.StartDate) and @Html.DisplayNameFor(model => model.EndDate);
+    car @Model.Car.Model is booked @Model.StartDate and @Model.StopDate;
 </p>

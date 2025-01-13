@@ -13,7 +13,7 @@ namespace FribergCarRentals_GOhman.Controllers
         private readonly IUser userRepository;
 
         private Booking currBooking = new Booking();
-        private BookingViewModel bookingVM = new BookingViewModel();
+        private BookingViewModel bookingVM;
 
         public BookingController(IBooking bookingRepository, ICar carRepository, IUser userRepository)
         {
@@ -36,19 +36,22 @@ namespace FribergCarRentals_GOhman.Controllers
         // GET: BookingController/Create
         public ActionResult Create(int id)
         {
-            bookingVM.Car = carRepository.GetById(id);
-            return View(bookingVM);
+            currBooking.Car = carRepository.GetById(id);
+            return View(currBooking);
         }
 
         // POST: BookingController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BookingViewModel tempBooking)
+        public ActionResult Create(Booking tempBooking)
         {
             try
             {
-                bookingVM.StartDate = tempBooking.StartDate;
-                bookingVM.EndDate = tempBooking.EndDate;
+                currBooking.Car = tempBooking.Car;
+                currBooking.StartDate = tempBooking.StartDate;
+                currBooking.StopDate = tempBooking.StopDate;
+                currBooking.User = userRepository.GetById(1);
+                bookingRepository.Add(currBooking);
                 return RedirectToAction(nameof(Confirmation));
             }
             catch
@@ -57,9 +60,9 @@ namespace FribergCarRentals_GOhman.Controllers
             }
         }
 
-        public ActionResult Confirmation(BookingViewModel bookingVM)
+        public ActionResult Confirmation()
         {
-            return View();
+            return View(bookingRepository.GetById(1));
         }
 
         //// GET: BookingController/Edit/5
