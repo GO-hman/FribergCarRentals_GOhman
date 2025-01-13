@@ -8,5 +8,7 @@
         public string ModelYear { get; set; }
 
         public string ImgURL { get; set; }
+
+        public virtual List<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }

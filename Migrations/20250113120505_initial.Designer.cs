@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergCarRentals_GOhman.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250113100612_initial")]
+    [Migration("20250113120505_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -118,13 +118,13 @@ namespace FribergCarRentals_GOhman.Migrations
             modelBuilder.Entity("FribergCarRentals_GOhman.Models.Booking", b =>
                 {
                     b.HasOne("FribergCarRentals_GOhman.Models.Car", "Car")
-                        .WithMany()
+                        .WithMany("Bookings")
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FribergCarRentals_GOhman.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Bookings")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -132,6 +132,16 @@ namespace FribergCarRentals_GOhman.Migrations
                     b.Navigation("Car");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FribergCarRentals_GOhman.Models.Car", b =>
+                {
+                    b.Navigation("Bookings");
+                });
+
+            modelBuilder.Entity("FribergCarRentals_GOhman.Models.User", b =>
+                {
+                    b.Navigation("Bookings");
                 });
 #pragma warning restore 612, 618
         }

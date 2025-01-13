@@ -14,5 +14,8 @@ namespace FribergCarRentals_GOhman.Models
         public string Password { get; set; }
 
         public bool IsAdmin { get; set; } = false;
+        public virtual List<Booking> Bookings { get; set; } = new List<Booking>();
     }
+
+
 }
