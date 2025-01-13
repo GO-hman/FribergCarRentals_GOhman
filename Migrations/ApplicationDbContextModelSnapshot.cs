@@ -33,7 +33,10 @@ namespace FribergCarRentals_GOhman.Migrations
                     b.Property<int>("CarId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateTime")
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StopDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")

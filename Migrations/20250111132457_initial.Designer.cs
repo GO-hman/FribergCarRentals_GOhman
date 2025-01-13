@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergCarRentals_GOhman.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250109125315_Initial")]
-    partial class Initial
+    [Migration("20250111132457_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,7 +36,10 @@ namespace FribergCarRentals_GOhman.Migrations
                     b.Property<int>("CarId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateTime")
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StopDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
@@ -100,6 +103,10 @@ namespace FribergCarRentals_GOhman.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

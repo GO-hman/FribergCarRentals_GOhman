@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<FribergCarRentals_GOhman.Models.Car>
-
 @{
     ViewData["Title"] = "Index";
 }
@@ -7,7 +6,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New Booking</a>
 </p>
 <table class="table">
     <thead>
@@ -15,12 +14,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Model)
             </th>
-            <th>
+@*             <th>
                 @Html.DisplayNameFor(model => model.Color)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ModelYear)
-            </th>
+            </th> *@
             <th>
                 @Html.DisplayNameFor(model => model.ImgURL)
             </th>
@@ -33,19 +32,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Model)
             </td>
-            <td>
+@*             <td>
                 @Html.DisplayFor(modelItem => item.Color)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ModelYear)
-            </td>
+            </td> *@
             <td>
                 @Html.DisplayFor(modelItem => item.ImgURL)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Create" asp-route-id="@item.Id">Create Booking</a>
             </td>
         </tr>
 }

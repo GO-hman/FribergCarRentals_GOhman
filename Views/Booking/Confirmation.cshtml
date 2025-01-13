@@ -1,0 +1,12 @@
+﻿@model FribergCarRentals_GOhman.ViewModels.BookingViewModel;
+
+
+@{
+    ViewData["Title"] = "Success!";
+}
+
+<h1>Success!</h1>
+
+<p>
+    car @Html.DisplayNameFor(model => model.Car.Model) is booked @Html.DisplayNameFor(model => model.StartDate) and @Html.DisplayNameFor(model => model.EndDate);
+</p>

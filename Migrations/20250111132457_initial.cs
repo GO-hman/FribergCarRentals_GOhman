@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FribergCarRentals_GOhman.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,6 +36,7 @@ namespace FribergCarRentals_GOhman.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsAdmin = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -51,7 +52,8 @@ namespace FribergCarRentals_GOhman.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     CarId = table.Column<int>(type: "int", nullable: false),
-                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StopDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
