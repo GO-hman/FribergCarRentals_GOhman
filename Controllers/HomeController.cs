@@ -1,3 +1,4 @@
+using FribergCarRentals_GOhman.Data;
 using FribergCarRentals_GOhman.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -15,6 +16,13 @@ namespace FribergCarRentals_GOhman.Controllers
 
         public IActionResult Index()
         {
+            return View();
+        }
+
+        public IActionResult MockData()
+        {
+            MockData mock = new MockData();
+            mock.MockCars();
             return View();
         }
 

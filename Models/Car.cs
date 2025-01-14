@@ -3,10 +3,11 @@
     public class Car
     {
         public int Id { get; set; }
+        public int PricePerDay { get; set; }
+        public string ImgURL { get; set; }
         public string Model { get; set; }
         public string Color { get; set; }
         public string ModelYear { get; set; }
 
-        public string ImgURL { get; set; }
     }
 }
