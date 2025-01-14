@@ -26,7 +26,7 @@ namespace FribergCarRentals_GOhman.Controllers
         // GET: BookingController
         public ActionResult Index()
         {
-            return View();
+            return View(carRepository.GetAll());
         }
 
         //// GET: BookingController/Details/5
@@ -36,8 +36,9 @@ namespace FribergCarRentals_GOhman.Controllers
         //}
 
         // GET: BookingController/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
+            bookingVM.CarId = id;
             List<Car> cars = carRepository.GetAll().ToList();
             List<SelectListItem> items = new List<SelectListItem>();
             foreach (var car in cars)

@@ -11,8 +11,8 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <input type="hidden" asp-for="@Model.User.Id" />
-@*             <input type="hidden" asp-for="@Model.Car.Id" />
-            <input type="hidden" asp-for="@Model.Car.ModelYear" />
+            <input type="hidden" asp-for="@Model.CarId" />
+           @* <input type="hidden" asp-for="@Model.Car.ModelYear" />
             <input type="hidden" asp-for="@Model.Car.Color" />
             <input type="hidden" asp-for="@Model.Car.ImgURL" /> *@
 
@@ -28,9 +28,9 @@
                 <span asp-validation-for="StopDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-            <select asp-for="CarId" asp-items="Model.Cars">
+@*             <select asp-for="CarId" asp-items="Model.Cars">
 
-                </select>
+                </select> *@
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
