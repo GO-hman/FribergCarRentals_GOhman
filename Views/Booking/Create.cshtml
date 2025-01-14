@@ -6,40 +6,20 @@
 
 <h1>Create</h1>
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <input type="hidden" asp-for="@Model.User.Id" />
-            <input type="hidden" asp-for="@Model.CarId" />
-           @* <input type="hidden" asp-for="@Model.Car.ModelYear" />
-            <input type="hidden" asp-for="@Model.Car.Color" />
-            <input type="hidden" asp-for="@Model.Car.ImgURL" /> *@
+<form asp-action="Create" >
+    <input type="hidden" asp-for="StartDate" />
+    <input type="hidden" asp-for="StopDate" />
+    <input type="hidden" asp-for="CarId" />
+    <input type="hidden" asp-for="Car"/>
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="StopDate" class="control-label"></label>
-                <input asp-for="StopDate" class="form-control" />
-                <span asp-validation-for="StopDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-@*             <select asp-for="CarId" asp-items="Model.Cars">
+    <h5>Booking:</h5>
+    <ul>
+        <li>@Model.StartDate</li>
+        <li>@Model.StopDate</li>
+        <li>@Model.Car.Model</li>
+    </ul>
+    <input type="submit" value="Confirm" class="btn btn-primary"/>
+    <a asp-action="Index">Cancel</a>
+    
 
-                </select> *@
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+</form>
