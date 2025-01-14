@@ -14,8 +14,6 @@ namespace FribergCarRentals_GOhman.Controllers
         private readonly ICar carRepository;
         private readonly IUser userRepository;
 
-        private Booking currBooking = new Booking();
-        private BookingViewModel bookingVM = new BookingViewModel();
 
         public BookingController(IBooking bookingRepository, ICar carRepository, IUser userRepository)
         {
@@ -62,7 +60,7 @@ namespace FribergCarRentals_GOhman.Controllers
             try
             {
                 bookingVM.CarId = id;
-                return RedirectToAction("Confirmation");
+                return RedirectToAction("Create", bookingVM);
             }
             catch
             {
@@ -79,38 +77,40 @@ namespace FribergCarRentals_GOhman.Controllers
         // GET: BookingController/Create
         public ActionResult Create(BookingViewModel bookingVM)
         {
-            
+            bookingVM.Car = carRepository.GetById(bookingVM.CarId);
             return View(bookingVM);
         }
 
-        //// POST: BookingController/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(BookingViewModel tempBooking)
-        //{
-        //    try
-        //    {
-        //        Booking booking = new Booking();
-        //        booking.StartDate = tempBooking.StartDate;
-        //        booking.StopDate = tempBooking.StopDate;
-        //        booking.Car = carRepository.GetById(tempBooking.CarId);
-        //        booking.User = userRepository.GetById(1);
-        //        //bookingVM.Car = carRepository.GetById(tempBooking.CarId);
-        //        bookingRepository.Add(booking);
-        //        return RedirectToAction(nameof(Confirmation));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        public ActionResult Confirmation()
+        // POST: BookingController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(BookingViewModel tempBooking, int id)
         {
-            Booking booking = bookingRepository.GetById(1);
+            try
+            {
+                Booking b = new Booking();
+                if (ModelState.IsValid)
+                {
+                    b.StartDate = tempBooking.StartDate;
+                    b.StopDate = tempBooking.StopDate;
+                    b.Car = carRepository.GetById(tempBooking.CarId);
+                    b.User = userRepository.GetById(1);
 
+                    bookingRepository.Add(b);
+                }
+                return RedirectToAction("Confirmation", b);
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
-            return View(booking);
+        [HttpGet]
+        public ActionResult Confirmation(Booking booking)
+        {
+
+            return View(bookingRepository.GetById(booking.Id));
         }
 
         //// GET: BookingController/Edit/5

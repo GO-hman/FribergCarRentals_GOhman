@@ -6,6 +6,7 @@
 
 <h1>Select Car</h1>
 
+
 <table class="table">
     <thead>
         <tr>
@@ -41,10 +42,19 @@
                     @Html.DisplayFor(modelItem => item.ImgURL)
                 </td>
                 <td>
-                    @* <a asp-action="SelectCar" type="submit" asp-route-id="@item.Id">Select</a> | *@
-                    <input asp-action="SelectCar" type="submit"  asp-for="CarId" />
-                </td>
+             @*        <a asp-action="Create" asp-route-id="@item.Id">Select</a> | *@
+@*                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> *@
+                    <form asp-action="SelectCar">
+                        <input type="hidden" asp-for="StartDate" />
+                        <input type="hidden" asp-for="StopDate" />
 
+                        <div class="form-group">
+
+                            <input type="submit" value="Select" asp-route-id="@item.Id" class="btn btn-primary" />
+
+                        </div>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>

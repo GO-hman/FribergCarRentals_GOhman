@@ -6,5 +6,20 @@
 
 <h1>Create</h1>
 
+<form asp-action="Create" >
+    <input type="hidden" asp-for="StartDate" />
+    <input type="hidden" asp-for="StopDate" />
+    <input type="hidden" asp-for="CarId" />
+    <input type="hidden" asp-for="Car"/>
 
+    <h5>Booking:</h5>
+    <ul>
+        <li>@Model.StartDate</li>
+        <li>@Model.StopDate</li>
+        <li>@Model.Car.Model</li>
+    </ul>
+    <input type="submit" value="Confirm" class="btn btn-primary"/>
+    <a asp-action="Index">Cancel</a>
+    
 
+</form>
