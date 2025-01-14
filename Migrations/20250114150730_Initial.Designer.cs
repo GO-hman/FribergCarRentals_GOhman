@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergCarRentals_GOhman.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250113133341_initial")]
-    partial class initial
+    [Migration("20250114150730_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,6 +77,9 @@ namespace FribergCarRentals_GOhman.Migrations
                     b.Property<string>("ModelYear")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PricePerDay")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

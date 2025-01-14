@@ -21,6 +21,7 @@ namespace FribergCarRentals_GOhman
             builder.Services.AddTransient<ICar, CarRepository>();
             builder.Services.AddTransient<IUser, UserRepository>();
             builder.Services.AddTransient<IBooking,  BookingRepository>();
+            builder.Services.AddTransient<MockData>();
 
             var app = builder.Build();
 

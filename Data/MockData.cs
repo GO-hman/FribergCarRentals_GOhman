@@ -7,10 +7,6 @@ namespace FribergCarRentals_GOhman.Data
         private readonly ICar carRepo;
         private readonly IUser userRepo;
 
-        public MockData()
-        {
-            
-        }
         public MockData(ICar carRepo, IUser userRepo)
         {
             this.carRepo = carRepo;
@@ -38,6 +34,7 @@ namespace FribergCarRentals_GOhman.Data
                 },
                 new Car()
                 {
+                    Model = "Saab 96",
                     ModelYear = "1960",
                     Color = "Röd",
                     ImgURL = "https://upload.wikimedia.org/wikipedia/commons/a/a8/1972_Saab_96_V4_1.5.jpg",
