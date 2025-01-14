@@ -5,6 +5,18 @@
 }
 
 <h1>Index</h1>
+<style>
+    .img-thumbnail {
+        padding: 0.25rem;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        max-width: 300px;
+        height: 200px;
+    }
+
+
+</style>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,6 +24,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+                Image
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Model)
             </th>
@@ -22,7 +37,7 @@
                 @Html.DisplayNameFor(model => model.ModelYear)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ImgURL)
+                Price per day (SEK)
             </th>
             <th></th>
         </tr>
@@ -30,6 +45,10 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                    <img src="@Html.DisplayFor(modelItem => item.ImgURL)" class="img-thumbnail" alt="CarPhoto">
+                
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Model)
             </td>
@@ -40,7 +59,7 @@
                 @Html.DisplayFor(modelItem => item.ModelYear)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImgURL)
+                @Html.DisplayFor(modelItem => item.PricePerDay)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
