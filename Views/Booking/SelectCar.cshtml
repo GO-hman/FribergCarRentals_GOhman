@@ -1,0 +1,51 @@
+﻿@model FribergCarRentals_GOhman.ViewModels.BookingViewModel
+
+@{
+    ViewData["Title"] = "Select Car";
+}
+
+<h1>Select Car</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Model
+            </th>
+            <th>
+                Color
+            </th>
+            <th>
+                Model Year
+            </th>
+            <th>
+                Image
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Cars)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModelYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImgURL)
+                </td>
+                <td>
+                    @* <a asp-action="SelectCar" type="submit" asp-route-id="@item.Id">Select</a> | *@
+                    <input asp-action="SelectCar" type="submit"  asp-for="CarId" />
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

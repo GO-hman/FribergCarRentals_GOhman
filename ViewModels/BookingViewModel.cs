@@ -8,7 +8,7 @@ namespace FribergCarRentals_GOhman.ViewModels
     {
         public DateTime StartDate { get; set; }
         public DateTime StopDate { get; set; }
-        public List<SelectListItem> Cars { get; set; } = new List<SelectListItem>();
+        public List<Car> Cars { get; set; } = new List<Car>();
         public int CarId { get; set; }
         public User? User { get; set; }
     }

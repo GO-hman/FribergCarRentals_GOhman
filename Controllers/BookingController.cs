@@ -26,7 +26,48 @@ namespace FribergCarRentals_GOhman.Controllers
         // GET: BookingController
         public ActionResult Index()
         {
-            return View(carRepository.GetAll());
+            return View();
+        }
+
+        public ActionResult SelectDate()
+        {
+            BookingViewModel bookingVM = new BookingViewModel();
+            return View(bookingVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SelectDate(BookingViewModel bookingVM)
+        {
+            try
+            {
+                return RedirectToAction("SelectCar", bookingVM);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult SelectCar(BookingViewModel bookingVM)
+        {
+            bookingVM.Cars = carRepository.GetAll().ToList();
+            return View(bookingVM);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SelectCar(BookingViewModel bookingVM, int id)
+        {
+            try
+            {
+                bookingVM.CarId = id;
+                return RedirectToAction("Confirmation");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         //// GET: BookingController/Details/5
@@ -36,41 +77,33 @@ namespace FribergCarRentals_GOhman.Controllers
         //}
 
         // GET: BookingController/Create
-        public ActionResult Create(int id)
+        public ActionResult Create(BookingViewModel bookingVM)
         {
-            bookingVM.CarId = id;
-            List<Car> cars = carRepository.GetAll().ToList();
-            List<SelectListItem> items = new List<SelectListItem>();
-            foreach (var car in cars)
-            {
-                items.Add(new SelectListItem { Value=car.Id.ToString(), Text= car.Model});
-            }
-            bookingVM.Cars = items;
             
             return View(bookingVM);
         }
 
-        // POST: BookingController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(BookingViewModel tempBooking)
-        {
-            try
-            {
-                Booking booking = new Booking();
-                booking.StartDate = tempBooking.StartDate;
-                booking.StopDate = tempBooking.StopDate;
-                booking.Car = carRepository.GetById(tempBooking.CarId);
-                booking.User = userRepository.GetById(1);
-                //bookingVM.Car = carRepository.GetById(tempBooking.CarId);
-                bookingRepository.Add(booking);
-                return RedirectToAction(nameof(Confirmation));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //// POST: BookingController/Create
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(BookingViewModel tempBooking)
+        //{
+        //    try
+        //    {
+        //        Booking booking = new Booking();
+        //        booking.StartDate = tempBooking.StartDate;
+        //        booking.StopDate = tempBooking.StopDate;
+        //        booking.Car = carRepository.GetById(tempBooking.CarId);
+        //        booking.User = userRepository.GetById(1);
+        //        //bookingVM.Car = carRepository.GetById(tempBooking.CarId);
+        //        bookingRepository.Add(booking);
+        //        return RedirectToAction(nameof(Confirmation));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         public ActionResult Confirmation()
         {
