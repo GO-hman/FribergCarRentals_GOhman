@@ -1,4 +1,5 @@
 using FribergCarRentals_GOhman.Data;
+using FribergCarRentals_GOhman.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace FribergCarRentals_GOhman
@@ -22,6 +23,7 @@ namespace FribergCarRentals_GOhman
             builder.Services.AddTransient<IUser, UserRepository>();
             builder.Services.AddTransient<IBooking,  BookingRepository>();
             builder.Services.AddTransient<MockData>();
+            builder.Services.AddTransient<BookingService>();
 
             var app = builder.Build();
 
