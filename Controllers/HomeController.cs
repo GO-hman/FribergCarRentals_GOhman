@@ -22,12 +22,12 @@ namespace FribergCarRentals_GOhman.Controllers
             return View();
         }
 
-        public IActionResult MockData()
-        {
-            moockData.MockCars();
-            moockData.MockUsers();
-            return View();
-        }
+        //public IActionResult MockData()
+        //{
+        //    moockData.MockCars();
+        //    moockData.MockUsers();
+        //    return View();
+        //}
 
         public IActionResult Privacy()
         {
