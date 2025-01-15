@@ -25,7 +25,9 @@ namespace FribergCarRentals_GOhman.Data
 
         public IEnumerable<Booking> GetAll()
         {
-            return appDbContext.Bookings.OrderBy(b=>b.StartDate);
+            return appDbContext.Bookings.OrderBy(b=>b.StartDate)
+                                        .Include(b=>b.Car)
+                                        .Include(b=>b.User);
         }
 
         public Booking GetById(int id)
