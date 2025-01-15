@@ -14,14 +14,14 @@ namespace FribergCarRentals_GOhman
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddDbContext<ApplicationDbContext>(
-                options => 
+                options =>
                 options.UseSqlServer(new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
                 .Build()
                 .GetSection("ConnectionStrings")["FribergRentalsDb"]));
             builder.Services.AddTransient<ICar, CarRepository>();
             builder.Services.AddTransient<IUser, UserRepository>();
-            builder.Services.AddTransient<IBooking,  BookingRepository>();
+            builder.Services.AddTransient<IBooking, BookingRepository>();
             builder.Services.AddTransient<MockData>();
             builder.Services.AddTransient<BookingService>();
 
@@ -41,6 +41,9 @@ namespace FribergCarRentals_GOhman
             app.UseRouting();
 
             app.UseAuthorization();
+            app.MapControllerRoute(
+                name: "admin",
+                pattern: "{folder=Admin}/{controller=Home}/{action=Index}/{id?}");
 
             app.MapControllerRoute(
                 name: "default",

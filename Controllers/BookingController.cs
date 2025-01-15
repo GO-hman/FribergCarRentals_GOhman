@@ -1,5 +1,6 @@
 ﻿using FribergCarRentals_GOhman.Data;
 using FribergCarRentals_GOhman.Models;
+using FribergCarRentals_GOhman.Services;
 using FribergCarRentals_GOhman.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,21 +11,18 @@ namespace FribergCarRentals_GOhman.Controllers
 {
     public class BookingController : Controller
     {
-        private readonly IBooking bookingRepository;
-        private readonly ICar carRepository;
-        private readonly IUser userRepository;
+        private readonly BookingService _bookingService;
+        private readonly IBooking _bookingRepo;
 
-
-        public BookingController(IBooking bookingRepository, ICar carRepository, IUser userRepository)
+        public BookingController(BookingService bookingService, IBooking bookingRepo)
         {
-            this.bookingRepository = bookingRepository;
-            this.carRepository = carRepository;
-            this.userRepository = userRepository;
+            _bookingService = bookingService;
+            _bookingRepo = bookingRepo;
         }
         // GET: BookingController
         public ActionResult Index()
         {
-            return View();
+            return View(_bookingRepo.GetAll());
         }
 
         public ActionResult SelectDate()
@@ -49,7 +47,7 @@ namespace FribergCarRentals_GOhman.Controllers
 
         public ActionResult SelectCar(BookingViewModel bookingVM)
         {
-            bookingVM.Cars = carRepository.GetAll().ToList();
+            bookingVM.Cars = _bookingService.GetAllCars();
             return View(bookingVM);
         }
 
@@ -68,16 +66,16 @@ namespace FribergCarRentals_GOhman.Controllers
             }
         }
 
-        //// GET: BookingController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        // GET: BookingController/Details/5
+        public ActionResult Details(int id)
+        {
+            return View(_bookingRepo.GetById(id));
+        }
 
         // GET: BookingController/Create
         public ActionResult Create(BookingViewModel bookingVM)
         {
-            bookingVM.Car = carRepository.GetById(bookingVM.CarId);
+            bookingVM.Car = _bookingService.GetCar(bookingVM.CarId);
             return View(bookingVM);
         }
 
@@ -93,10 +91,10 @@ namespace FribergCarRentals_GOhman.Controllers
                 {
                     b.StartDate = tempBooking.StartDate;
                     b.StopDate = tempBooking.StopDate;
-                    b.Car = carRepository.GetById(tempBooking.CarId);
-                    b.User = userRepository.GetById(1);
+                    b.Car = _bookingService.GetCar(tempBooking.CarId);
+                    b.User = _bookingService.GetUserById(1);
 
-                    bookingRepository.Add(b);
+                    _bookingRepo.Add(b);
                 }
                 return RedirectToAction("Confirmation", b);
             }
@@ -110,49 +108,54 @@ namespace FribergCarRentals_GOhman.Controllers
         public ActionResult Confirmation(Booking booking)
         {
 
-            return View(bookingRepository.GetById(booking.Id));
+            return View(_bookingRepo.GetById(booking.Id));
         }
 
-        //// GET: BookingController/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
+        // GET: BookingController/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View(_bookingRepo.GetById(id));
+        }
 
-        //// POST: BookingController/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        // POST: BookingController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Booking booking)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _bookingRepo.Update(booking);
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
-        //// GET: BookingController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
+        // GET: BookingController/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
 
-        //// POST: BookingController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        // POST: BookingController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(Booking booking)
+        {
+            try
+            {
+                _bookingRepo.Delete(booking);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }
