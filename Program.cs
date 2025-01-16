@@ -42,17 +42,25 @@ namespace FribergCarRentals_GOhman
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-
-                endpoints.MapControllerRoute(
+            app.MapControllerRoute(
                     name: "area",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapControllerRoute(
+            app.MapControllerRoute(
                    name: "default",
                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+
+            //app.UseEndpoints(endpoints =>
+            //{
+
+            //    endpoints.MapControllerRoute(
+            //        name: "area",
+            //        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+            //    endpoints.MapControllerRoute(
+            //       name: "default",
+            //       pattern: "{controller=Home}/{action=Index}/{id?}");
+            //});
 
 
 
