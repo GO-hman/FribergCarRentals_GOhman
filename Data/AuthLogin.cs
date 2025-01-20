@@ -43,7 +43,7 @@ namespace FribergCarRentals_GOhman.Data
             bool ok = false;
             User u = new User();
 
-            u = userRepo.GetAll().Where(u => u.Equals(userName)).FirstOrDefault()!;
+            u = userRepo.GetAll().Where(u => u.Email.Equals(userName)).FirstOrDefault()!;
             if (u != null)
             {
                 return u;

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Newtonsoft.Json
+@using Newtonsoft.Json.Linq
+<!DOCTYPE html>
 <html lang="en">
     
 <head>
@@ -30,7 +32,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="Index">Cars</a>
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Car" asp-action="Index">Cars</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Users</a>
@@ -38,6 +40,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Booking" asp-action="Index">Booking</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                        </li>
+                        @{
+
+                        }
+                     
                     </ul>
                 </div>
             </div>

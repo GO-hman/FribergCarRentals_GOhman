@@ -24,6 +24,9 @@ namespace FribergCarRentals_GOhman
             builder.Services.AddTransient<IBooking, BookingRepository>();
             builder.Services.AddTransient<MockData>();
             builder.Services.AddTransient<BookingService>();
+            builder.Services.AddTransient<AuthLogin>();
+
+            builder.Services.AddSession();
 
             var app = builder.Build();
 
@@ -62,6 +65,7 @@ namespace FribergCarRentals_GOhman
             //       pattern: "{controller=Home}/{action=Index}/{id?}");
             //});
 
+            app.UseSession();
 
 
             app.Run();

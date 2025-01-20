@@ -14,6 +14,7 @@ namespace FribergCarRentals_GOhman.Controllers
         private readonly BookingService _bookingService;
         private readonly IBooking _bookingRepo;
 
+
         public BookingController(BookingService bookingService, IBooking bookingRepo)
         {
             _bookingService = bookingService;
@@ -92,7 +93,15 @@ namespace FribergCarRentals_GOhman.Controllers
                     b.StartDate = tempBooking.StartDate;
                     b.StopDate = tempBooking.StopDate;
                     b.Car = _bookingService.GetCar(tempBooking.CarId);
-                    b.User = _bookingService.GetUserById(1);
+                    if (SessionHelper.CheckSession(HttpContext))
+                    {
+                        User u = SessionHelper.GetUserFromSession(HttpContext);
+                        b.User = _bookingService.GetUserById(u.Id);
+                    }
+                    else
+                    {
+                        b.User = _bookingService.GetUserById(1);
+                    }
 
                     _bookingRepo.Add(b);
                 }
@@ -107,7 +116,6 @@ namespace FribergCarRentals_GOhman.Controllers
         [HttpGet]
         public ActionResult Confirmation(Booking booking)
         {
-
             return View(_bookingRepo.GetById(booking.Id));
         }
 

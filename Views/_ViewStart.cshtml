@@ -1,3 +1,11 @@
 ﻿@{
-    Layout = "_Layout";
-}
+    var ses = SessionHelper.CheckSession(Context);
+    if (ses)
+    {
+        Layout = "_Layout2";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+} 

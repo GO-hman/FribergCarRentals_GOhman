@@ -3,13 +3,14 @@ using FribergCarRentals_GOhman.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FribergCarRentals_GOhman.Controllers
+namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CarController : Controller
     {
         private readonly ICar carRepository;
 
-        public CarController(ICar carRepository) 
+        public CarController(ICar carRepository)
         {
             this.carRepository = carRepository;
         }
