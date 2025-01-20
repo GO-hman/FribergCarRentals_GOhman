@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using FribergCarRentals_GOhman.Models;
 
 namespace FribergCarRentals_GOhman
 {
@@ -15,6 +16,17 @@ namespace FribergCarRentals_GOhman
                 return true;
             }
             return false;
+        }
+
+        public static User GetUserFromSession(HttpContext httpContext)
+        {
+            var session = httpContext.Session.GetString("LoggedInCookie");
+            if (session != null)
+            {
+                var user = JsonConvert.DeserializeObject<User>(session);
+                return user;
+            }
+            return null;
         }
     }
 }

@@ -3,7 +3,12 @@
 @{
     ViewData["Title"] = "Select Car";
 }
-
+<style>
+    .img-thumbnail{
+        height: 200px;
+        width: 300px;
+    }
+</style>
 <h1>Select Car</h1>
 
 
@@ -39,7 +44,7 @@
                     @Html.DisplayFor(modelItem => item.ModelYear)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ImgURL)
+                    <img src="@Html.DisplayFor(modelItem => item.ImgURL)" class="img-thumbnail" alt="CarPhoto">
                 </td>
                 <td>
              @*        <a asp-action="Create" asp-route-id="@item.Id">Select</a> | *@

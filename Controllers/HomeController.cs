@@ -31,20 +31,10 @@ namespace FribergCarRentals_GOhman.Controllers
 
             return View();
         }
-
-        //public IActionResult MockData()
-        //{
-        //    moockData.MockCars();
-        //    moockData.MockUsers();
-        //    return View();
-        //}
-
         public IActionResult Privacy()
         {
             return View();
         }
-
-    
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
