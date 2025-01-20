@@ -1,16 +1,27 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FribergCarRentals_GOhman.Data;
+using FribergCarRentals_GOhman.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace FribergCarRentals_GOhman.Controllers
 {
-    public class AuthLogin : Controller
+    public class LoginController : Controller
     {
+        private readonly IUser userRepo;
+        private readonly AuthLogin authLogin;
+
+        public LoginController(IUser userRepo, AuthLogin authLogin)
+        {
+            this.userRepo = userRepo;
+            this.authLogin = authLogin;
+        }
         // GET: AuthLogin
         public ActionResult Index()
         {
             return View();
         }
-
 
         // GET: AuthLogin/Details/5
         public ActionResult Login()
@@ -20,9 +31,17 @@ namespace FribergCarRentals_GOhman.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login()
+        public ActionResult Login(User user)
         {
-            return View();
+            User u = authLogin.GetUser(user.Email, user.Password);
+            if (u != null)
+            {
+                HttpContext.Session.SetString("LoggedInCookie", JsonConvert.SerializeObject(u));
+
+                return RedirectToAction("Index");
+
+            }
+            return NotFound();
         }
 
         // POST: AuthLogin/Create
