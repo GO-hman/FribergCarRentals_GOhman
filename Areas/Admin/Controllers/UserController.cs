@@ -2,13 +2,14 @@
 using FribergCarRentals_GOhman.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FribergCarRentals_GOhman.Controllers
+namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class UserController : Controller
     {
         private readonly IUser userRepository;
 
-        public UserController(IUser userRepository) 
+        public UserController(IUser userRepository)
         {
             this.userRepository = userRepository;
         }

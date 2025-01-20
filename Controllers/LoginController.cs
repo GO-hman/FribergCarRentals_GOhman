@@ -44,13 +44,22 @@ namespace FribergCarRentals_GOhman.Controllers
             return NotFound();
         }
 
+        public IActionResult Register()
+        {
+            return View(new User());
+        }
+
         // POST: AuthLogin/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Register(User user)
         {
             try
             {
+                if (ModelState.IsValid)
+                {
+                    userRepo.Add(user);
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
