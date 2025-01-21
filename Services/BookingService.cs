@@ -31,5 +31,13 @@ namespace FribergCarRentals_GOhman.Services
             return userRepo.GetById(id);
         }
 
+        public List<Booking> GetBookingByUser(int id)
+        {
+            List<Booking> bookings = bookingRepo.GetAll().Where(b => b.User.Id == id).ToList() ?? new List<Booking>();
+
+            return bookings;
+
+        }
+
     }
 }

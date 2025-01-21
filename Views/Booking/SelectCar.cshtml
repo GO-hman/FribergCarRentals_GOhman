@@ -1,0 +1,66 @@
+﻿@model FribergCarRentals_GOhman.ViewModels.BookingViewModel
+
+@{
+    ViewData["Title"] = "Select Car";
+}
+<style>
+    .img-thumbnail{
+        height: 200px;
+        width: 300px;
+    }
+</style>
+<h1>Select Car</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Model
+            </th>
+            <th>
+                Color
+            </th>
+            <th>
+                Model Year
+            </th>
+            <th>
+                Image
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Cars)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModelYear)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.ImgURL)" class="img-thumbnail" alt="CarPhoto">
+                </td>
+                <td>
+             @*        <a asp-action="Create" asp-route-id="@item.Id">Select</a> | *@
+@*                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> *@
+                    <form asp-action="SelectCar">
+                        <input type="hidden" asp-for="StartDate" />
+                        <input type="hidden" asp-for="StopDate" />
+
+                        <div class="form-group">
+
+                            <input type="submit" value="Select" asp-route-id="@item.Id" class="btn btn-primary" />
+
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

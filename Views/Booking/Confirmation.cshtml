@@ -1,0 +1,14 @@
+﻿@model FribergCarRentals_GOhman.Models.Booking;
+
+
+@{
+    ViewData["Title"] = "Success!";
+}
+
+<h1>Success!</h1>
+
+<p>
+    car @Model.Car.Model is booked @Model.StartDate and @Model.StopDate
+</p>
+    <a asp-action="Index">Return</a>
+

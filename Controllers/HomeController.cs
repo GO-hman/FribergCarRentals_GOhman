@@ -10,24 +10,22 @@ namespace FribergCarRentals_GOhman.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly MockData moockData;
 
         public HomeController(ILogger<HomeController> logger, MockData moockData)
         {
             _logger = logger;
-            this.moockData = moockData;
         }
 
         public IActionResult Index()
         {
 
-            var session = HttpContext.Session.GetString("LoggedInCookie");
-            if (session != null)
-            {
+            //var session = HttpContext.Session.GetString("LoggedInCookie");
+            //if (session != null)
+            //{
 
-            var objectx = JsonConvert.DeserializeObject<JObject>(session);
-            Console.WriteLine(objectx.ToString());
-            }
+            //var objectx = JsonConvert.DeserializeObject<JObject>(session);
+            //Console.WriteLine(objectx.ToString());
+            //}
 
             return View();
         }
