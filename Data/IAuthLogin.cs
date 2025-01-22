@@ -4,9 +4,8 @@ namespace FribergCarRentals_GOhman.Data
 {
     public interface IAuthLogin
     {
-        User CheckUsername(string userName);
-
-        bool CheckPassword(User user, string password);
+        UserAccount CheckUsername(string userName);
+        bool CheckPassword(UserAccount user, string password);
 
         bool CheckAdmin(bool admin);
     }

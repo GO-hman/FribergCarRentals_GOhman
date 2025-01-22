@@ -1,5 +1,6 @@
 ﻿using FribergCarRentals_GOhman.Data;
 using FribergCarRentals_GOhman.Models;
+using FribergCarRentals_GOhman.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
@@ -8,20 +9,24 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
     public class UserController : Controller
     {
         private readonly IUser userRepository;
+        private readonly IAdmin adminRepository;
+        private readonly UserViewModel userVM;
 
-        public UserController(IUser userRepository)
+        public UserController(IUser userRepository, IAdmin adminRepository, UserViewModel userVM)
         {
             this.userRepository = userRepository;
+            this.adminRepository = adminRepository;
+            this.userVM = userVM;
         }
 
         public ActionResult Index()
         {
-            return View(userRepository.GetAll());
+            return View(userVM);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(AdminAccount acc)
         {
-            return View(userRepository.GetById(id));
+            return View();
         }
 
         public ActionResult Create()
@@ -31,13 +36,26 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(User user)
+        public ActionResult Create(UserAccount user)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    userRepository.Add(user);
+                    if (user.IsAdmin)
+                    {
+                        AdminAccount admin = new AdminAccount
+                        {
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            Email = user.Email,
+                            Password = user.Password,
+                            IsAdmin = user.IsAdmin
+                        };
+                        adminRepository.Add(admin);
+                    }
+                    else
+                        userRepository.Add(user);
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -55,7 +73,7 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(User user)
+        public ActionResult Edit(UserAccount user)
         {
             try
             {
@@ -79,7 +97,7 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
         // POST: CarController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(User user)
+        public ActionResult Delete(UserAccount user)
         {
             try
             {

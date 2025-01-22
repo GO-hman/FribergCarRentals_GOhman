@@ -5,22 +5,51 @@ namespace FribergCarRentals_GOhman.Data
     public class AuthLogin : IAuthLogin
     {
         private readonly IUser userRepo;
+        private readonly IAdmin adminRepo;
 
-        public AuthLogin(IUser userRepo)
+        public AuthLogin(IUser userRepo, IAdmin adminRepo)
         {
             this.userRepo = userRepo;
+            this.adminRepo = adminRepo;
         }
 
-        public User GetUser(string username, string password)
+        public void GetAccount(string username, string password)
         {
-            User user = CheckUsername(username);
+            UserAccount u = GetUser(username, password);
+
+            if (u is null)
+            {
+                AdminAccount a = GetAdmin(username, password);
+            }
+        }
+
+        public UserAccount GetUser(string username, string password)
+        {
+            UserAccount user = CheckUsername(username);
+            if (user == null)
+            {
+                return null;
+            }
             bool pass = CheckPassword(user, password);
-            if (user == null || !pass)
+            if (!pass)
             {
                 return null;
             }
             return user;
-            
+        }
+        public AdminAccount GetAdmin(string username, string password)
+        {
+            AdminAccount admin = CheckAdminName(username);
+            if (admin is null)
+            {
+                return null;
+            }
+            bool pass = CheckPassword(admin, password);
+            if (!pass)
+            {
+                return null;
+            }
+            return admin;
 
         }
         public bool CheckAdmin(bool admin)
@@ -28,7 +57,7 @@ namespace FribergCarRentals_GOhman.Data
             throw new NotImplementedException();
         }
 
-        public bool CheckPassword(User user, string password)
+        public bool CheckPassword(UserAccount user, string password)
         {
             if (user.Password == password)
             {
@@ -37,11 +66,19 @@ namespace FribergCarRentals_GOhman.Data
             else
                 return false;
         }
-
-        public User CheckUsername(string userName)
+        public bool CheckPassword(AdminAccount admin, string password)
         {
-            bool ok = false;
-            User u = new User();
+            if (admin.Password == password)
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
+        public UserAccount CheckUsername(string userName)
+        {
+            UserAccount u = new UserAccount();
 
             u = userRepo.GetAll().Where(u => u.Email.Equals(userName)).FirstOrDefault()!;
             if (u != null)
@@ -50,8 +87,19 @@ namespace FribergCarRentals_GOhman.Data
             }
             else
                 return null!;
+        }
 
+        public AdminAccount CheckAdminName(string username)
+        {
+            AdminAccount a = new AdminAccount();
 
+            a = adminRepo.GetAll().Where(a => a.Email.Equals(username)).FirstOrDefault()!;
+            if (a != null)
+            {
+                return a;
+            }
+            else
+                return null!;
         }
     }
 }

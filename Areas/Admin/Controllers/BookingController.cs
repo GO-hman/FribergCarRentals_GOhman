@@ -96,7 +96,7 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
                     b.Car = _bookingService.GetCar(tempBooking.CarId);
                     if (SessionHelper.CheckSession(HttpContext))
                     {
-                        User u = SessionHelper.GetUserFromSession(HttpContext);
+                        UserAccount u = SessionHelper.GetUserFromSession(HttpContext);
                         b.User = _bookingService.GetUserById(u.Id);
                     }
                     else

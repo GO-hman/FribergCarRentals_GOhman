@@ -18,12 +18,27 @@ namespace FribergCarRentals_GOhman
             return false;
         }
 
-        public static User GetUserFromSession(HttpContext httpContext)
+        public static bool IsAdmin(HttpContext httpContext)
         {
             var session = httpContext.Session.GetString("LoggedInCookie");
             if (session != null)
             {
-                var user = JsonConvert.DeserializeObject<User>(session);
+                var admin = JsonConvert.DeserializeObject<AdminAccount>(session);
+                if (admin.IsAdmin)
+                {
+                    return true;
+                }
+
+            }
+            return false;
+        }
+
+        public static UserAccount GetUserFromSession(HttpContext httpContext)
+        {
+            var session = httpContext.Session.GetString("LoggedInCookie");
+            if (session != null)
+            {
+                var user = JsonConvert.DeserializeObject<UserAccount>(session);
                 return user;
             }
             return null;
