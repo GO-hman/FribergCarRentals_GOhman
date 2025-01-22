@@ -1,6 +1,7 @@
 ﻿@{
     var ses = SessionHelper.CheckSession(Context);
-    if (ses)
+    
+    if (SessionHelper.IsAdmin(Context))
     {
         Layout = "_AdminLayout";
     }

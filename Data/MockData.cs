@@ -6,11 +6,13 @@ namespace FribergCarRentals_GOhman.Data
     {
         private readonly ICar carRepo;
         private readonly IUser userRepo;
+        private readonly IAdmin adminRepo;
 
-        public MockData(ICar carRepo, IUser userRepo)
+        public MockData(ICar carRepo, IUser userRepo, IAdmin adminRepo)
         {
             this.carRepo = carRepo;
             this.userRepo = userRepo;
+            this.adminRepo = adminRepo;
         }
         public void MockCars()
         {
@@ -105,17 +107,10 @@ namespace FribergCarRentals_GOhman.Data
 
         public void MockUsers()
         {
-            List<User> users = new List<User>()
+            List<UserAccount> users = new List<UserAccount>()
             {
-                new User()
-                {
-                    FirstName = "Marcus",
-                    LastName = "Friberg",
-                    Email = "bossMan@friMail.org",
-                    Password = "passw0rd",
-                    IsAdmin = true
-                },
-                new User()
+
+                new UserAccount()
                 {
                     FirstName = "User1",
                     LastName = "Name1",
@@ -123,7 +118,7 @@ namespace FribergCarRentals_GOhman.Data
                     Password = "password",
                     IsAdmin = false
                 },
-                new User()
+                new UserAccount()
                 {
                     FirstName = "User2",
                     LastName = "Name2",
@@ -131,7 +126,7 @@ namespace FribergCarRentals_GOhman.Data
                     Password = "password",
                     IsAdmin = false
                 },
-                new User()
+                new UserAccount()
                 {
                     FirstName = "User3",
                     LastName = "Name3",
@@ -144,6 +139,19 @@ namespace FribergCarRentals_GOhman.Data
             {
                 userRepo.Add(user);
             }
+
+            AdminAccount admin = new AdminAccount()
+            {
+                FirstName = "Marcus",
+                LastName = "Friberg",
+                Email = "bossMan@friMail.org",
+                Password = "passw0rd",
+                IsAdmin = true
+            };
+            adminRepo.Add(admin);
+
+
+
         }
     }
 }

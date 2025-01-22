@@ -1,5 +1,6 @@
 using FribergCarRentals_GOhman.Data;
 using FribergCarRentals_GOhman.Services;
+using FribergCarRentals_GOhman.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace FribergCarRentals_GOhman
@@ -22,6 +23,9 @@ namespace FribergCarRentals_GOhman
             builder.Services.AddTransient<ICar, CarRepository>();
             builder.Services.AddTransient<IUser, UserRepository>();
             builder.Services.AddTransient<IBooking, BookingRepository>();
+            builder.Services.AddTransient<IAdmin, AdminRepository>();
+
+            builder.Services.AddTransient<UserViewModel>();
             builder.Services.AddTransient<MockData>();
             builder.Services.AddTransient<BookingService>();
             builder.Services.AddTransient<AuthLogin>();

@@ -26,7 +26,7 @@ namespace FribergCarRentals_GOhman.Services
             return carRepo.GetById(id);
         }
 
-        public User GetUserById(int id)
+        public UserAccount GetUserById(int id)
         {
             return userRepo.GetById(id);
         }

@@ -11,29 +11,29 @@ namespace FribergCarRentals_GOhman.Data
             this.applicationDbContext = applicationDbContext;
         }
 
-        public void Add(User user)
+        public void Add(UserAccount user)
         {
             applicationDbContext.Users.Add(user);
             applicationDbContext.SaveChanges();
         }
 
-        public void Delete(User user)
+        public void Delete(UserAccount user)
         {
             applicationDbContext.Remove(user);
             applicationDbContext.SaveChanges();
         }
-        public void Update(User user)
+        public void Update(UserAccount user)
         {
             applicationDbContext.Update(user);
             applicationDbContext.SaveChanges();
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<UserAccount> GetAll()
         {
             return applicationDbContext.Users.OrderBy(u => u.Id);
         }
 
-        public User GetById(int id)
+        public UserAccount GetById(int id)
         {
             return applicationDbContext.Users.FirstOrDefault(u => u.Id == id);
         }
