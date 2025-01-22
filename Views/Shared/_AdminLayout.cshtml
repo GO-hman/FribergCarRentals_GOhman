@@ -39,9 +39,30 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Booking" asp-action="Index">Booking</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Login" asp-action="Index">Login</a>
-                        </li>                     
+                        @{
+                            if (SessionHelper.CheckSession(Context))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark btn-primary" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark btn-primary" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
+                                </li>
+                            }
+                        }
+                        <li>
+                            @{
+                                if (SessionHelper.CheckSession(Context))
+                                {
+                                    <p>@SessionHelper.GetUserFromSession(Context).Email</p>
+                                    <p style="color: red;">ADMIN ACCESS!</p>
+                                    ;
+                                }
+                            }
+                        </li>
                     </ul>
                 </div>
             </div>
