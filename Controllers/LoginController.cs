@@ -39,7 +39,13 @@ namespace FribergCarRentals_GOhman.Controllers
             if (u is not null)
             {
                 HttpContext.Session.SetString("LoggedInCookie", JsonConvert.SerializeObject(u));
-                return RedirectToAction("Index");
+                HttpContext.Session.SetString("Role", u.Role.ToString());
+
+                if(HttpContext.Session.GetString("bookingLogin") == "booking")
+                {
+                    return RedirectToAction("SelectDate", "Booking");
+                }
+                return RedirectToAction("Index", "Home");
             }
 
             else if (u is null)
@@ -48,11 +54,32 @@ namespace FribergCarRentals_GOhman.Controllers
                 if (a is not null)
                 {
                     HttpContext.Session.SetString("LoggedInCookie", JsonConvert.SerializeObject(a));
-                    return RedirectToAction("Index");
+                    HttpContext.Session.SetString("Role", a.Role.ToString());
+                    return RedirectToAction("Index", "Home", new { area = "Admin" });
                 }
             }
 
             return NotFound();
+        }
+
+        public IActionResult Logout()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Logout(int id)
+        {
+            try
+            {
+                HttpContext.Session.Clear();
+                return RedirectToAction("Index", "Home", null);
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home", null);
+            }
         }
 
         public IActionResult Register()
@@ -71,49 +98,7 @@ namespace FribergCarRentals_GOhman.Controllers
                 {
                     userRepo.Add(user);
                 }
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AuthLogin/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: AuthLogin/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AuthLogin/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AuthLogin/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home", null);
             }
             catch
             {

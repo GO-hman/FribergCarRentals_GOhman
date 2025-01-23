@@ -11,8 +11,6 @@ namespace FribergCarRentals_GOhman
             var session = httpContext.Session.GetString("LoggedInCookie");
             if (session != null)
             {
-
-                var objectx = JsonConvert.DeserializeObject<JObject>(session);
                 return true;
             }
             return false;
@@ -20,16 +18,10 @@ namespace FribergCarRentals_GOhman
 
         public static bool IsAdmin(HttpContext httpContext)
         {
-            var session = httpContext.Session.GetString("LoggedInCookie");
-            if (session != null)
-            {
-                var admin = JsonConvert.DeserializeObject<AdminAccount>(session);
-                if (admin.IsAdmin)
-                {
-                    return true;
-                }
+            var role = httpContext.Session.GetString("Role");
+            if (role == "Admin")
+                return true;
 
-            }
             return false;
         }
 

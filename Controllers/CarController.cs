@@ -1,4 +1,5 @@
 ﻿using FribergCarRentals_GOhman.Data;
+using FribergCarRentals_GOhman.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,13 @@ namespace FribergCarRentals_GOhman.Controllers
         public ActionResult Details(int id)
         {
             return View(carRepo.GetById(id));
+        }
+        
+        public IActionResult BookCar(int id) //TODO: Fixa så att carId inte sparas i sessioin. Eller tas bort om man lämnar Select Date-rutan.
+        {
+
+            HttpContext.Session.SetString("carId", id.ToString());
+            return RedirectToAction("SelectDate", "Booking");
         }
     }
 }
