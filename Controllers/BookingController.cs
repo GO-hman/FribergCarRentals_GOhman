@@ -53,6 +53,22 @@ namespace FribergCarRentals_GOhman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SelectDate(BookingViewModel bookingVM)
         {
+            if(bookingVM.StartDate > bookingVM.StopDate)
+            {
+                ViewBag.Error = "StartDate cant be higher than stopdate";
+                return View();
+            }
+            else if(bookingVM.StartDate < DateTime.Now.Date)
+            {
+                ViewBag.Error = "Starting date has passed already. Try Again!";
+                return View();
+            }
+            else if(bookingVM.StopDate > DateTime.Now.AddYears(1))
+            {
+                ViewBag.Error = "Cannot book a year ahead. Try another stop date!";
+                return View();
+            }
+
             try
             {
                 if (bookingVM.CarId == 0)
@@ -72,7 +88,7 @@ namespace FribergCarRentals_GOhman.Controllers
 
         public ActionResult SelectCar(BookingViewModel bookingVM)
         {
-            bookingVM.Cars = bookingService.GetAllCars();
+            bookingVM.Cars = bookingService.GetAvailableCars(bookingVM.StartDate, bookingVM.StopDate);
             return View(bookingVM);
         }
 

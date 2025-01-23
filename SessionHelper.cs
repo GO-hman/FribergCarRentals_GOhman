@@ -21,7 +21,6 @@ namespace FribergCarRentals_GOhman
             var role = httpContext.Session.GetString("Role");
             if (role == "Admin")
                 return true;
-
             return false;
         }
 
