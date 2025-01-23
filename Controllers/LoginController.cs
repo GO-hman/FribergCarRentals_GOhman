@@ -48,17 +48,6 @@ namespace FribergCarRentals_GOhman.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            else if (u is null)
-            {
-                AdminAccount a = authLogin.GetAdmin(loginVM.Email, loginVM.Password);
-                if (a is not null)
-                {
-                    HttpContext.Session.SetString("LoggedInCookie", JsonConvert.SerializeObject(a));
-                    HttpContext.Session.SetString("Role", a.Role.ToString());
-                    return RedirectToAction("Index", "Home", new { area = "Admin" });
-                }
-            }
-
             return NotFound();
         }
 
