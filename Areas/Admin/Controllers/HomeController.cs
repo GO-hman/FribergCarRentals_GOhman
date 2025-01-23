@@ -23,5 +23,10 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             mock.MockCars();
             return View();
         }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
     }
 }

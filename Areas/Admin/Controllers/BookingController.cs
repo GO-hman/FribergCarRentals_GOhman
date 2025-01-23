@@ -15,7 +15,6 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
         private readonly BookingService _bookingService;
         private readonly IBooking _bookingRepo;
 
-
         public BookingController(BookingService bookingService, IBooking bookingRepo)
         {
             _bookingService = bookingService;
@@ -101,10 +100,11 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
                     }
                     else
                     {
-                        b.User = _bookingService.GetUserById(1);
+                        return NotFound();
                     }
 
                     _bookingRepo.Add(b);
+                    HttpContext.Session.Remove("carID");
                 }
                 return RedirectToAction("Confirmation", b);
             }

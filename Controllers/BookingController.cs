@@ -4,6 +4,7 @@ using FribergCarRentals_GOhman.Services;
 using FribergCarRentals_GOhman.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace FribergCarRentals_GOhman.Controllers
 {
@@ -20,17 +21,31 @@ namespace FribergCarRentals_GOhman.Controllers
         // GET: BookingController
         public ActionResult Index()
         {
-            if(SessionHelper.CheckSession(HttpContext))
+            HttpContext.Session.Remove("carId");
+            if (SessionHelper.CheckSession(HttpContext))
             {
                 return View(bookingService.GetBookingByUser(SessionHelper.GetUserFromSession(HttpContext).Id));
-
             }
             return View();
         }
 
         public ActionResult SelectDate()
         {
+
+            if (!SessionHelper.CheckSession(HttpContext))
+            {
+                HttpContext.Session.SetString("bookingLogin", "booking");
+                return RedirectToAction("Login", "Login");
+            }
+            HttpContext.Session.Remove("bookingLogin");
+
             BookingViewModel bookingVM = new BookingViewModel();
+            int parseId = 0;
+            if (int.TryParse(HttpContext.Session.GetString("carId"), out parseId))
+            {
+                bookingVM.CarId = parseId;
+            }
+            HttpContext.Session.Remove("carId");
             return View(bookingVM);
         }
 
@@ -40,7 +55,14 @@ namespace FribergCarRentals_GOhman.Controllers
         {
             try
             {
-                return RedirectToAction("SelectCar", bookingVM);
+                if (bookingVM.CarId == 0)
+                {
+                    return RedirectToAction("SelectCar", bookingVM);
+                }
+                else
+                {
+                    return RedirectToAction("Create", bookingVM);
+                }
             }
             catch
             {
@@ -101,10 +123,11 @@ namespace FribergCarRentals_GOhman.Controllers
                     }
                     else
                     {
-                        b.User = bookingService.GetUserById(1);
+                        return NotFound();
                     }
 
                     bookingRepo.Add(b);
+                    HttpContext.Session.Remove("carID");
                 }
                 return RedirectToAction("Confirmation", b);
             }

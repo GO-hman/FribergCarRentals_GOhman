@@ -40,7 +40,12 @@ namespace FribergCarRentals_GOhman.Controllers
             {
                 HttpContext.Session.SetString("LoggedInCookie", JsonConvert.SerializeObject(u));
                 HttpContext.Session.SetString("Role", u.Role.ToString());
-                return RedirectToAction("Index", "Home", null);
+
+                if(HttpContext.Session.GetString("bookingLogin") == "booking")
+                {
+                    return RedirectToAction("SelectDate", "Booking");
+                }
+                return RedirectToAction("Index", "Home");
             }
 
             else if (u is null)
