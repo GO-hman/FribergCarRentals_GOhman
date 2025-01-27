@@ -9,10 +9,8 @@ namespace FribergCarRentals_GOhman.Services
         {
             if(SessionHelper.CheckSession(filterContext.HttpContext))
             {
-                var user = SessionHelper.GetUserFromSession(filterContext.HttpContext);
-                var role = user.Role;
-           
-                if (role == null || role.ToString() != "Admin")
+                var role = SessionHelper.IsAdmin(filterContext.HttpContext);
+                if (!role)
                 {
                     filterContext.Result = new RedirectToActionResult("index", "Home", new { area = "" });
                 }

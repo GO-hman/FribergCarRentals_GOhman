@@ -9,14 +9,15 @@ using Newtonsoft.Json;
 namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AdminAuthFilter]
     public class HomeController : Controller
     {
         private readonly MockData mock;
+        private readonly AuthLogin authLogin;
 
-        public HomeController(MockData mock)
+        public HomeController(MockData mock, AuthLogin authLogin)
         {
             this.mock = mock;
+            this.authLogin = authLogin;
         }
         public IActionResult Index()
         {
@@ -29,6 +30,36 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             mock.MockCars();
             return View();
         }
+        public IActionResult Login()
+        {
+            if (SessionHelper.CheckSession(HttpContext))
+            {
+                if (SessionHelper.IsAdmin(HttpContext))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home", new { area = "" });
+                }
+            }
+            return View();
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Login(LoginViewModel loginVM)
+        {
+            AdminAccount a = authLogin.GetAdmin(loginVM.Email, loginVM.Password);
+
+            if (a is not null)
+            {
+                HttpContext.Session.SetString("LoggedInCookie", JsonConvert.SerializeObject(a));
+                HttpContext.Session.SetString("Role", a.Role.ToString());
+                return RedirectToAction(nameof(Index));
+            }
+
+            return RedirectToAction("Index", "Home", new { area = "" });
+        }
     }
 }
