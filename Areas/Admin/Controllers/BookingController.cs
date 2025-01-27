@@ -13,13 +13,11 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
     {
         private readonly BookingService _bookingService;
         private readonly IBooking _bookingRepo;
-        private readonly IUser userRepo;
 
-        public BookingController(BookingService bookingService, IBooking bookingRepo, IUser userRepo)
+        public BookingController(BookingService bookingService, IBooking bookingRepo)
         {
             _bookingService = bookingService;
             _bookingRepo = bookingRepo;
-            this.userRepo = userRepo;
         }
         // GET: BookingController
         public ActionResult Index()
@@ -80,7 +78,7 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             bookingVM.Car = _bookingService.GetCar(bookingVM.CarId);
 
             List<SelectListItem> userList = new List<SelectListItem>();
-            foreach (UserAccount user in userRepo.GetAll())
+            foreach (UserAccount user in _bookingService.GetAllUsers())
             {
                 userList.Add(new SelectListItem { Text = user.Email, Value = user.Id.ToString()});
             }

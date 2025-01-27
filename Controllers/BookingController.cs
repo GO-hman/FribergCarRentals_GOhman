@@ -53,17 +53,17 @@ namespace FribergCarRentals_GOhman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SelectDate(BookingViewModel bookingVM)
         {
-            if(bookingVM.StartDate > bookingVM.StopDate)
+            if (bookingVM.StartDate > bookingVM.StopDate)
             {
                 ViewBag.Error = "StartDate cant be higher than stopdate";
                 return View();
             }
-            else if(bookingVM.StartDate < DateTime.Now.Date)
+            else if (bookingVM.StartDate < DateTime.Now.Date)
             {
                 ViewBag.Error = "Starting date has passed already. Try Again!";
                 return View();
             }
-            else if(bookingVM.StopDate > DateTime.Now.AddYears(1))
+            else if (bookingVM.StopDate > DateTime.Now.AddYears(1))
             {
                 ViewBag.Error = "Cannot book a year ahead. Try another stop date!";
                 return View();
@@ -122,16 +122,21 @@ namespace FribergCarRentals_GOhman.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BookingViewModel tempBooking, int id)
+        public ActionResult Create(BookingViewModel bookingVM, int id)
         {
+            if (!bookingService.IsCarAvailableAtDate(bookingVM.StartDate, bookingVM.StopDate, bookingVM.CarId))
+            {
+                return RedirectToAction(nameof(BookingError));
+            }
+
             try
             {
                 Booking b = new Booking();
                 if (ModelState.IsValid)
                 {
-                    b.StartDate = tempBooking.StartDate;
-                    b.StopDate = tempBooking.StopDate;
-                    b.Car = bookingService.GetCar(tempBooking.CarId);
+                    b.StartDate = bookingVM.StartDate;
+                    b.StopDate = bookingVM.StopDate;
+                    b.Car = bookingService.GetCar(bookingVM.CarId);
                     if (SessionHelper.CheckSession(HttpContext))
                     {
                         UserAccount u = SessionHelper.GetUserFromSession(HttpContext);
@@ -204,6 +209,12 @@ namespace FribergCarRentals_GOhman.Controllers
         public ActionResult Confirmation(Booking booking)
         {
             return View(bookingRepo.GetById(booking.Id));
+        }
+
+        [HttpGet]
+        public IActionResult BookingError()
+        {
+            return View();
         }
     }
 }
