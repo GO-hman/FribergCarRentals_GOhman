@@ -14,11 +14,13 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
     {
         private readonly BookingService _bookingService;
         private readonly IBooking _bookingRepo;
+        private readonly IUser userRepo;
 
-        public BookingController(BookingService bookingService, IBooking bookingRepo)
+        public BookingController(BookingService bookingService, IBooking bookingRepo, IUser userRepo)
         {
             _bookingService = bookingService;
             _bookingRepo = bookingRepo;
+            this.userRepo = userRepo;
         }
         // GET: BookingController
         public ActionResult Index()
@@ -77,6 +79,14 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
         public ActionResult Create(BookingViewModel bookingVM)
         {
             bookingVM.Car = _bookingService.GetCar(bookingVM.CarId);
+
+            List<SelectListItem> userList = new List<SelectListItem>();
+            foreach (UserAccount user in userRepo.GetAll())
+            {
+                userList.Add(new SelectListItem { Text = user.Email, Value = user.Id.ToString()});
+            }
+            bookingVM.UserAccounts = userList;
+            ViewBag.UserList = userList;
             return View(bookingVM);
         }
 
@@ -93,15 +103,7 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
                     b.StartDate = tempBooking.StartDate;
                     b.StopDate = tempBooking.StopDate;
                     b.Car = _bookingService.GetCar(tempBooking.CarId);
-                    if (SessionHelper.CheckSession(HttpContext))
-                    {
-                        UserAccount u = SessionHelper.GetUserFromSession(HttpContext);
-                        b.User = _bookingService.GetUserById(u.Id);
-                    }
-                    else
-                    {
-                        return NotFound();
-                    }
+                    b.User = _bookingService.GetUserById((int)tempBooking.UserId);
 
                     _bookingRepo.Add(b);
                     HttpContext.Session.Remove("carID");

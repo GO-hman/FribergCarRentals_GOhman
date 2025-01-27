@@ -18,15 +18,7 @@ namespace FribergCarRentals_GOhman.Controllers
 
         public IActionResult Index()
         {
-
-            //var session = HttpContext.Session.GetString("LoggedInCookie");
-            //if (session != null)
-            //{
-
-            //var objectx = JsonConvert.DeserializeObject<JObject>(session);
-            //Console.WriteLine(objectx.ToString());
-            //}
-
+            HttpContext.Session.Remove("carId");
             return View();
         }
         public IActionResult Privacy()

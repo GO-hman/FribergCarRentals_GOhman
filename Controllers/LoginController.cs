@@ -86,8 +86,16 @@ namespace FribergCarRentals_GOhman.Controllers
                 if (ModelState.IsValid)
                 {
                     userRepo.Add(user);
+                    UserAccount currUser = authLogin.GetUser(user.Email, user.Password);
+                    HttpContext.Session.SetString("LoggedInCookie", JsonConvert.SerializeObject(currUser));
+                    HttpContext.Session.SetString("Role", currUser.Role.ToString());
+
+                    if (HttpContext.Session.GetString("bookingLogin") == "booking")
+                    {
+                        return RedirectToAction("SelectDate", "Booking");
+                    }
                 }
-                return RedirectToAction("Index", "Home", null);
+                return RedirectToAction("Index", "Home");
             }
             catch
             {

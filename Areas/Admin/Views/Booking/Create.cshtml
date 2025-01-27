@@ -18,6 +18,10 @@
         <li>@Model.StopDate</li>
         <li>@Model.Car.Model</li>
     </ul>
+    <p>Select user:</p>
+   @*  <a asp-for="@Model.UserId">@Html.DropDownList("UserList")</a> *@
+    
+    <select asp-for="@Model.UserId" asp-items="@Model.UserAccounts">Select user</select>
     <input type="submit" value="Confirm" class="btn btn-primary"/>
     <a asp-action="Index">Cancel</a>
     
