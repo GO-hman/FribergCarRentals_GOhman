@@ -1,6 +1,8 @@
 ﻿using FribergCarRentals_GOhman.Data;
 using FribergCarRentals_GOhman.Models;
+using FribergCarRentals_GOhman.Services;
 using FribergCarRentals_GOhman.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -17,37 +19,30 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             this.mock = mock;
             this.authLogin = authLogin;
         }
+        [AdminAuthFilter]
         public IActionResult Index()
         {
             return View();
         }
-
+        [AdminAuthFilter]
         public IActionResult MockData()
         {
             mock.MockUsers();
             mock.MockCars();
             return View();
         }
-
         public IActionResult Login()
         {
             if (SessionHelper.CheckSession(HttpContext))
             {
-                if (SessionHelper.IsAdmin(HttpContext))
-                {
-                    return RedirectToAction(nameof(Index));
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home", new { area = "" });
-                }
+                    return RedirectToAction("Index", "Home");
             }
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel loginVM)
+        public IActionResult Login(LoginViewModel loginVM)
         {
             AdminAccount a = authLogin.GetAdmin(loginVM.Email, loginVM.Password);
 
@@ -57,7 +52,6 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
                 HttpContext.Session.SetString("Role", a.Role.ToString());
                 return RedirectToAction(nameof(Index));
             }
-
             return RedirectToAction("Index", "Home", new { area = "" });
         }
     }

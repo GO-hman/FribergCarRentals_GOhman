@@ -21,11 +21,14 @@ namespace FribergCarRentals_GOhman.Services
             return carRepo.GetAll().ToList();
         }
 
+        public List<UserAccount> GetAllUsers()
+        {
+            return userRepo.GetAll().ToList();
+        }
         public Car GetCar(int id)
         {
             return carRepo.GetById(id);
         }
-
         public UserAccount GetUserById(int id)
         {
             return userRepo.GetById(id);
@@ -36,9 +39,7 @@ namespace FribergCarRentals_GOhman.Services
             List<Booking> bookings = bookingRepo.GetAll().Where(b => b.User.Id == id).ToList() ?? new List<Booking>();
 
             return bookings;
-
         }
-
         public List<Car> GetAvailableCars(DateTime start, DateTime stop)
         {
             
@@ -50,9 +51,19 @@ namespace FribergCarRentals_GOhman.Services
                     availableCars.Remove(b.Car);
             }
             return availableCars;
-         
-
         }
 
+        public bool IsCarAvailableAtDate(DateTime start, DateTime stop, int carId)
+        {
+            List<Car> availableCars = carRepo.GetAll().ToList();
+
+            foreach (Booking b in bookingRepo.GetAll())
+            {
+                if (b.StartDate < stop && b.StopDate > start)
+                    availableCars.Remove(b.Car);
+            }
+
+            return availableCars.Contains(GetCar(carId));            
+        }
     }
 }

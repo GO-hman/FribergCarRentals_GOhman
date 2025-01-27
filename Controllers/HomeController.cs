@@ -11,7 +11,7 @@ namespace FribergCarRentals_GOhman.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, MockData moockData)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
@@ -21,11 +21,6 @@ namespace FribergCarRentals_GOhman.Controllers
             HttpContext.Session.Remove("carId");
             return View();
         }
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
