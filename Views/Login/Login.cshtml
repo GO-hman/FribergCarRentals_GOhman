@@ -1,6 +1,7 @@
 ﻿@model FribergCarRentals_GOhman.ViewModels.LoginViewModel
 
-<form asp-action="Login">
+<div class="login-form">
+    <form class="login-form" asp-action="Login">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label asp-for="Email" class="control-label"></label>
@@ -14,10 +15,11 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" value="Login" class="btn btn-primary" />
+            <input type="submit" value="Login" class="btn btn-primary mt-2" />
         </div>
 
 
-</form>
+    </form>
 
-<a asp-action="Register">Register</a>
+    <a asp-action="Register">Register</a>
+</div>

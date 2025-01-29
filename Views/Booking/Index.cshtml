@@ -55,8 +55,8 @@ else
                         @Html.DisplayFor(modelItem => item.User.Email)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Car.Model)
                         <img src="@Html.DisplayFor(modelItem => item.Car.ImgURL)" class="img-thumbnail" alt="CarPhoto">
+                        @Html.DisplayFor(modelItem => item.Car.Model)
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

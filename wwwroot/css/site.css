@@ -1,7 +1,41 @@
+html, body {
+    min-height: 100%;
+}
 html {
     font-size: 14px;
 }
+.index-logo{
+    height: 15em;
+    width: 15em;
+}
 
+.login-form{
+    margin: 0 auto;
+}
+
+header {
+    background-color: #e3ebee;
+    border-bottom: solid;
+    border-color: #f49f22;
+    margin-bottom: 3em;
+}
+
+
+input{
+    max-width: 30em;
+}
+body {
+    background-color: #e3ebee;
+    min-height: 100%;
+}
+.login-nav{
+    margin: 0 2em;
+    float: right;
+}
+.nav-item:hover {
+/*    background-color: #d3d9dc;*/
+    text-decoration: underline;
+}
 
 @media (min-width: 768px) {
   html {
@@ -20,4 +54,20 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+
+.transition {
+    animation-name: transitionFrames;
+    animation-duration: 0.5s;
+}
+
+@keyframes transitionFrames {
+    0% {
+        opacity: 1;
+    }
+      
+    100% {
+        opacity: 0;
+    }
 }
