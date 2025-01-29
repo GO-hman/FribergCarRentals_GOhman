@@ -13,16 +13,6 @@ namespace FribergCarRentals_GOhman.Data
             this.adminRepo = adminRepo;
         }
 
-        public void GetAccount(string username, string password)
-        {
-            UserAccount u = GetUser(username, password);
-
-            if (u is null)
-            {
-                AdminAccount a = GetAdmin(username, password);
-            }
-        }
-
         public UserAccount GetUser(string username, string password)
         {
             UserAccount user = CheckUsername(username);

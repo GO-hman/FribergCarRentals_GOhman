@@ -3,14 +3,6 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<style>
-    .img-thumbnail {
-        height: 200px;
-        width: 300px;
-    }
-</style>
-
 <h1>Index</h1>
 
 <p>
@@ -23,7 +15,6 @@
 }
 else
 {
-
     <table class="table">
         <thead>
             <tr>
@@ -45,6 +36,7 @@ else
         <tbody>
             @foreach (var item in Model)
             {
+                
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.StartDate)
@@ -60,7 +52,6 @@ else
                         @Html.DisplayFor(modelItem => item.Car.Model)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     </td>

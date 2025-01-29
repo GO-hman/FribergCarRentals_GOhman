@@ -25,7 +25,7 @@ namespace FribergCarRentals_GOhman.Controllers
             return View(carRepo.GetById(id));
         }
         
-        public IActionResult BookCar(int id) //TODO: Fixa så att carId inte sparas i sessioin. Eller tas bort om man lämnar Select Date-rutan.
+        public IActionResult BookCar(int id)
         {
 
             HttpContext.Session.SetString("carId", id.ToString());

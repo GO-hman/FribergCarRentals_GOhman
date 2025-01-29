@@ -10,9 +10,16 @@
         </div>
         <div class="form-group">
             <label asp-for="Password" class="control-label"></label>
-            <input asp-for="Password" class="form-control" />
+            <input type="password" asp-for="Password" class="form-control" />
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
+
+        @if (ViewBag.NotFound != null)
+        {
+            <div class="alert alert-danger transition" role="alert">
+                @ViewBag.NotFound
+            </div>
+        }
 
         <div class="form-group">
             <input type="submit" value="Login" class="btn btn-primary mt-2" />

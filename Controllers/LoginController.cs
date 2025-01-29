@@ -47,8 +47,8 @@ namespace FribergCarRentals_GOhman.Controllers
                 }
                 return RedirectToAction("Index", "Home");
             }
-
-            return NotFound();
+            ViewBag.NotFound = "Invalid username/password. Try again.";
+            return View();
         }
 
         public IActionResult Logout()
