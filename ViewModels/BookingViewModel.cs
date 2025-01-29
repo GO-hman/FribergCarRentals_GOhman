@@ -13,5 +13,9 @@ namespace FribergCarRentals_GOhman.ViewModels
         public Car? Car { get; set; }
 
         public int? UserId { get; set; }
+
+        public List<Booking>? EarlierBookings { get; set; }
+        public List<Booking>? CurrentBookings { get; set; }
+        public List<Booking>? UpcomingBookings { get; set; }
     }
 }

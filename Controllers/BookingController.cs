@@ -24,6 +24,12 @@ namespace FribergCarRentals_GOhman.Controllers
             HttpContext.Session.Remove("carId");
             if (SessionHelper.CheckSession(HttpContext))
             {
+                //TODO: Fixa det här.
+                //BookingViewModel bookingVM = new BookingViewModel();
+                //bookingVM.EarlierBookings = bookingService.GetBookingByUser(SessionHelper.GetUserFromSession(HttpContext).Id).Where(b=>b.StopDate < DateTime.Now).ToList();
+                //bookingVM.CurrentBookings = bookingService.GetBookingByUser(SessionHelper.GetUserFromSession(HttpContext).Id).Where(b => b.StartDate < DateTime.Now && b.StopDate > DateTime.Now).ToList();
+                //bookingVM.UpcomingBookings = bookingService.GetBookingByUser(SessionHelper.GetUserFromSession(HttpContext).Id).Where(b => b.StartDate > DateTime.Now).ToList();
+
                 return View(bookingService.GetBookingByUser(SessionHelper.GetUserFromSession(HttpContext).Id));
             }
             return View();

@@ -4,62 +4,37 @@
     ViewData["Title"] = "Index";
 }
 <style>
-    .img-thumbnail {
-        padding: 0.25rem;
-        background-color: #fff;
-        border: 1px solid #dee2e6;
-        border-radius: 0.25rem;
-        max-width: 300px;
+    .card-img-custom{
         height: 200px;
     }
 
 </style>
 <h1>Index</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PricePerDay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImgURL)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Model)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModelYear)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PricePerDay)
-            </td>
-            <td>
-                <img class="img-thumbnail" src="@Html.DisplayFor(modelItem => item.ImgURL)" alt="@Html.DisplayFor(modelItem => item.Model) image"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModelYear)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="BookCar" asp-route-id="@item.Id">Book Car</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="card" style="width: 18rem; margin: 1em 0;">
+                    <img src="@item.ImgURL" class="card-img-top card-img-custom" alt="Picture of car">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Model @item.ModelYear</h5>
+                        @if(@item.PricePerDay < 1000)
+                        {
+                            <p class="card-text" style="color: green; font-weight: bold;">@item.PricePerDay SEK/day</p>
+
+                        }
+                        else
+                        {
+                            <p class="card-text">@item.PricePerDay SEK/day</p>
+                        }
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                        <a asp-action="BookCar" asp-route-id="@item.Id" class=" btn btn-primary">Book</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
