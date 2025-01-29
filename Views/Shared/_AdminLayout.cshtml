@@ -2,7 +2,7 @@
 @using Newtonsoft.Json.Linq
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
 
     <meta charset="utf-8" />
@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FribergCarRentals_GOhman.styles.css" asp-append-version="true" />
-      <script src="https://kit.fontawesome.com/9092ca5d2a.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9092ca5d2a.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img style="height: 3em; width: 3em;" src="~/Friberg_LOGO.PNG" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -36,28 +36,28 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Booking" asp-action="Index">Booking</a>
                         </li>
-                        @{
-                            if (SessionHelper.CheckSession(Context))
-                            {
-                                <h4>@SessionHelper.GetUserFromSession(Context).Email</h4><br />
-                                <p style="color: red;">ADMIN ACCESS!</p>
-                            }
-                        }
-                        @{
-                            if (SessionHelper.CheckSession(Context))
-                            {
-                                <div class="nav-item login-nav">
-                                    <a class="nav-link text-dark btn-primary" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="nav-item login-nav">
-                                    <a class="nav-link text-dark btn-primary" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
-                                </div>
-                            }
-                        }   
                     </ul>
+                    @{
+                        if (SessionHelper.CheckSession(Context))
+                        {
+                            <h4>@SessionHelper.GetUserFromSession(Context).Email</h4>
+                            <p style="color: red;">ADMIN ACCESS!</p>
+                        }
+                    }
+                    @{
+                        if (SessionHelper.CheckSession(Context))
+                        {
+                            <div class="nav-item login-nav">
+                                <a class="nav-link text-dark btn-primary" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="nav-item login-nav">
+                                <a class="nav-link text-dark btn-primary" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
         </nav>
