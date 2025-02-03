@@ -26,9 +26,15 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             return View(userVM);
         }
 
-        public ActionResult Details(AdminAccount acc)
+        public ActionResult Details(int id, bool isAdmin)
         {
-            return View();
+            if (isAdmin)
+            {
+                return View(adminRepository.GetById(id));
+
+            }
+
+            return View(userRepository.GetById(id));
         }
 
         public ActionResult Create()
