@@ -62,9 +62,7 @@
                     }
                     @if (item.Active)
                     {
-                        <form asp-action="ReturnBooking" asp-route-id="@item.Id">
-                            <input class="btn btn-primary" type="submit" value="Return" />
-                        </form>
+                        <a class="btn btn-primary" asp-action="ReturnBooking" asp-route-id="@item.Id">Return</a>
                     }
                 </td>
             </tr>

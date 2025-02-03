@@ -7,42 +7,26 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Car</h4>
+    <h4>@Model.Model @Model.ModelYear</h4>
     <hr />
+            <img class="img-gallery" src="@Model.ImgURL" alt="Picture of car" />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PricePerDay)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PricePerDay)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImgURL)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImgURL)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Model)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Color)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Color)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModelYear)
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PricePerDay)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModelYear)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PricePerDay)
         </dd>
     </dl>
 </div>
 <div>
-    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> 
     <a class="btn btn-link" asp-action="Index">Back to List</a>
 </div>

@@ -22,8 +22,8 @@
    @*  <a asp-for="@Model.UserId">@Html.DropDownList("UserList")</a> *@
     
     <select asp-for="@Model.UserId" asp-items="@Model.UserAccounts">Select user</select>
-    <input type="submit" value="Confirm" class="btn btn-primary"/>
-    <a asp-action="Index">Cancel</a>
+    <input class="btn btn-primary" type="submit" value="Confirm" />
+    <a class="btn btn-link" asp-action="Index">Cancel</a>
     
 
 </form>

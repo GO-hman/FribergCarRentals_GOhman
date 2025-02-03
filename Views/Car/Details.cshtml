@@ -7,8 +7,9 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Car</h4>
+    <h4>@Model.Model @Model.ModelYear</h4>
     <hr />
+    <img class="img-gallery" src="@Html.DisplayFor(model => model.ImgURL)" alt="@Html.DisplayFor(model => model.Model) image" />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PricePerDay)
@@ -17,28 +18,10 @@
             @Html.DisplayFor(model => model.PricePerDay)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImgURL)
-        </dt>
-        <dd class = "col-sm-10">
-            <img class="img-thumbnail" src="@Html.DisplayFor(model => model.ImgURL)" alt="@Html.DisplayFor(model => model.Model) image" />
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Model)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Model)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Color)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Color)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModelYear)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModelYear)
         </dd>
     </dl>
 </div>
