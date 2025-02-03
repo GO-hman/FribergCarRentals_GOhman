@@ -15,7 +15,7 @@ namespace FribergCarRentals_GOhman.Models
         [Required]
         public string Password { get; set; }
 
-        public AccountRoles Role { get; private set; } = AccountRoles.User;
+        public AccountRoles Role { get; set; } = AccountRoles.User;
 
         public bool IsAdmin { get; set; } = false;
 
