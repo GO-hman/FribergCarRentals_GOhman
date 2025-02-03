@@ -70,7 +70,7 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
                 {
                     carRepository.Update(car);
                 }
-                return RedirectToAction();
+                return RedirectToAction(nameof(Index));
             }
             catch
             {

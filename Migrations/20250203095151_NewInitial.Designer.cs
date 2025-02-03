@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergCarRentals_GOhman.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250114150730_Initial")]
-    partial class Initial
+    [Migration("20250203095151_NewInitial")]
+    partial class NewInitial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,39 @@ namespace FribergCarRentals_GOhman.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("FribergCarRentals_GOhman.Models.AdminAccount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Admins");
+                });
+
             modelBuilder.Entity("FribergCarRentals_GOhman.Models.Booking", b =>
                 {
                     b.Property<int>("Id")
@@ -32,6 +65,9 @@ namespace FribergCarRentals_GOhman.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AdminAccountId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CarId")
                         .HasColumnType("int");
@@ -46,6 +82,8 @@ namespace FribergCarRentals_GOhman.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AdminAccountId");
 
                     b.HasIndex("CarId");
 
@@ -86,7 +124,7 @@ namespace FribergCarRentals_GOhman.Migrations
                     b.ToTable("Cars");
                 });
 
-            modelBuilder.Entity("FribergCarRentals_GOhman.Models.User", b =>
+            modelBuilder.Entity("FribergCarRentals_GOhman.Models.UserAccount", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -99,19 +137,20 @@ namespace FribergCarRentals_GOhman.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -120,13 +159,17 @@ namespace FribergCarRentals_GOhman.Migrations
 
             modelBuilder.Entity("FribergCarRentals_GOhman.Models.Booking", b =>
                 {
+                    b.HasOne("FribergCarRentals_GOhman.Models.AdminAccount", null)
+                        .WithMany("Bookings")
+                        .HasForeignKey("AdminAccountId");
+
                     b.HasOne("FribergCarRentals_GOhman.Models.Car", "Car")
                         .WithMany()
                         .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FribergCarRentals_GOhman.Models.User", "User")
+                    b.HasOne("FribergCarRentals_GOhman.Models.UserAccount", "User")
                         .WithMany("Bookings")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -137,7 +180,12 @@ namespace FribergCarRentals_GOhman.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("FribergCarRentals_GOhman.Models.User", b =>
+            modelBuilder.Entity("FribergCarRentals_GOhman.Models.AdminAccount", b =>
+                {
+                    b.Navigation("Bookings");
+                });
+
+            modelBuilder.Entity("FribergCarRentals_GOhman.Models.UserAccount", b =>
                 {
                     b.Navigation("Bookings");
                 });
