@@ -38,7 +38,7 @@ namespace FribergCarRentals_GOhman.Controllers
 
             if (u is not null)
             {
-                HttpContext.Session.SetString("LoggedInCookie", JsonConvert.SerializeObject(u));
+                HttpContext.Session.SetString("LoggedInAccount", JsonConvert.SerializeObject(u));
                 HttpContext.Session.SetString("Role", u.Role.ToString());
 
                 if(HttpContext.Session.GetString("bookingLogin") == "booking")
@@ -87,7 +87,7 @@ namespace FribergCarRentals_GOhman.Controllers
                 {
                     userRepo.Add(user);
                     UserAccount currUser = authLogin.GetUser(user.Email, user.Password);
-                    HttpContext.Session.SetString("LoggedInCookie", JsonConvert.SerializeObject(currUser));
+                    HttpContext.Session.SetString("LoggedInAccount", JsonConvert.SerializeObject(currUser));
                     HttpContext.Session.SetString("Role", currUser.Role.ToString());
 
                     if (HttpContext.Session.GetString("bookingLogin") == "booking")

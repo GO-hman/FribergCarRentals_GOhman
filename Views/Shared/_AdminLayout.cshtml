@@ -37,14 +37,14 @@
                         </li>
                     </ul>
                     @{
-                        if (SessionHelper.CheckSession(Context))
+                        if (SessionHelper.CheckSessionLogin(Context))
                         {
                             <h4>@SessionHelper.GetUserFromSession(Context).Email</h4>
                             <p style="color: red;">ADMIN ACCESS!</p>
                         }
                     }
                     @{
-                        if (SessionHelper.CheckSession(Context))
+                        if (SessionHelper.CheckSessionLogin(Context))
                         {
                             <div class="nav-item login-nav">
                                 <a class="nav-link text-dark btn btn-danger" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>

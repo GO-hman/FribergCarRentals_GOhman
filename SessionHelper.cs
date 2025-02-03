@@ -6,9 +6,9 @@ namespace FribergCarRentals_GOhman
 {
     public static class SessionHelper
     {
-        public static bool CheckSession(HttpContext httpContext)
+        public static bool CheckSessionLogin(HttpContext httpContext)
         {
-            var session = httpContext.Session.GetString("LoggedInCookie");
+            var session = httpContext.Session.GetString("LoggedInAccount");
             if (session != null)
             {
                 return true;
@@ -26,7 +26,7 @@ namespace FribergCarRentals_GOhman
 
         public static UserAccount GetUserFromSession(HttpContext httpContext)
         {
-            var session = httpContext.Session.GetString("LoggedInCookie");
+            var session = httpContext.Session.GetString("LoggedInUser");
             if (session != null)
             {
                 var user = JsonConvert.DeserializeObject<UserAccount>(session);

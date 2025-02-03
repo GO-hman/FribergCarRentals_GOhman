@@ -33,7 +33,7 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
         }
         public IActionResult Login()
         {
-            if (SessionHelper.CheckSession(HttpContext))
+            if (SessionHelper.CheckSessionLogin(HttpContext))
             {
                     return RedirectToAction("Index", "Home");
             }
@@ -48,7 +48,7 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
 
             if (a is not null)
             {
-                HttpContext.Session.SetString("LoggedInCookie", JsonConvert.SerializeObject(a));
+                HttpContext.Session.SetString("LoggedInAccount", JsonConvert.SerializeObject(a));
                 HttpContext.Session.SetString("Role", a.Role.ToString());
                 return RedirectToAction(nameof(Index));
             }
