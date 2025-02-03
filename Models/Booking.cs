@@ -13,5 +13,6 @@ namespace FribergCarRentals_GOhman.Models
         public bool Active { get; set; } = false;
 
         public bool Consumed { get; set; } = false;
+        public DateTime Returned { get; set; }
     }
 }

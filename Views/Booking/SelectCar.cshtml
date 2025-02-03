@@ -3,12 +3,6 @@
 @{
     ViewData["Title"] = "Select Car";
 }
-<style>
-    .img-thumbnail{
-        height: 200px;
-        width: 300px;
-    }
-</style>
 <h1>Select Car</h1>
 
 
@@ -50,11 +44,8 @@
                     <form asp-action="SelectCar">
                         <input type="hidden" asp-for="StartDate" />
                         <input type="hidden" asp-for="StopDate" />
-
                         <div class="form-group">
-
                             <input type="submit" value="Select" asp-route-id="@item.Id" class="btn btn-primary" />
-
                         </div>
                     </form>
                 </td>

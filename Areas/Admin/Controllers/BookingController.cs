@@ -192,6 +192,8 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
         {
             Booking b = _bookingRepo.GetById(id);
             b.Active = false;
+            b.Consumed = true;
+            b.Returned = DateTime.Now;
             _bookingRepo.Update(b);
             return RedirectToAction(nameof(Index));
         }

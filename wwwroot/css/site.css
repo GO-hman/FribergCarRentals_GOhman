@@ -3,13 +3,16 @@ html, body {
     height: 100%;
 }
 
+h1 {
+    margin: 0;
+}
 
 
 footer {
     background-color: #f8f9fa; /* Example background color */
 }
 
-.alert{
+.alert {
     margin: 1em 0;
     max-width: 30em;
 }
@@ -18,15 +21,17 @@ footer {
 .mt-auto {
     margin-top: auto;
 }
+
 html {
     font-size: 14px;
 }
-.index-logo{
+
+.index-logo {
     height: 15em;
     width: 15em;
 }
 
-.login-form{
+.login-form {
     margin: 0 auto;
 }
 
@@ -38,43 +43,57 @@ header {
 }
 
 .img-thumbnail {
-    height: 200px;
-    width: 300px;
+    height: 5em;
+    width: 8em;
 }
 
-input{
+input {
     max-width: 30em;
 }
+
 body {
     background-color: #e3ebee;
     min-height: 100%;
 }
-.login-nav{
+
+.login-nav {
     margin: 0 2em;
     float: right;
 }
+
 .nav-item:hover {
-/*    background-color: #d3d9dc;*/
+    /*    background-color: #d3d9dc;*/
     text-decoration: underline;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+.btn {
+    margin-top: 0.5em;
+}
+
+.btn-link {
+}
+
+.btn-link:hover {
+    background-color: #d0d7d9;
 }
 
 
@@ -87,7 +106,7 @@ body {
     0% {
         opacity: 0;
     }
-      
+
     100% {
         opacity: 1;
     }

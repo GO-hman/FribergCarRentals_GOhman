@@ -24,15 +24,15 @@ namespace FribergCarRentals_GOhman.Controllers
             HttpContext.Session.Remove("carId");
             if (SessionHelper.CheckSession(HttpContext))
             {
+                int userID = SessionHelper.GetUserFromSession(HttpContext).Id;
                 //TODO: Fixa det här.
-                //BookingViewModel bookingVM = new BookingViewModel();
-                //bookingVM.EarlierBookings = bookingService.GetBookingByUser(SessionHelper.GetUserFromSession(HttpContext).Id).Where(b=>b.StopDate < DateTime.Now).ToList();
-                //bookingVM.CurrentBookings = bookingService.GetBookingByUser(SessionHelper.GetUserFromSession(HttpContext).Id).Where(b => b.StartDate < DateTime.Now && b.StopDate > DateTime.Now).ToList();
-                //bookingVM.UpcomingBookings = bookingService.GetBookingByUser(SessionHelper.GetUserFromSession(HttpContext).Id).Where(b => b.StartDate > DateTime.Now).ToList();
-
-                return View(bookingService.GetBookingByUser(SessionHelper.GetUserFromSession(HttpContext).Id));
+                BookingViewModel bookingVM = new BookingViewModel();
+                bookingVM.EarlierBookings = bookingService.GetBookingByUser(userID).Where(b => b.Consumed==true).ToList();
+                bookingVM.ActiveBookings = bookingService.GetBookingByUser(userID).Where(b => b.Active==true).ToList();
+                bookingVM.UpcomingBookings = bookingService.GetBookingByUser(userID).Where(b => b.Active == false && b.Consumed==false).ToList();
+                return View(bookingVM);
             }
-            return View();
+            return RedirectToAction("login", "login");
         }
 
         public ActionResult SelectDate()

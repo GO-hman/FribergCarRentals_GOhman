@@ -4,20 +4,20 @@
     ViewData["Title"] = "Index";
 }
 
-<style>
-    .img-thumbnail {
-        height: 200px;
-        width: 300px;
-    }
-</style>
+
 <h1>Index</h1>
 
 <p>
-    <a asp-action="SelectDate">Create New</a>
+    <a class="btn btn-primary" asp-action="SelectDate">Create New Booking</a>
 </p>
+
+<h3>Upcoming/Ongoing bookings</h3>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Car.Model)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.StartDate)
             </th>
@@ -27,16 +27,19 @@
             <th>
                 User
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Car.Model)
-            </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Where(b=>b.Consumed==false))
         {
             <tr>
+                <td>
+                    
+                    <img src="@Html.DisplayFor(modelItem => item.Car.ImgURL)" class="img-thumbnail" alt="CarPhoto">
+                    @Html.DisplayFor(modelItem => item.Car.Model)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.StartDate)
                 </td>
@@ -46,14 +49,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.User.Email)
                 </td>
+
                 <td>
-                    @Html.DisplayFor(modelItem => item.Car.Model)
-                    <img src="@Html.DisplayFor(modelItem => item.Car.ImgURL)" class="img-thumbnail" alt="CarPhoto">
-                </td>
-                <td>
-                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a> 
 
                     @if (!item.Active)
                     {
@@ -66,6 +66,58 @@
                             <input class="btn btn-primary" type="submit" value="Return" />
                         </form>
                     }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Old bookings</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Car.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StopDate)
+            </th>
+            <th>
+                User
+            </th>
+
+            <th>
+                Returned
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Where(b => b.Consumed == true))
+        {
+            <tr>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Car.ImgURL)" class="img-thumbnail" alt="CarPhoto">
+                    @Html.DisplayFor(modelItem => item.Car.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StopDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Returned)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a> 
                 </td>
             </tr>
         }

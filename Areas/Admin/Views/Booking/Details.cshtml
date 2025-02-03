@@ -29,15 +29,31 @@
             @Html.DisplayFor(model => model.Car.Model)
         </dd>
         <dt class="col-sm-2">
-           User: 
+            User:
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.User.Email)
         </dd>
+        <dt class="col-sm-2">
+            Total Price:
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                TimeSpan duration = Model.StopDate.Subtract(Model.StartDate);
+                double hours = duration.TotalDays;
+                double price = hours * Model.Car.PricePerDay;
+                <p>@price SEK</p>
+            }
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Delete" asp-route-id="@Model?.Id">Delete</a> | 
-    <a asp-action="Index">Back to List</a>
+    @if (!Model.Active && !Model.Consumed)
+    {
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model?.Id">Delete</a>
+
+    }
+
+    <a class="btn btn-link" asp-action="Index">Back to List</a>
 </div>

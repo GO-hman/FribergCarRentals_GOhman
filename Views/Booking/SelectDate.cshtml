@@ -9,30 +9,34 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-            <p>@ViewBag.Error</p>
+
         <form asp-action="SelectDate">
             <input type="hidden" asp-for="@Model.CarId" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" value="@DateTime.Today.AddHours(12)"/>
+                <input asp-for="StartDate" class="form-control" value="@DateTime.Today.AddHours(12)" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="StopDate" class="control-label"></label>
-                <input asp-for="StopDate" class="form-control" value="@DateTime.Today.AddHours(12)"/>
+                <input asp-for="StopDate" class="form-control" value="@DateTime.Today.AddHours(12)" />
                 <span asp-validation-for="StopDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Select" class="btn btn-primary" />
+                <a class="btn btn-link" asp-action="Index">Back to List</a>
             </div>
         </form>
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger transition" role="alert">
+                @ViewBag.Error
+            </div>
+        }
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{
