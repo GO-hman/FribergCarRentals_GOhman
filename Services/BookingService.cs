@@ -37,7 +37,6 @@ namespace FribergCarRentals_GOhman.Services
         public List<Booking> GetBookingByUser(int id)
         {
             List<Booking> bookings = bookingRepo.GetAll().Where(b => b.User.Id == id).ToList() ?? new List<Booking>();
-
             return bookings;
         }
         public List<Car> GetAvailableCars(DateTime start, DateTime stop)
@@ -65,5 +64,6 @@ namespace FribergCarRentals_GOhman.Services
 
             return availableCars.Contains(GetCar(carId));            
         }
+
     }
 }

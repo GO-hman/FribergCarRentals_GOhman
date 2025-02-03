@@ -9,5 +9,9 @@ namespace FribergCarRentals_GOhman.Models
         public Car Car { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime StopDate { get; set; }
+
+        public bool Active { get; set; } = false;
+
+        public bool Consumed { get; set; } = false;
     }
 }

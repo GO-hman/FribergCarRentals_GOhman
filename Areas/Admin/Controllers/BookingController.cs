@@ -80,7 +80,7 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             List<SelectListItem> userList = new List<SelectListItem>();
             foreach (UserAccount user in _bookingService.GetAllUsers())
             {
-                userList.Add(new SelectListItem { Text = user.Email, Value = user.Id.ToString()});
+                userList.Add(new SelectListItem { Text = user.Email, Value = user.Id.ToString() });
             }
             bookingVM.UserAccounts = userList;
             ViewBag.UserList = userList;
@@ -164,6 +164,36 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpGet]
+        public ActionResult Activate(int id)
+        {
+            return View(_bookingRepo.GetById(id));
+        }
+
+        [HttpPost]
+        public ActionResult Activate(Booking booking)
+        {
+            try
+            {
+                booking = _bookingRepo.GetById(booking.Id);
+                booking.Active = true;
+                _bookingRepo.Update(booking);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult ReturnBooking(int id)
+        {
+            Booking b = _bookingRepo.GetById(id);
+            b.Active = false;
+            _bookingRepo.Update(b);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

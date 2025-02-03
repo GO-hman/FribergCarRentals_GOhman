@@ -1,0 +1,11 @@
+﻿@model FribergCarRentals_GOhman.Models.Booking
+
+<h1>Active booking</h1>
+
+<p>Are you sure? This customer might </p>
+
+<form asp-action="Activate">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Activate" class="btn btn-primary" />
+</form>
+<a class="btn btn-primary" asp-action="Index">Cancel</a>

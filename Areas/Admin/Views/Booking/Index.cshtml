@@ -5,7 +5,7 @@
 }
 
 <style>
-    .img-thumbnail{
+    .img-thumbnail {
         height: 200px;
         width: 300px;
     }
@@ -34,14 +34,15 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StopDate)
-            </td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StopDate)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.User.Email)
                 </td>
@@ -49,12 +50,24 @@
                     @Html.DisplayFor(modelItem => item.Car.Model)
                     <img src="@Html.DisplayFor(modelItem => item.Car.ImgURL)" class="img-thumbnail" alt="CarPhoto">
                 </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+
+                    @if (!item.Active)
+                    {
+                        <a class="btn btn-primary" asp-action="Activate" asp-route-id="@item.Id">Activate booking</a>
+
+                    }
+                    @if (item.Active)
+                    {
+                        <form asp-action="ReturnBooking" asp-route-id="@item.Id">
+                            <input class="btn btn-primary" type="submit" value="Return" />
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
