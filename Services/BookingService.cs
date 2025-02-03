@@ -64,6 +64,5 @@ namespace FribergCarRentals_GOhman.Services
 
             return availableCars.Contains(GetCar(carId));            
         }
-
     }
 }
