@@ -17,5 +17,8 @@ namespace FribergCarRentals_GOhman.ViewModels
         }
         public List<UserAccount> Users { get; set; }
         public List<AdminAccount> Admins { get; set; }
+
+        public AdminAccount Admin { get; set; }
+        public UserAccount User { get; set; }
     }
 }

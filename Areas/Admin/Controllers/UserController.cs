@@ -12,28 +12,20 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
     {
         private readonly IUser userRepository;
         private readonly IAdmin adminRepository;
-        private readonly UserViewModel userVM;
 
-        public UserController(IUser userRepository, IAdmin adminRepository, UserViewModel userVM)
+        public UserController(IUser userRepository, IAdmin adminRepository)
         {
             this.userRepository = userRepository;
             this.adminRepository = adminRepository;
-            this.userVM = userVM;
         }
 
         public ActionResult Index()
         {
-            return View(userVM);
+            return View(userRepository.GetAll());
         }
 
-        public ActionResult Details(int id, bool isAdmin)
+        public ActionResult Details(int id)
         {
-            if (isAdmin)
-            {
-                return View(adminRepository.GetById(id));
-
-            }
-
             return View(userRepository.GetById(id));
         }
 
@@ -73,8 +65,13 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id, bool isAdmin)
         {
+            if (isAdmin)
+            {
+                return View(adminRepository.GetById(id));
+            }
+
             return View(userRepository.GetById(id));
         }
 
