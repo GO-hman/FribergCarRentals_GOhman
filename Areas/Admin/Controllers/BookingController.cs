@@ -98,8 +98,13 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             {
                 userList.Add(new SelectListItem { Text = user.Email, Value = user.Id.ToString() });
             }
+            List<SelectListItem> carList = new List<SelectListItem>();
+            foreach (Car car in _bookingService.GetAllCars())
+            {
+                carList.Add(new SelectListItem { Text = car.Model, Value = car.Id.ToString() });
+            }
             bookingVM.UserAccounts = userList;
-            ViewBag.UserList = userList;
+            bookingVM.CarSelectList = carList;
             return View(bookingVM);
         }
 
@@ -163,7 +168,7 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
         // GET: BookingController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(_bookingRepo.GetById(id));
         }
 
         // POST: BookingController/Delete/5

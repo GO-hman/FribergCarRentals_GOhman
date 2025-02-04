@@ -4,24 +4,31 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Create new booking</h1>
 
 <form asp-action="Create" >
-    <input type="hidden" asp-for="StartDate" />
-    <input type="hidden" asp-for="StopDate" />
-    <input type="hidden" asp-for="CarId" />
-    <input type="hidden" asp-for="Car"/>
 
-    <h5>Booking:</h5>
-    <ul>
-        <li>@Model.StartDate</li>
-        <li>@Model.StopDate</li>
-        <li>@Model.Car.Model</li>
-    </ul>
-    <p>Select user:</p>
-   @*  <a asp-for="@Model.UserId">@Html.DropDownList("UserList")</a> *@
-    
-    <select asp-for="@Model.UserId" asp-items="@Model.UserAccounts">Select user</select>
+
+    <div class="form-group">
+        <label asp-for="StartDate" class="control-label"></label>
+        <input asp-for="StartDate" class="form-control" value="@DateTime.Today.AddHours(12)" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="StopDate" class="control-label"></label>
+        <input asp-for="StopDate" class="form-control" value="@DateTime.Today.AddHours(12)" />
+        <span asp-validation-for="StopDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+    <select asp-for="@Model.UserId" asp-items="@Model.UserAccounts">Select User</select>
+    <label asp-for="UserAccounts" class="control-label"></label>
+     <br />
+    <select asp-for="@Model.CarId" asp-items="@Model.CarSelectList">Select Car</select>
+    <label asp-for="Cars" class="control-label"></label>
+
+    </div>
+
     <input class="btn btn-primary" type="submit" value="Confirm" />
     <a class="btn btn-link" asp-action="Index">Cancel</a>
     

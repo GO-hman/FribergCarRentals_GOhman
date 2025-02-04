@@ -3,10 +3,8 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h1>Index</h1>
-
 <p>
-    <a asp-action="SelectDate">Create New</a>
+    <a class="btn btn-primary" asp-action="SelectDate">Create New</a>
 </p>
 
 @if (Model.ActiveBookings!.Count == 0 && Model.UpcomingBookings!.Count == 0 && Model.EarlierBookings!.Count == 0)

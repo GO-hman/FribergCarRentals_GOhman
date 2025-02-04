@@ -10,6 +10,7 @@ namespace FribergCarRentals_GOhman.ViewModels
         public List<Car>? Cars { get; set; } = new List<Car>();
         public int CarId { get; set; }
         public List<SelectListItem>? UserAccounts { get; set; }
+        public List<SelectListItem>? CarSelectList { get; set; }
         public Car? Car { get; set; }
 
         public int? UserId { get; set; }

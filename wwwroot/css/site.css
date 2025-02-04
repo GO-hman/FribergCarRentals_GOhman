@@ -21,6 +21,13 @@ footer {
     max-width: 30em;
 }
 
+.form-group{
+    margin-bottom: 0.5em;
+}
+.form-group select{
+    margin-bottom: 0.5em;
+}
+
 .mt-auto {
     margin-top: auto;
 }
