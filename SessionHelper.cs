@@ -26,7 +26,7 @@ namespace FribergCarRentals_GOhman
 
         public static UserAccount GetUserFromSession(HttpContext httpContext)
         {
-            var session = httpContext.Session.GetString("LoggedInUser");
+            var session = httpContext.Session.GetString("LoggedInAccount");
             if (session != null)
             {
                 var user = JsonConvert.DeserializeObject<UserAccount>(session);

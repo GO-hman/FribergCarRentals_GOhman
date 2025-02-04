@@ -27,7 +27,6 @@ namespace FribergCarRentals_GOhman.Controllers
         
         public IActionResult BookCar(int id)
         {
-
             HttpContext.Session.SetString("carId", id.ToString());
             return RedirectToAction("SelectDate", "Booking");
         }

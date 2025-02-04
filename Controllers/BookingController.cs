@@ -25,7 +25,6 @@ namespace FribergCarRentals_GOhman.Controllers
             if (SessionHelper.CheckSessionLogin(HttpContext))
             {
                 int userID = SessionHelper.GetUserFromSession(HttpContext).Id;
-                //TODO: Fixa det här.
                 BookingViewModel bookingVM = new BookingViewModel();
                 bookingVM.EarlierBookings = bookingService.GetBookingByUser(userID).Where(b => b.Consumed==true).ToList();
                 bookingVM.ActiveBookings = bookingService.GetBookingByUser(userID).Where(b => b.Active==true).ToList();
@@ -61,7 +60,7 @@ namespace FribergCarRentals_GOhman.Controllers
         {
             if (bookingVM.StartDate > bookingVM.StopDate)
             {
-                ViewBag.Error = "StartDate cant be higher than stopdate";
+                ViewBag.Error = "Starting date cant be higher than stop date";
                 return View();
             }
             else if (bookingVM.StartDate < DateTime.Now.Date)
