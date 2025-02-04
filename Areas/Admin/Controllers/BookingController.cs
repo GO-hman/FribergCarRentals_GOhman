@@ -25,63 +25,6 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             return View(_bookingRepo.GetAll());
         }
 
-        public ActionResult SelectDate()
-        {
-            BookingViewModel bookingVM = new BookingViewModel();
-            return View(bookingVM);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult SelectDate(BookingViewModel bookingVM)
-        {
-            if (bookingVM.StartDate > bookingVM.StopDate)
-            {
-                ViewBag.Error = "StartDate cant be higher than stopdate";
-                return View();
-            }
-            else if (bookingVM.StartDate < DateTime.Now.Date)
-            {
-                ViewBag.Error = "Starting date has passed already. Try Again!";
-                return View();
-            }
-            else if (bookingVM.StopDate > DateTime.Now.AddYears(1))
-            {
-                ViewBag.Error = "Cannot book a year ahead. Try another stop date!";
-                return View();
-            }
-
-            try
-            {
-                return RedirectToAction("SelectCar", bookingVM);
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        public ActionResult SelectCar(BookingViewModel bookingVM)
-        {
-            bookingVM.Cars = _bookingService.GetAllCars();
-            return View(bookingVM);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult SelectCar(BookingViewModel bookingVM, int id)
-        {
-            try
-            {
-                bookingVM.CarId = id;
-                return RedirectToAction("Create", bookingVM);
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         // GET: BookingController/Details/5
         public ActionResult Details(int id)
         {
@@ -93,38 +36,49 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
         {
             bookingVM.Car = _bookingService.GetCar(bookingVM.CarId);
 
-            List<SelectListItem> userList = new List<SelectListItem>();
-            foreach (UserAccount user in _bookingService.GetAllUsers())
-            {
-                userList.Add(new SelectListItem { Text = user.Email, Value = user.Id.ToString() });
-            }
-            List<SelectListItem> carList = new List<SelectListItem>();
-            foreach (Car car in _bookingService.GetAllCars())
-            {
-                carList.Add(new SelectListItem { Text = car.Model, Value = car.Id.ToString() });
-            }
-            bookingVM.UserAccounts = userList;
-            bookingVM.CarSelectList = carList;
+            bookingVM.UserAccounts = _bookingService.GetUserSelectList();
+            bookingVM.CarSelectList = _bookingService.GetCarSelectList();
             return View(bookingVM);
         }
 
         // POST: BookingController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(BookingViewModel tempBooking, int id)
+        public ActionResult Create(BookingViewModel bookingVM, int id)
         {
+            if (bookingVM.StartDate >= bookingVM.StopDate)
+            {
+                ViewBag.Error = "Start date must be earlier than the stop date";
+                bookingVM.UserAccounts = _bookingService.GetUserSelectList();
+                bookingVM.CarSelectList = _bookingService.GetCarSelectList();
+                return View(bookingVM);
+            }
+            else if (bookingVM.StartDate < DateTime.Now.Date)
+            {
+                ViewBag.Error = "Starting date has passed already. Try Again!";
+                bookingVM.UserAccounts = _bookingService.GetUserSelectList();
+                bookingVM.CarSelectList = _bookingService.GetCarSelectList();
+                return View(bookingVM);
+            }
+            else if (bookingVM.StopDate > DateTime.Now.AddYears(1))
+            {
+                ViewBag.Error = "Cannot book a year ahead. Try another stop date!";
+                bookingVM.UserAccounts = _bookingService.GetUserSelectList();
+                bookingVM.CarSelectList = _bookingService.GetCarSelectList();
+                return View(bookingVM);
+            }
+
             try
             {
                 Booking b = new Booking();
                 if (ModelState.IsValid)
                 {
-                    b.StartDate = tempBooking.StartDate;
-                    b.StopDate = tempBooking.StopDate;
-                    b.Car = _bookingService.GetCar(tempBooking.CarId);
-                    b.User = _bookingService.GetUserById((int)tempBooking.UserId);
+                    b.StartDate = bookingVM.StartDate;
+                    b.StopDate = bookingVM.StopDate;
+                    b.Car = _bookingService.GetCar(bookingVM.CarId);
+                    b.User = _bookingService.GetUserById((int)bookingVM.UserId);
 
                     _bookingRepo.Add(b);
-                    HttpContext.Session.Remove("carID");
                 }
                 return RedirectToAction("Confirmation", b);
             }
@@ -135,9 +89,9 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Confirmation(Booking booking)
+        public ActionResult Confirmation(Booking b)
         {
-            return View(_bookingRepo.GetById(booking.Id));
+            return View(_bookingRepo.GetById(b.Id));
         }
 
         // GET: BookingController/Edit/5
