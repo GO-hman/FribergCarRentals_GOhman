@@ -22,10 +22,9 @@ namespace FribergCarRentals_GOhman.Controllers
         public ActionResult Index()
         {
             HttpContext.Session.Remove("carId");
-            if (SessionHelper.CheckSession(HttpContext))
+            if (SessionHelper.CheckSessionLogin(HttpContext))
             {
                 int userID = SessionHelper.GetUserFromSession(HttpContext).Id;
-                //TODO: Fixa det här.
                 BookingViewModel bookingVM = new BookingViewModel();
                 bookingVM.EarlierBookings = bookingService.GetBookingByUser(userID).Where(b => b.Consumed==true).ToList();
                 bookingVM.ActiveBookings = bookingService.GetBookingByUser(userID).Where(b => b.Active==true).ToList();
@@ -38,7 +37,7 @@ namespace FribergCarRentals_GOhman.Controllers
         public ActionResult SelectDate()
         {
 
-            if (!SessionHelper.CheckSession(HttpContext))
+            if (!SessionHelper.CheckSessionLogin(HttpContext))
             {
                 HttpContext.Session.SetString("bookingLogin", "booking");
                 return RedirectToAction("Login", "Login");
@@ -61,7 +60,7 @@ namespace FribergCarRentals_GOhman.Controllers
         {
             if (bookingVM.StartDate > bookingVM.StopDate)
             {
-                ViewBag.Error = "StartDate cant be higher than stopdate";
+                ViewBag.Error = "Starting date cant be higher than stop date";
                 return View();
             }
             else if (bookingVM.StartDate < DateTime.Now.Date)
@@ -143,7 +142,7 @@ namespace FribergCarRentals_GOhman.Controllers
                     b.StartDate = bookingVM.StartDate;
                     b.StopDate = bookingVM.StopDate;
                     b.Car = bookingService.GetCar(bookingVM.CarId);
-                    if (SessionHelper.CheckSession(HttpContext))
+                    if (SessionHelper.CheckSessionLogin(HttpContext))
                     {
                         UserAccount u = SessionHelper.GetUserFromSession(HttpContext);
                         b.User = bookingService.GetUserById(u.Id);

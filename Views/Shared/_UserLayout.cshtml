@@ -22,6 +22,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -34,13 +35,13 @@
                         </li>
                     </ul>
                     @{
-                        if (SessionHelper.CheckSession(Context))
+                        if (SessionHelper.CheckSessionLogin(Context))
                         {
                             <h4>@SessionHelper.GetUserFromSession(Context).Email</h4>
                         }
                     }
                     @{
-                        if (SessionHelper.CheckSession(Context))
+                        if (SessionHelper.CheckSessionLogin(Context))
                         {
                             <div class="nav-item login-nav">
                                 <a class="nav-link text-dark btn btn-danger" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
@@ -59,7 +60,10 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            <div class="box-stuff">
+                @RenderBody()
+
+            </div>
         </main>
     </div>
 

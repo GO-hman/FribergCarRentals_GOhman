@@ -1,6 +1,6 @@
 ﻿@model FribergCarRentals_GOhman.ViewModels.LoginViewModel
 
-@if (SessionHelper.CheckSession(Context))
+@if (SessionHelper.CheckSessionLogin(Context))
 {
     <p>Already logged in. WITH admin powers!</p>
 }
@@ -8,14 +8,14 @@ else
 {
     <form asp-action="Login">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Email" class="control-label"></label>
+        <div class="form-group" style="margin-bottom: 10px;">
             <input asp-for="Email" class="form-control" />
+            <label asp-for="Email" class="control-label"></label>
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <label asp-for="Password" class="control-label"></label>
+        <div class="form-group" style="margin-bottom: 10px;">
             <input type="password" asp-for="Password" class="form-control" />
+            <label asp-for="Password" class="control-label"></label>
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
 

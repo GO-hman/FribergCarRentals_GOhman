@@ -43,7 +43,7 @@
             @{
                 TimeSpan duration = Model.StopDate.Subtract(Model.StartDate);
                 double hours = duration.TotalDays;
-                double price = hours * Model.Car.PricePerDay;
+                double price = Math.Round(hours * Model.Car.PricePerDay, 0);
                 <p>@price SEK</p>
             }
         </dd>

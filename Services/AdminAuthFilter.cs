@@ -7,7 +7,7 @@ namespace FribergCarRentals_GOhman.Services
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if(SessionHelper.CheckSession(filterContext.HttpContext))
+            if(SessionHelper.CheckSessionLogin(filterContext.HttpContext))
             {
                 var role = SessionHelper.IsAdmin(filterContext.HttpContext);
                 if (!role)

@@ -37,6 +37,11 @@
     </div>
 </div>
 
+<script> //Script clears carID from session when leaving page
+    window.addEventListener('beforeunload', function(e)){
+        Context.Session.Remove("carId");
+    }
+</script>
 
 @section Scripts {
     @{

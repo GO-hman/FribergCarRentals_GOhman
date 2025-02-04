@@ -2,6 +2,15 @@ h1 {
     margin-bottom: 1em;
 }
 
+body {
+    background-color: #b9bfc2;
+}
+
+.box-stuff {
+    min-height: 90vh;
+    padding: 2em;
+    background-color: #e3ebee;
+}
 
 footer {
     background-color: #f8f9fa; /* Example background color */
@@ -11,7 +20,6 @@ footer {
     margin: 1em 0;
     max-width: 30em;
 }
-
 
 .mt-auto {
     margin-top: auto;
@@ -26,8 +34,8 @@ html {
 }
 
 .index-logo {
-    height: 15em;
-    width: 15em;
+    height: 60%;
+    width: 60%;
 }
 
 .login-form {
@@ -38,7 +46,7 @@ header {
     background-color: #e3ebee;
     border-bottom: solid;
     border-color: #f49f22;
-    margin-bottom: 3em;
+    margin-bottom: 1em;
 }
 
 .img-thumbnail {
@@ -55,10 +63,7 @@ input {
     max-width: 30em;
 }
 
-body {
-    background-color: #e3ebee;
-/*    min-height: 100%;*/
-}
+
 
 .login-nav {
     margin: 0 2em;
@@ -81,7 +86,8 @@ body {
 
 
 body {
-    margin-bottom: 60px;
+/*    margin-bottom: 60px;*/
+ margin-bottom: 60px;
 }
 
 .btn {
