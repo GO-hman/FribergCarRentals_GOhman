@@ -5,10 +5,52 @@
     ViewData["Title"] = "Success!";
 }
 
-<h1>Success!</h1>
+<h1>Success! Booking created</h1>
 
-<p>
-    car @Model.Car.Model is booked @Model.StartDate and @Model.StopDate
-</p>
-    <a class="btn btn-link" asp-action="Index">Return</a>
+<img class="img-gallery" src="@Html.DisplayFor(model => model.Car.ImgURL)" alt="@Html.DisplayFor(model => model.Car.ImgURL) image" />
+<dl class="row">
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.StartDate)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.StartDate)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.StopDate)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.StopDate)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Car.Model)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Car.Model)
+    </dd>
+    <dt class="col-sm-2">
+        User
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.User.Email)
+    </dd>
+    <dt class="col-sm-2">
+        Price per day:
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Car.PricePerDay) SEK
+    </dd>
+    <dt class="col-sm-2">
+        Total Price:
+    </dt>
+    <dd class="col-sm-10">
+        @{
+            TimeSpan duration = Model.StopDate.Subtract(Model.StartDate);
+            double hours = duration.TotalDays;
+            double price = Math.Round(hours * Model.Car.PricePerDay, 0);
+            <p>@price SEK</p>
+        }
+    </dd>
+</dl>
+<a class="btn btn-link" asp-action="Index">Return</a>
 

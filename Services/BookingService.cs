@@ -1,5 +1,7 @@
 ﻿using FribergCarRentals_GOhman.Data;
 using FribergCarRentals_GOhman.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace FribergCarRentals_GOhman.Services
 {
@@ -63,6 +65,26 @@ namespace FribergCarRentals_GOhman.Services
             }
 
             return availableCars.Contains(GetCar(carId));            
+        }
+
+        public List<SelectListItem> GetUserSelectList()
+        {
+            List < SelectListItem > userList = new List<SelectListItem>();
+            foreach (UserAccount user in userRepo.GetAll())
+            {
+                userList.Add(new SelectListItem { Text = user.Email, Value = user.Id.ToString() });
+            }
+            return userList;
+        }
+
+        public List<SelectListItem> GetCarSelectList()
+        {
+            List<SelectListItem> carList = new List<SelectListItem>();
+            foreach (Car car in carRepo.GetAll())
+            {
+                carList.Add(new SelectListItem { Text = car.Model, Value = car.Id.ToString() });
+            }
+            return carList;
         }
     }
 }

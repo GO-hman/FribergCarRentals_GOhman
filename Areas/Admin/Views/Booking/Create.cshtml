@@ -28,9 +28,31 @@
     <label asp-for="Cars" class="control-label"></label>
 
     </div>
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger transition" role="alert">
+            @ViewBag.Error
+        </div>
+    }
 
-    <input class="btn btn-primary" type="submit" value="Confirm" />
+    <input class="btn btn-primary" type="button" id="submitButton" value="Create" onclick="confirmScript()"/>
     <a class="btn btn-link" asp-action="Index">Cancel</a>
     
 
 </form>
+
+<script> //Two step confirmation for booking button.
+    let step = 1;
+
+    function confirmScript() {
+        const button = document.getElementById('submitButton');
+        if (step === 1) {
+            button.value = "Confirm";
+            button.className = "btn btn-success btn-lg transition";
+            step = 2;
+        } else if (step === 2) {
+            button.type = "submit";
+        }
+        button.blur();
+    }
+</script>
