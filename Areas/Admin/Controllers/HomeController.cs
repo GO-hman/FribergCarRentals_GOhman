@@ -2,7 +2,6 @@
 using FribergCarRentals_GOhman.Models;
 using FribergCarRentals_GOhman.Services;
 using FribergCarRentals_GOhman.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 

@@ -21,7 +21,6 @@ footer {
     max-width: 30em;
 }
 
-
 .mt-auto {
     margin-top: auto;
 }
@@ -35,8 +34,8 @@ html {
 }
 
 .index-logo {
-    height: 15em;
-    width: 15em;
+    height: 60%;
+    width: 60%;
 }
 
 .login-form {
