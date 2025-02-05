@@ -6,17 +6,17 @@ namespace FribergCarRentals_GOhman.Models
     public class AdminAccount
     {
         public int Id { get; set; }
+        [MaxLength(20)]
         public string? FirstName { get; set; }
+        [MaxLength(20)]
         public string? LastName { get; set; }
 
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
         [Required]
-        public string Password { get; set; }
-
-        public bool IsAdmin { get; set; } = false;
+        public string Password { get; set; } = string.Empty;
+        public bool IsAdmin { get; set; } = true;
         public AccountRoles Role { get; private set; } = AccountRoles.Admin;
-        public virtual List<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }

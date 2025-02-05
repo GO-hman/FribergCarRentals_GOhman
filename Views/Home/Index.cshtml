@@ -4,7 +4,16 @@
 
 
 <div class="text-center">
+    @{
+        if (SessionHelper.CheckSessionLogin(Context))
+        {
+            <h3>Welcome @SessionHelper.GetUserFromSession(Context).Email</h3>
+        }
+        else{
+        <h3 class="display-4">Welcome</h3> 
+
+        }
+    }
     <img class="index-logo" src="~/Friberg_LOGO.PNG" alt="white logo">
-    <h1 class="display-4">Welcome</h1>
     <br />
 </div>

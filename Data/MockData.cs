@@ -24,7 +24,9 @@ namespace FribergCarRentals_GOhman.Data
                     ModelYear = "1955",
                     Color = "Mörkröd",
                     ImgURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/1955saab92b.jpg/1920px-1955saab92b.jpg",
-                    PricePerDay = 10000
+                    PricePerDay = 10000,
+                    Gearbox = "Manual",
+                    FuelType = "Gasoline"
                 },
                 new Car()
                 {
@@ -32,7 +34,9 @@ namespace FribergCarRentals_GOhman.Data
                     ModelYear = "1983",
                     Color = "Röd",
                     ImgURL = "https://www.bilsport.se/api/images/0-d0018726591760299626-1-d99812734082397/1980x1320/3b2307d2-d05f-5353-bbdd-3a07c1b5f27f.jpg",
-                    PricePerDay = 100
+                    PricePerDay = 100,
+                    Gearbox = "Automatic",
+                    FuelType = "Diesel"
                 },
                 new Car()
                 {
@@ -40,7 +44,9 @@ namespace FribergCarRentals_GOhman.Data
                     ModelYear = "1960",
                     Color = "Röd",
                     ImgURL = "https://upload.wikimedia.org/wikipedia/commons/a/a8/1972_Saab_96_V4_1.5.jpg",
-                    PricePerDay = 20000
+                    PricePerDay = 20000,
+                    Gearbox = "Manual",
+                    FuelType = "Gasoline"
                 },
                 new Car()
                 {
@@ -48,7 +54,9 @@ namespace FribergCarRentals_GOhman.Data
                     ModelYear = "2002",
                     Color = "Svart",
                     ImgURL = "https://www.saabplanet.com/wp-content/uploads/saab-9-3-aero-burout.jpg",
-                    PricePerDay = 200
+                    PricePerDay = 200,
+                    Gearbox = "Automatic",
+                    FuelType = "Diesel"
                 },
                 new Car()
                 {
@@ -56,7 +64,9 @@ namespace FribergCarRentals_GOhman.Data
                     ModelYear = "1970",
                     Color = "Vit",
                     ImgURL = "https://upload.wikimedia.org/wikipedia/commons/0/0e/SAAB_99_1970.jpg",
-                    PricePerDay = 15999
+                    PricePerDay = 15999,
+                    Gearbox = "Manual",
+                    FuelType = "Gasoline"
                 },
                 new Car()
                 {
@@ -64,7 +74,9 @@ namespace FribergCarRentals_GOhman.Data
                     ModelYear = "1947",
                     Color = "Svart",
                     ImgURL = "https://www.netcarshow.com/Saab-UrSaab-1947-wallpaper.jpg",
-                    PricePerDay = 17326
+                    PricePerDay = 17326,
+                    Gearbox = "Manual",
+                    FuelType = "Gasoline"
                 },
                 new Car()
                 {
@@ -72,7 +84,9 @@ namespace FribergCarRentals_GOhman.Data
                     ModelYear = "1971",
                     Color = "Gul",
                     ImgURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/1971_Saab_Sonnett_III_V4_photo-12.JPG/1280px-1971_Saab_Sonnett_III_V4_photo-12.JPG",
-                    PricePerDay = 17325
+                    PricePerDay = 17325,
+                    Gearbox = "Manual",
+                    FuelType = "Gasoline"
                 },
                 new Car()
                 {
@@ -80,7 +94,9 @@ namespace FribergCarRentals_GOhman.Data
                     ModelYear = "1985",
                     Color = "Brun",
                     ImgURL = "https://dagensps.fra1.cdn.digitaloceanspaces.com/uploads/2023/04/Saab-Lancia-600-7.jpg",
-                    PricePerDay = 12360
+                    PricePerDay = 12360,
+                    Gearbox = "Manual",
+                    FuelType = "Gasoline"
                 },
                 new Car()
                 {
@@ -88,7 +104,9 @@ namespace FribergCarRentals_GOhman.Data
                     ModelYear = "1993",
                     Color = "Blå",
                     ImgURL = "https://upload.wikimedia.org/wikipedia/commons/0/07/1993_Saab_900_SE_Turbo_2.0_Front.jpg",
-                    PricePerDay = 19372
+                    PricePerDay = 19372,
+                    Gearbox = "Manual",
+                    FuelType = "Gasoline"
                 },
                 new Car()
                 {
@@ -96,7 +114,9 @@ namespace FribergCarRentals_GOhman.Data
                     ModelYear = "2005",
                     Color = "Svart",
                     ImgURL = "https://upload.wikimedia.org/wikipedia/commons/0/0e/Saab9-2x-ai.jpg",
-                    PricePerDay = 63213
+                    PricePerDay = 63213,
+                    Gearbox = "Automatic",
+                    FuelType = "Gasoline"
                 }
             };
             foreach (var car in cars)
@@ -149,9 +169,6 @@ namespace FribergCarRentals_GOhman.Data
                 IsAdmin = true
             };
             adminRepo.Add(admin);
-
-
-
         }
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergCarRentals_GOhman.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250203145316_AddedReturnDateBooking")]
-    partial class AddedReturnDateBooking
+    [Migration("20250205162644_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,13 +38,15 @@ namespace FribergCarRentals_GOhman.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -69,9 +71,6 @@ namespace FribergCarRentals_GOhman.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("AdminAccountId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CarId")
                         .HasColumnType("int");
 
@@ -92,8 +91,6 @@ namespace FribergCarRentals_GOhman.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdminAccountId");
-
                     b.HasIndex("CarId");
 
                     b.HasIndex("UserId");
@@ -110,6 +107,14 @@ namespace FribergCarRentals_GOhman.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FuelType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Gearbox")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -146,13 +151,15 @@ namespace FribergCarRentals_GOhman.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -168,10 +175,6 @@ namespace FribergCarRentals_GOhman.Migrations
 
             modelBuilder.Entity("FribergCarRentals_GOhman.Models.Booking", b =>
                 {
-                    b.HasOne("FribergCarRentals_GOhman.Models.AdminAccount", null)
-                        .WithMany("Bookings")
-                        .HasForeignKey("AdminAccountId");
-
                     b.HasOne("FribergCarRentals_GOhman.Models.Car", "Car")
                         .WithMany()
                         .HasForeignKey("CarId")
@@ -179,7 +182,7 @@ namespace FribergCarRentals_GOhman.Migrations
                         .IsRequired();
 
                     b.HasOne("FribergCarRentals_GOhman.Models.UserAccount", "User")
-                        .WithMany("Bookings")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -187,16 +190,6 @@ namespace FribergCarRentals_GOhman.Migrations
                     b.Navigation("Car");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("FribergCarRentals_GOhman.Models.AdminAccount", b =>
-                {
-                    b.Navigation("Bookings");
-                });
-
-            modelBuilder.Entity("FribergCarRentals_GOhman.Models.UserAccount", b =>
-                {
-                    b.Navigation("Bookings");
                 });
 #pragma warning restore 612, 618
         }

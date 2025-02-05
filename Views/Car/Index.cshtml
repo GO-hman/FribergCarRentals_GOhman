@@ -3,27 +3,9 @@
 @{
     ViewData["Title"] = "Index";
 }
-<style>
-    .card-img-custom{
-        height: 200px;
-    }
-
-    .card {
-/*         width: 18rem; */
-        margin: 1em 0;
-        margin-right: 1em;
-        height: 22em;
-        width: 16em;
-    }
-
-    .row {
-        margin-left: -10px; /* Adjust to prevent overlapping */
-        margin-right: -10px;
-    }
-</style>
 
 <div class="container">
-    <div class="d-flex flex-wrap">
+    <div class="d-flex flex-wrap justify-content-center">
         @foreach (var item in Model)
         {
             <div class="card-container">

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FribergCarRentals_GOhman.Migrations
 {
     /// <inheritdoc />
-    public partial class NewInitial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,8 +17,8 @@ namespace FribergCarRentals_GOhman.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsAdmin = table.Column<bool>(type: "bit", nullable: false),
@@ -35,11 +35,13 @@ namespace FribergCarRentals_GOhman.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PricePerDay = table.Column<int>(type: "int", nullable: false),
                     ImgURL = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModelYear = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ModelYear = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FuelType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Gearbox = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PricePerDay = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,12 +54,12 @@ namespace FribergCarRentals_GOhman.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Role = table.Column<int>(type: "int", nullable: false),
-                    IsAdmin = table.Column<bool>(type: "bit", nullable: false)
+                    IsAdmin = table.Column<bool>(type: "bit", nullable: false),
+                    Role = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,16 +76,13 @@ namespace FribergCarRentals_GOhman.Migrations
                     CarId = table.Column<int>(type: "int", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StopDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AdminAccountId = table.Column<int>(type: "int", nullable: true)
+                    Active = table.Column<bool>(type: "bit", nullable: false),
+                    Consumed = table.Column<bool>(type: "bit", nullable: false),
+                    Returned = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Bookings", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Bookings_Admins_AdminAccountId",
-                        column: x => x.AdminAccountId,
-                        principalTable: "Admins",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Bookings_Cars_CarId",
                         column: x => x.CarId,
@@ -97,11 +96,6 @@ namespace FribergCarRentals_GOhman.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Bookings_AdminAccountId",
-                table: "Bookings",
-                column: "AdminAccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_CarId",
@@ -118,10 +112,10 @@ namespace FribergCarRentals_GOhman.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Bookings");
+                name: "Admins");
 
             migrationBuilder.DropTable(
-                name: "Admins");
+                name: "Bookings");
 
             migrationBuilder.DropTable(
                 name: "Cars");

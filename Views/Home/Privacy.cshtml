@@ -1,6 +1,43 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<style>
+    .expand-text {
+        display: none;
+    }
+
+    .card {
+        min-width: 30%;
+        padding: 1em;
+        background-color: #f8f9fa;
+    }
+</style>
+<h3>@ViewData["Title"]</h3>
+
+<div class="container mt-5 mb-2">
+    <button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#expandText" aria-expanded="false" aria-controls="expandText">
+        No family allowed
+    </button>
+    <div class="collapse" id="expandText">
+        <div class="mt-2 mb-5 pd-1">
+            <p>Please do not rent these cars.</p>
+            <p style="font-weight: lighter;">
+
+                I've devoted my life to keep the legacy of the saab alive but I am forced to do this to keep my hobby going.<br />
+                Family is sick of them and forced me to do this, but if we all work together we can maintain the facade.<br />
+
+                I'll keep adding new Saabs to the collection, as long as you don't rent them.<br />
+                <br />
+                (If you really have to, rent the 2002 9-3 aero, used it in folkraces so it is up for grabs!)<br />
+                <br />
+                (Or the Volvo 240, I couldn't care less about that one)
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.min.js"></script>
+
+<p>Created by Glate Develeopment INC.</p>
+

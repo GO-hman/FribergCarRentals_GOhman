@@ -3,32 +3,12 @@
 @{
     ViewData["Title"] = "Select Car";
 }
-<style>
-    .card-img-custom {
-        height: 200px;
-    }
 
-    .card {
-        /*         width: 18rem; */
-        margin: 1em 0;
-        margin-right: 1em;
-        height: 22em;
-        width: 16em;
-    }
-
-    .row {
-        margin-left: -10px; /* Adjust to prevent overlapping */
-        margin-right: -10px;
-    }
-
-</style>
-
-
-@if(Model.Cars != null)
+@if (Model.Cars != null)
 {
-            <h1>Available cars at selected date:</h1>
+    <h3>Available cars at selected date:</h3>
     <div class="container">
-        <div class="d-flex flex-wrap">
+        <div class="d-flex flex-wrap justify-content-center">
             @foreach (var item in Model.Cars)
             {
                 <div class="card-container">
@@ -48,8 +28,8 @@
                             <form asp-action="SelectCar">
                                 <input type="hidden" asp-for="StartDate" />
                                 <input type="hidden" asp-for="StopDate" />
-                                <div class="form-group">
-                                    <input type="submit" value="Select" asp-route-id="@item.Id" class="btn btn-primary" />
+                                <div class="d-flex justify-content-center">
+                                    <input type="submit" value="Select" asp-route-id="@item.Id" class="btn btn-primary w-100" />
                                 </div>
                             </form>
                         </div>
