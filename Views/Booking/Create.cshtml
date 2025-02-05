@@ -4,18 +4,52 @@
     ViewData["Title"] = "Create";
 }
 
+<h2>Confirm booking</h2>
 <form asp-action="Create" >
     <input type="hidden" asp-for="StartDate" />
     <input type="hidden" asp-for="StopDate" />
     <input type="hidden" asp-for="CarId" />
     <input type="hidden" asp-for="Car"/>
 
-    <h5>Booking:</h5>
-    <ul>
-        <li>@Model.StartDate</li>
-        <li>@Model.StopDate</li>
-        <li>@Model.Car.Model</li>
-    </ul>
+    <img class="img-gallery" src="@Html.DisplayFor(model => model.Car.ImgURL)" alt="@Html.DisplayFor(model => model.Car.ImgURL) image" />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StopDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StopDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Car.Model)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Car.Model)
+        </dd>
+        <dt class="col-sm-2">
+            Price per day:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Car.PricePerDay) SEK
+        </dd>
+        <dt class="col-sm-2">
+            Total Price:
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                TimeSpan duration = Model.StopDate.Subtract(Model.StartDate);
+                double hours = duration.TotalDays;
+                double price = Math.Round(hours * Model.Car.PricePerDay, 0);
+                <p>@price SEK</p>
+            }
+        </dd>
+    </dl>
     <input type="submit" value="Confirm" class="btn btn-primary"/>
     <a class="btn btn-danger" asp-action="Index">Cancel</a>
     <a class="btn btn-primary" asp-action="SelectDate">Change date</a>

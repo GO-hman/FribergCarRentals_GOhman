@@ -4,9 +4,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create new booking</h1>
+<h3>Create new booking</h3>
 
-<form asp-action="Create" >
+<form asp-action="Create">
 
 
     <div class="form-group">
@@ -21,11 +21,11 @@
     </div>
 
     <div class="form-group">
-    <select asp-for="@Model.UserId" asp-items="@Model.UserAccounts">Select User</select>
-    <label asp-for="UserAccounts" class="control-label"></label>
-     <br />
-    <select asp-for="@Model.CarId" asp-items="@Model.CarSelectList">Select Car</select>
-    <label asp-for="Cars" class="control-label"></label>
+        <select asp-for="@Model.UserId" asp-items="@Model.UserAccounts">Select User</select>
+        <label asp-for="UserAccounts" class="control-label"></label>
+        <br />
+        <select asp-for="@Model.CarId" asp-items="@Model.CarSelectList">Select Car</select>
+        <label asp-for="Cars" class="control-label"></label>
 
     </div>
     @if (ViewBag.Error != null)
@@ -35,24 +35,48 @@
         </div>
     }
 
-    <input class="btn btn-primary" type="button" id="submitButton" value="Create" onclick="confirmScript()"/>
-    <a class="btn btn-link" asp-action="Index">Cancel</a>
-    
+    <input class="btn btn-primary" type="button" id="submitBtn" value="Create" onclick="confirmScript()" />
+    <a class="btn btn-link" id="cancelBtn" asp-action="index" onclick="cancelScript()">Cancel </a>
+
 
 </form>
 
-<script> //Two step confirmation for booking button.
+<script>
+    //Two step confirmation for booking button.
     let step = 1;
 
     function confirmScript() {
-        const button = document.getElementById('submitButton');
+        
         if (step === 1) {
-            button.value = "Confirm";
-            button.className = "btn btn-success btn-lg transition";
+            submitBtn.value = "Confirm";
+            submitBtn.className = "btn btn-success btn-lg transition";
+            cancelBtn.className = "btn btn-danger";
             step = 2;
         } else if (step === 2) {
-            button.type = "submit";
+            submitBtn.type = "submit";
+
         }
-        button.blur();
+        submitBtn.blur();
     }
+
+    function cancelScript(event) {
+        if (step === 2) {
+            event.preventDefault();
+            resetSubmit();
+        }
+    }
+
+    function resetSubmit() {
+        submitBtn.value = "Create";
+        submitBtn.className = "btn btn-primary";
+        cancelBtn.className = "btn btn-link";
+        step = 1;
+        submitBtn.blur();
+        cancelBtn.blur();
+    }
+
+    const cancelBtn = document.getElementById('cancelBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    cancelBtn.addEventListener('click', cancelScript);
+
 </script>

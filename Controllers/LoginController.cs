@@ -51,7 +51,6 @@ namespace FribergCarRentals_GOhman.Controllers
             return View();
         }
 
-
         public IActionResult Logout()
         {
             try

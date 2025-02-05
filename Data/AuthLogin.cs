@@ -18,12 +18,12 @@ namespace FribergCarRentals_GOhman.Data
             UserAccount user = CheckUsername(username);
             if (user == null)
             {
-                return null;
+                return null!;
             }
             bool pass = CheckPassword(user, password);
             if (!pass)
             {
-                return null;
+                return null!;
             }
             return user;
         }
@@ -32,12 +32,12 @@ namespace FribergCarRentals_GOhman.Data
             AdminAccount admin = CheckAdminName(username);
             if (admin is null)
             {
-                return null;
+                return null!;
             }
             bool pass = CheckPassword(admin, password);
             if (!pass)
             {
-                return null;
+                return null!;
             }
             return admin;
 
