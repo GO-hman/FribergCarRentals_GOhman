@@ -55,6 +55,9 @@ header {
     border-color: #f49f22;
     margin-bottom: 1em;
 }
+.nav-item{
+    margin: 0 1em;
+}
 
 .img-thumbnail {
     height: 5em;
