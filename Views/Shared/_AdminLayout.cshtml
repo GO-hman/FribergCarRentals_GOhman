@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FribergCarRentals_GOhman</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/siteRetro.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FribergCarRentals_GOhman.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -50,13 +50,13 @@
                             if (SessionHelper.CheckSessionLogin(Context))
                             {
                                 <div class="nav-item login-nav">
-                                    <a class="nav-link text-dark btn btn-danger" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
+                                    <a class="text-dark btn btn-danger" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
                                 </div>
                             }
                             else
                             {
                                 <div class="nav-item login-nav">
-                                    <a class="nav-link text-dark btn btn-primary" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
+                                    <a class="text-dark btn btn-primary" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
                                 </div>
                             }
                         }
@@ -69,6 +69,7 @@
         <main role="main" class="pb-3">
             <div class="box-stuff">
                 @RenderBody()
+                
             </div>
         </main>
     </div>

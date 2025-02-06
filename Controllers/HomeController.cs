@@ -42,5 +42,18 @@ namespace FribergCarRentals_GOhman.Controllers
         {
             return View();
         }
+
+        public IActionResult Toggle()
+        {
+            if (HttpContext.Session.GetString("style") == "retro")
+            {
+                HttpContext.Session.SetString("style", "new");
+            }
+            else
+            {
+                HttpContext.Session.SetString("style", "retro");
+            }
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
