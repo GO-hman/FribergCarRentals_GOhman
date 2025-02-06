@@ -22,8 +22,8 @@ namespace FribergCarRentals_GOhman.Controllers
             {
                 try
                 {
-                    string cookie = Request.Cookies["LoggedInCookie"];
-                    HttpContext.Session.SetString("LoggedInAccount", cookie);
+                    string? cookie = Request.Cookies["LoggedInCookie"];
+                    HttpContext.Session.SetString("LoggedInAccount", cookie!);
                 }
                 catch(Exception e)
                 {

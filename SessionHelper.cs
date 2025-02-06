@@ -29,9 +29,9 @@ namespace FribergCarRentals_GOhman
             if (session != null)
             {
                 var user = JsonConvert.DeserializeObject<UserAccount>(session);
-                return user;
+                return user!;
             }
-            return null;
+            return null!;
         }
     }
 }
