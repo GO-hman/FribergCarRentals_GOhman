@@ -2,6 +2,7 @@
 using FribergCarRentals_GOhman.Models;
 using FribergCarRentals_GOhman.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
 {
@@ -30,6 +31,8 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
         // GET: CarController/Create
         public ActionResult Create()
         {
+            ViewBag.FuelType = new SelectList(Enum.GetValues(typeof(FuelType)));
+            ViewBag.Gearbox = new SelectList(Enum.GetValues(typeof(Gearbox)));
             return View();
         }
 
@@ -55,6 +58,8 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
         // GET: CarController/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.FuelType = new SelectList(Enum.GetValues(typeof(FuelType)));
+            ViewBag.Gearbox = new SelectList(Enum.GetValues(typeof(Gearbox)));
             return View(carRepository.GetById(id));
         }
 

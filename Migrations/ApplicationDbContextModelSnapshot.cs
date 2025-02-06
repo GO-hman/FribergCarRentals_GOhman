@@ -107,13 +107,11 @@ namespace FribergCarRentals_GOhman.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FuelType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FuelType")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Gearbox")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Gearbox")
+                        .HasColumnType("int");
 
                     b.Property<string>("ImgURL")
                         .IsRequired()

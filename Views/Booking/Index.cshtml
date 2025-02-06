@@ -21,13 +21,19 @@ else
                 <tr>
                     <th></th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Car!.Model)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.StartDate)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.StopDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Car!.Model)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Car!.FuelType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Car!.Gearbox)
                     </th>
                     <th></th>
                 </tr>
@@ -40,14 +46,20 @@ else
                             <img src="@Html.DisplayFor(modelItem => item.Car.ImgURL)" class="img-thumbnail" alt="CarPhoto">
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Car.Model)
-
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.StartDate)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.StopDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Car.Model)
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Car.FuelType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Car.Gearbox)
                         </td>
                         <td>
                             <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
@@ -68,13 +80,19 @@ else
                 <tr>
                     <th></th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Car!.Model)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.StartDate)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.StopDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Car!.Model)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Car!.FuelType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Car!.Gearbox)
                     </th>
                     <th></th>
                 </tr>
@@ -87,14 +105,19 @@ else
                             <img src="@Html.DisplayFor(modelItem => item.Car.ImgURL)" class="img-thumbnail" alt="CarPhoto">
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Car.Model)
-
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.StartDate)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.StopDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Car.Model)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Car.FuelType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Car.Gearbox)
                         </td>
                         <td>
                             <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a> 
@@ -115,13 +138,19 @@ else
                 <tr>
                     <th></th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Car.Model)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.StartDate)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.StopDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Car!.Model)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Car!.FuelType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Car!.Gearbox)
                     </th>
                     <th></th>
                 </tr>
@@ -135,14 +164,19 @@ else
                             <img src="@Html.DisplayFor(modelItem => item.Car.ImgURL)" class="img-thumbnail" alt="CarPhoto">
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Car.Model)
-
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.StartDate)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.StopDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Car.Model)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Car.FuelType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Car.Gearbox)
                         </td>
                         <td>
                             <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a> 

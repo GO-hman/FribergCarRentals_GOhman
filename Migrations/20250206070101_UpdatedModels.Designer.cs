@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FribergCarRentals_GOhman.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250205162644_initial")]
-    partial class initial
+    [Migration("20250206070101_UpdatedModels")]
+    partial class UpdatedModels
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -110,13 +110,11 @@ namespace FribergCarRentals_GOhman.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FuelType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FuelType")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Gearbox")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Gearbox")
+                        .HasColumnType("int");
 
                     b.Property<string>("ImgURL")
                         .IsRequired()
