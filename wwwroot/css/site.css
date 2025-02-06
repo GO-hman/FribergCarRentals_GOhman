@@ -13,7 +13,7 @@ body {
 }
 
 footer {
-    background-color: #f8f9fa; 
+    background-color: #f8f9fa;
 }
 
 .alert {
@@ -21,12 +21,13 @@ footer {
     max-width: 30em;
 }
 
-.form-group{
+.form-group {
     margin-bottom: 0.5em;
 }
-.form-group select{
-    margin-bottom: 0.5em;
-}
+
+    .form-group select {
+        margin-bottom: 0.5em;
+    }
 
 .mt-auto {
     margin-top: auto;
@@ -35,14 +36,16 @@ footer {
 html {
     font-size: 14px;
 }
+
 html {
     position: relative;
     min-height: 100%;
 }
 
-.dropdown-custom{
+.dropdown-custom {
     min-width: 10em;
 }
+
 .index-logo {
     height: 60%;
     width: 60%;
@@ -58,7 +61,8 @@ header {
     border-color: #f49f22;
     margin-bottom: 1em;
 }
-.nav-item{
+
+.nav-item {
     margin: 0 1em;
 }
 
@@ -67,7 +71,7 @@ header {
     max-width: 8em;
 }
 
-.img-gallery{
+.img-gallery {
     height: 20em;
     width: 30em;
 }
@@ -99,8 +103,7 @@ input {
 
 
 body {
-/*    margin-bottom: 60px;*/
- margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .btn {
@@ -111,9 +114,9 @@ body {
 .btn-link {
 }
 
-.btn-link:hover {
-    background-color: #d0d7d9;
-}
+    .btn-link:hover {
+        background-color: #d0d7d9;
+    }
 
 .card-img-custom {
     height: 200px;
@@ -125,7 +128,7 @@ body {
     padding-bottom: 1px;
 }
 
-.card-footer{
+.card-footer {
 }
 
 .card-container {
