@@ -9,23 +9,29 @@
         @foreach (var item in Model)
         {
             <div class="card-container">
-                <div class="card">
+                <div class="card p-">
                     <img src="@item.ImgURL" class="card-img-top card-img-custom" alt="Picture of car">
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Model @item.ModelYear</h5>
-                        @if(@item.PricePerDay < 1000)
-                        {
-                            <p class="card-text" style="color: green; font-weight: bold;">@item.PricePerDay SEK/day</p>
+                    <div class="card-body" style="padding-bottom: 0em;">
+                        <h4 class="">@item.Model @item.ModelYear</h4>
+                        <p class="card-text">
+                            <ul>
+                                @if (@item.PricePerDay < 1000)
+                                {
+                                    <li style="color: green; font-weight: bold;">@item.PricePerDay SEK/day</li>
 
-                        }
-                        else
-                        {
-                            <p class="card-text">@item.PricePerDay SEK/day</p>
-                        }
-                        <div class="d-flex justify-content-between justify-content-center">
-                        <a asp-action="BookCar" asp-route-id="@item.Id" class=" btn btn-primary">Book</a>
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
-                        </div>
+                                }
+                                else
+                                {
+                                    <li>@item.PricePerDay SEK/day</li>
+                                }
+                                <li>@item.Gearbox</li>
+                                <li>@item.FuelType</li>
+                            </ul>
+                            <div class="d-flex justify-content-between justify-content-center card-footer">
+                                <a asp-action="BookCar" asp-route-id="@item.Id" class=" btn btn-primary mt-0";">Book</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary mt-0">Details</a>
+                            </div>
+                        </p>
                     </div>
                 </div>
             </div>

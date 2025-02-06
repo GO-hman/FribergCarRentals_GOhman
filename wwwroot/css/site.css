@@ -40,6 +40,9 @@ html {
     min-height: 100%;
 }
 
+.dropdown-custom{
+    min-width: 10em;
+}
 .index-logo {
     height: 60%;
     width: 60%;
@@ -112,15 +115,17 @@ body {
     background-color: #d0d7d9;
 }
 
-
 .card-img-custom {
     height: 200px;
 }
 
 .card {
     margin: 1em 0;
-    height: 22em;
     width: 16em;
+    padding-bottom: 1px;
+}
+
+.card-footer{
 }
 
 .card-container {

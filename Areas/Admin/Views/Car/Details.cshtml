@@ -4,29 +4,39 @@
     ViewData["Title"] = "Details";
 }
 
-<h3>Details</h3>
-
 <div>
-    <h4>@Model.Model @Model.ModelYear</h4>
+    <h3>@Model.Model @Model.ModelYear</h3>
     <hr />
-            <img class="img-gallery" src="@Model.ImgURL" alt="Picture of car" />
+    <img class="img-gallery" src="@Model.ImgURL" alt="Picture of car" />
     <dl class="row">
-        <dt class="col-sm-2">
+
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Color)
         </dt>
-        <dd class="col-sm-10">
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Color)
         </dd>
-
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PricePerDay)
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FuelType)
         </dt>
-        <dd class="col-sm-10">
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FuelType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Gearbox)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Gearbox)
+        </dd>
+        <dt class = "col-sm-2">
+            Price per day (SEK)
+        </dt>
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.PricePerDay)
         </dd>
     </dl>
 </div>
 <div>
-    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> 
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
     <a class="btn btn-link" asp-action="Index">Back to List</a>
 </div>

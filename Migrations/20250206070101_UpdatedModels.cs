@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FribergCarRentals_GOhman.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class UpdatedModels : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -39,8 +39,8 @@ namespace FribergCarRentals_GOhman.Migrations
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ModelYear = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FuelType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Gearbox = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FuelType = table.Column<int>(type: "int", nullable: false),
+                    Gearbox = table.Column<int>(type: "int", nullable: false),
                     PricePerDay = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
