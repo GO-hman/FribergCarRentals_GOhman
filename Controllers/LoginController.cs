@@ -12,11 +12,13 @@ namespace FribergCarRentals_GOhman.Controllers
     {
         private readonly IUser userRepo;
         private readonly AuthLogin authLogin;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public LoginController(IUser userRepo, AuthLogin authLogin)
+        public LoginController(IUser userRepo, AuthLogin authLogin, IHttpContextAccessor httpContextAccessor)
         {
             this.userRepo = userRepo;
             this.authLogin = authLogin;
+            this.httpContextAccessor = httpContextAccessor;
         }
         // GET: AuthLogin
         public ActionResult Index()
@@ -40,6 +42,9 @@ namespace FribergCarRentals_GOhman.Controllers
             {
                 HttpContext.Session.SetString("LoggedInAccount", JsonConvert.SerializeObject(u));
                 HttpContext.Session.SetString("Role", u.Role.ToString());
+                CookieOptions options = new CookieOptions();
+                options.Expires = DateTime.Now.AddMinutes(1);
+                httpContextAccessor.HttpContext.Response.Cookies.Append("LoggedInCookie", JsonConvert.SerializeObject(u), options);
 
                 if(HttpContext.Session.GetString("bookingLogin") == "booking")
                 {
@@ -55,6 +60,7 @@ namespace FribergCarRentals_GOhman.Controllers
         {
             try
             {
+                httpContextAccessor.HttpContext.Response.Cookies.Delete("LoggedInCookie");
                 HttpContext.Session.Clear();
                 return RedirectToAction("Index", "Home", null);
             }

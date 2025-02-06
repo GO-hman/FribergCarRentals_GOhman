@@ -30,6 +30,8 @@ namespace FribergCarRentals_GOhman
             builder.Services.AddTransient<BookingService>();
             builder.Services.AddTransient<AuthLogin>();
 
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             builder.Services.AddSession();
 
             var app = builder.Build();
