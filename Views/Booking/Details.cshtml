@@ -8,7 +8,8 @@
 
 <div>
     <hr />
-    <img class="img-gallery" src="@Model.Car.ImgURL" alt="Picture of car" />
+    <img class="img-gallery" src="@Model.Car.ImgURL" alt="Picture of car" /><br> 
+    <div class="d-flex justify-content-between justify-content-center">
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.StartDate)
@@ -58,6 +59,7 @@
             }
         </dd>
     </dl>
+    </div>
 </div>
 <div>
     @if (!Model.Active && !Model.Consumed)
