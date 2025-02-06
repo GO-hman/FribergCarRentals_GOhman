@@ -59,6 +59,7 @@ header {
 .nav-item {
     margin: 0 1em;
     color: yellow;
+    font-weight: bold;
 }
 
 .nav-link{
@@ -176,6 +177,11 @@ body {
 
 .btn-danger {
     background-color: #6b6b6b;
+    border-radius: 0;
+    color: white !important;
+    font-weight: bold;
+    border-style: none;
+    box-shadow: 5px 5px 0px black;
 }
 
 .btn-link {
