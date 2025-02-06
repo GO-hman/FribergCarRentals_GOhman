@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FribergCarRentals_GOhman</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-
     @{
         @if (string.IsNullOrEmpty(Context.Session.GetString("style")))
         {
@@ -87,6 +86,8 @@
             </div>
         </main>
     </div>
+
+
 
     <a class="btn btn-primary" asp-controller="Home" asp-action="Toggle"></a>
 
