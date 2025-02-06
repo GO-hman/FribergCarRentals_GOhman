@@ -1,0 +1,548 @@
+h1 {
+    margin-bottom: 1em;
+}
+
+body {
+    background-color: #b9bfc2;
+
+}
+
+
+footer {
+  /*  background-color: #f8f9fa;*/
+    background-color: #292929;
+}
+
+.alert {
+    margin: 1em 0;
+    max-width: 30em;
+}
+
+.form-group{
+    margin-bottom: 0.5em;
+}
+.form-group select{
+    margin-bottom: 0.5em;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+html {
+    font-size: 14px;
+}
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.dropdown-custom{
+    min-width: 10em;
+}
+.index-logo {
+    height: 60%;
+    width: 60%;
+}
+
+.login-form {
+    margin: 0 auto;
+}
+
+header {
+    background-color: #292929;
+/*    background-color: #e3ebee;*/
+    border-bottom: solid;
+    border-color: #f49f22;
+    margin-bottom: 1em;
+}
+.nav-item {
+    margin: 0 1em;
+    color: yellow;
+    font-weight: bold;
+}
+
+.nav-link{
+    color: yellow !important;
+}
+
+.img-thumbnail {
+    max-height: 5em;
+    max-width: 8em;
+}
+
+.img-gallery{
+    height: 20em;
+    width: 30em;
+}
+
+input {
+    max-width: 30em;
+}
+
+
+
+.login-nav {
+    margin: 0 2em;
+    float: right;
+}
+
+.nav-item:hover {
+    text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+
+body {
+ margin-bottom: 60px;
+}
+
+.btn {
+    margin-top: 0.5em;
+    min-width: 5em;
+}
+
+
+
+.card-img-custom {
+    height: 200px;
+}
+
+.card {
+    margin: 1em 0;
+    width: 16em;
+    padding-bottom: 1px;
+    background-color: #3d3d3d;
+}
+
+.card-footer{
+}
+
+.card-container {
+    padding-right: 1em;
+}
+
+
+.transition {
+    animation-name: transitionFrames;
+    animation-duration: 0.5s;
+}
+
+@keyframes transitionFrames {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=VT323&display=swap');
+
+* {
+    font-family: "IBM Plex Mono", monospace;
+}
+
+body {
+    background-color: rgb(15, 15, 15);
+    color: white;
+    border-color: #aa0000;
+    height: 90%;
+}
+
+::selection {
+    background-color: aqua;
+}
+
+.btn-primary {
+    background-color: #aa0000;
+    border-radius: 0;
+    color: white !important;
+    font-weight: bold;
+    border-style: none;
+    box-shadow: 5px 5px 0px black;
+/*    padding: 2px 2em;
+    margin: 1em 0;*/
+}
+
+.btn-danger {
+    background-color: #6b6b6b;
+    border-radius: 0;
+    color: white !important;
+    font-weight: bold;
+    border-style: none;
+    box-shadow: 5px 5px 0px black;
+}
+
+.btn-link {
+    background-color: #6b6b6b;
+    color: #00ffff;
+    border-radius: 0;
+    font-weight: bold;
+    border-style: none;
+    box-shadow: 5px 5px 0px black;
+}
+
+
+    .btn-link:hover {
+        background-color: #3d3d3d;
+    }
+
+.txt-marked {
+    mark
+
+{
+    background-color: aqua;
+}
+
+}
+
+.btn-primary:hover {
+    background-color: #3d3d3d;
+}
+
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111111;
+    overflow-x: hidden;
+    padding-top: 15px;
+    color: white;
+    text-align: center;
+    border-right: solid;
+    border-color: #aa0000;
+    border-width: 5px;
+}
+
+    .sidenav a {
+        color: yellow;
+        font-weight: bolder;
+        text-decoration: none;
+    }
+
+    .sidenav img {
+        bottom: 0px;
+        position: relative;
+        display: block;
+        float: left;
+        width: 100%;
+    }
+
+    .sidenav li {
+        display: block;
+        margin-bottom: 1em;
+        margin-right: 1em;
+        border-style: outset;
+        border-top: #292929;
+        border-left: #292929;
+        border-color: gray;
+        font-weight: bolder;
+    }
+
+    .sidenav a:hover {
+        color: rgb(192, 192, 0);
+    }
+
+.main {
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+#header {
+    border-style: dotted;
+    border-color: red;
+    color: yellow;
+}
+
+.box-stuff {
+    background-color: #292929;
+    box-shadow: 1px 1px 1px gray;
+    padding: 1em;
+    overflow: auto;
+    min-height: 90vh;
+}
+
+a {
+    color: #37ffff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.sub-link {
+    color: #54ffff;
+    font-weight: normal;
+    text-decoration: none;
+    font-size: small;
+}
+
+a:hover {
+    color: #0cafaf;
+}
+
+.textbox {
+    font-weight: bolder;
+    background-color: #000055;
+    padding: 0.5em;
+    width: 40%;
+    max-width: 400px;
+    margin-bottom: 1em;
+    color: white;
+    border-style: none;
+    box-shadow: 1px 1px 1px black;
+}
+
+.form-group select {
+    background-color: #000055;
+    color: white;
+    font-weight: bold;
+    padding: 0.5em;
+}
+.form-control{
+    font-weight: bolder;
+    background-color: #000055;
+    padding: 0.5em;
+    
+    max-width: 400px;
+    margin-bottom: 1em;
+    color: white;
+    border-style: none;
+    box-shadow: 1px 1px 1px black;
+}
+    .form-control:focus {
+        background-color: #000055;
+        color: white;
+    }
+
+.input-form {
+    margin: 1em 0;
+    font-weight: bold;
+    border: inset;
+    padding: 0.5em;
+    border-width: 1px;
+}
+
+    .input-form label {
+        font-size: normal;
+    }
+
+.btn-radio,
+.btn-chk {
+    accent-color: #aa0000;
+}
+
+.color-boxes {
+    height: 5em;
+    width: 50%;
+    margin: 1em 1em;
+    border-style: outset;
+    border-color: black;
+    padding: 1rem;
+    text-align: center;
+    border-width: 1px;
+    p
+
+{
+    font-weight: bold;
+    text-shadow: 1px 1px 1px black;
+}
+
+}
+
+.color1 {
+    background-color: #00ffff;
+}
+
+
+.color2 {
+    background-color: #0f0f0f;
+}
+
+.color3 {
+    background-color: #ffff00;
+}
+
+.color4 {
+    background-color: #aa0000;
+}
+
+.color5 {
+    background-color: #292929;
+}
+
+.color6 {
+    background-color: #000055;
+}
+
+.lbl-color-boxes {
+    font-size: 1em;
+}
+
+.p-visibility {
+    display: table;
+    background-color: #292929;
+    margin: 0 auto;
+}
+
+table {
+    margin: 1em 0;
+    font-weight: bold;
+    text-align: center;
+    border-collapse: collapse;
+    padding: 1em;
+    color: white !important;
+}
+
+tr {
+    border-style: outset;
+    border-width: 0.5px 0.5px;
+}
+
+    tr:first-child {
+        border-bottom-width: 4px;
+        border-top-width: 1px;
+    }
+
+td {
+    width: 5em;
+    padding: 1em;
+}
+
+th {
+    padding: 1em;
+}
+
+ul {
+    padding-left: 1em;
+    li
+
+{
+    padding-left: 1em;
+}
+
+li::marker {
+    color: red;
+    content: '>';
+}
+
+}
+
+ol {
+    li:: marker
+
+{
+    color: red;
+}
+
+}
+
+.alert {
+    padding: 1em;
+    margin-top: 10px;
+    max-width: 50em;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(190, 0, 0);
+    background-color: #6b6b6b;
+    background-color: #6b6b6b;
+    font-weight: bolder;
+    box-shadow: 5px 5px 1px black;
+}
+
+    .panel h4 {
+        text-align: center;
+        margin: 0;
+        border-bottom: solid;
+        text-shadow: 1px 1px 1px black;
+    }
+
+    .panel p {
+        padding: 0 1em;
+        font-size: small;
+    }
+
+.danger {
+    color: red;
+}
+
+.success {
+    border-width: 1px;
+    color: white;
+}
+h4 {
+    font-weight: bolder;
+    font-size: 22px;
+}
+
+.message {
+    padding: 2px 0;
+    margin-top: 10px;
+    max-width: 50em;
+    border-style: solid;
+    border-color: rgb(190, 0, 0);
+    background-color: #6b6b6b;
+    font-weight: bold;
+    box-shadow: 5px 5px 1px black;
+}
+
+    .message h4 {
+        text-align: left;
+        margin: 0;
+        text-shadow: 1px 1px 1px black;
+        padding: 5px;
+    }
+
+    .message p {
+        padding: 0 1em;
+        font-size: small;
+    }
+
+
+/* Loader shamefully stolen from the internet... But modified a bit! (https://css-loaders.com/classic/)*/
+.loader {
+    width: fit-content;
+    font-weight: bold;
+    font-size: 1em;
+    clip-path: inset(0 3ch 0 0);
+    animation: l4 3s steps(4) infinite;
+}
+
+    .loader:before {
+        content: "Loading..."
+    }
+
+@keyframes l4 {
+    to {
+        clip-path: inset(0 -1ch 0 0)
+    }
+}
+
+
+
+/*Stolen section ended!*/
+
+/*.navbar-nav li {
+
+    display: block;
+    margin-bottom: 1em;
+    margin-right: 1em;
+    border-style: outset;
+    border-top: #292929;
+    border-left: #292929;
+    border-color: gray;
+    font-weight: bolder;
+
+}*/

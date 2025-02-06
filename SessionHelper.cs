@@ -15,7 +15,6 @@ namespace FribergCarRentals_GOhman
             }
             return false;
         }
-
         public static bool IsAdmin(HttpContext httpContext)
         {
             var role = httpContext.Session.GetString("Role");

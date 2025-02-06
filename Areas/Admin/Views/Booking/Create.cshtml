@@ -7,8 +7,6 @@
 <h3>Create new booking</h3>
 
 <form asp-action="Create">
-
-
     <div class="form-group">
         <label asp-for="StartDate" class="control-label"></label>
         <input asp-for="StartDate" class="form-control" value="@DateTime.Today.AddHours(12)" />
@@ -37,8 +35,6 @@
 
     <input class="btn btn-primary" type="button" id="submitBtn" value="Create" onclick="confirmScript()" />
     <a class="btn btn-link" id="cancelBtn" asp-action="index" onclick="cancelScript()">Cancel </a>
-
-
 </form>
 
 <script>
@@ -78,5 +74,4 @@
     const cancelBtn = document.getElementById('cancelBtn');
     const submitBtn = document.getElementById('submitBtn');
     cancelBtn.addEventListener('click', cancelScript);
-
 </script>

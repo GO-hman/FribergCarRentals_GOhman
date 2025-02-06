@@ -2,7 +2,9 @@
 using FribergCarRentals_GOhman.Models;
 using FribergCarRentals_GOhman.Services;
 using FribergCarRentals_GOhman.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
@@ -21,6 +23,7 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
         [AdminAuthFilter]
         public IActionResult Index()
         {
+           
             return View();
         }
         [AdminAuthFilter]
@@ -52,6 +55,18 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return RedirectToAction("Index", "Home", new { area = "" });
+        }
+        public IActionResult Toggle()
+        {
+            if (HttpContext.Session.GetString("style") == "retro")
+            {
+                HttpContext.Session.SetString("style", "new");
+            }
+            else
+            {
+                HttpContext.Session.SetString("style", "retro");
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

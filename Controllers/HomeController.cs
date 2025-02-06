@@ -18,7 +18,18 @@ namespace FribergCarRentals_GOhman.Controllers
 
         public IActionResult Index()
         {
-            HttpContext.Session.Remove("carId");
+            if (!SessionHelper.CheckSessionLogin(HttpContext))
+            {
+                try
+                {
+                    string cookie = Request.Cookies["LoggedInCookie"];
+                    HttpContext.Session.SetString("LoggedInAccount", cookie);
+                }
+                catch
+                {
+
+                }
+            }
             return View();
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -30,6 +41,19 @@ namespace FribergCarRentals_GOhman.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Toggle()
+        {
+            if (HttpContext.Session.GetString("style") == "retro")
+            {
+                HttpContext.Session.SetString("style", "new");
+            }
+            else
+            {
+                HttpContext.Session.SetString("style", "retro");
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }
