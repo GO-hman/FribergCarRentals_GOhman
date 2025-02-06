@@ -56,5 +56,17 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             }
             return RedirectToAction("Index", "Home", new { area = "" });
         }
+        public IActionResult Toggle()
+        {
+            if (HttpContext.Session.GetString("style") == "retro")
+            {
+                HttpContext.Session.SetString("style", "new");
+            }
+            else
+            {
+                HttpContext.Session.SetString("style", "retro");
+            }
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

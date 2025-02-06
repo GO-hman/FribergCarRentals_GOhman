@@ -9,7 +9,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FribergCarRentals_GOhman</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/siteRetro.css" asp-append-version="true" />
+    @{
+        @if (string.IsNullOrEmpty(Context.Session.GetString("style")))
+        {
+            <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+            <link rel="stylesheet" href="~/FribergCarRentals_GOhman.styles.css" asp-append-version="true" />
+        }
+        @if (Context.Session.GetString("style") == "retro")
+        {
+            <link rel="stylesheet" href="~/css/siteRetro.css" asp-append-version="true" />
+            <link rel="stylesheet" href="~/FribergCarRentals_GOhman.styles.css" asp-append-version="true" />
+        }
+        @if (Context.Session.GetString("style") == "new")
+        {
+            <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+            <link rel="stylesheet" href="~/FribergCarRentals_GOhman.styles.css" asp-append-version="true" />
+        }
+    }
     <link rel="stylesheet" href="~/FribergCarRentals_GOhman.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -73,6 +89,8 @@
             </div>
         </main>
     </div>
+
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Toggle"></a>
 
     <footer class="border-top footer text-muted">
         <div class="container">
