@@ -22,7 +22,7 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse  d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
 
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
@@ -35,11 +35,12 @@
                             <a class="nav-link text-dark" asp-controller="Booking" asp-action="Index">Booking</a>
                         </li>
                     </ul>
+
                     <div class="position-absolute end-0 d-flex align-items-center" style="top: 50%; transform: translateY(-50%);">
                     @{
                         if (SessionHelper.CheckSessionLogin(Context))
                         {
-                            <h4>@SessionHelper.GetUserFromSession(Context).Email</h4>
+                            <h5>@SessionHelper.GetUserFromSession(Context).Email</h5>
                         }
                     }
                     @{
