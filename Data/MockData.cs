@@ -124,7 +124,6 @@ namespace FribergCarRentals_GOhman.Data
                 carRepo.Add(car);
             }
         }
-
         public void MockUsers()
         {
             List<UserAccount> users = new List<UserAccount>()
@@ -164,7 +163,7 @@ namespace FribergCarRentals_GOhman.Data
             {
                 FirstName = "Marcus",
                 LastName = "Friberg",
-                Email = "bossMan@friMail.org",
+                Email = "friberg@boss.com",
                 Password = "passw0rd",
                 IsAdmin = true
             };

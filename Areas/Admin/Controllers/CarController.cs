@@ -16,19 +16,20 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
         {
             this.carRepository = carRepository;
         }
-        // GET: CarController
+
+        [HttpGet]
         public ActionResult Index()
         {
             return View(carRepository.GetAll());
         }
 
-        // GET: CarController/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
             return View(carRepository.GetById(id));
         }
 
-        // GET: CarController/Create
+        [HttpGet]
         public ActionResult Create()
         {
             ViewBag.FuelType = new SelectList(Enum.GetValues(typeof(FuelType)));
@@ -36,7 +37,6 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: CarController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Car car)
@@ -55,15 +55,14 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             }
         }
 
-        // GET: CarController/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             ViewBag.FuelType = new SelectList(Enum.GetValues(typeof(FuelType)));
             ViewBag.Gearbox = new SelectList(Enum.GetValues(typeof(Gearbox)));
             return View(carRepository.GetById(id));
         }
-
-        // POST: CarController/Edit/5
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Car car)
@@ -82,13 +81,12 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             }
         }
 
-        // GET: CarController/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             return View(carRepository.GetById(id));
         }
 
-        // POST: CarController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Car car)

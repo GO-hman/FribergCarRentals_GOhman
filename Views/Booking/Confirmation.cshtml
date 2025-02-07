@@ -1,6 +1,5 @@
 ﻿@model FribergCarRentals_GOhman.Models.Booking;
 
-
 @{
     ViewData["Title"] = "Success!";
 }
@@ -51,10 +50,10 @@
     </dt>
     <dd class="col-sm-10">
         @{
-            TimeSpan duration = Model.StopDate.Subtract(Model.StartDate);
-            double hours = duration.TotalHours <= 24 ? 1 : duration.TotalDays;
-            double price = Math.Round(hours * Model.Car.PricePerDay, 0);
-            <p>@price SEK</p>
+                TimeSpan duration = Model.StopDate.Subtract(Model.StartDate);
+                double days = Math.Ceiling(duration.TotalDays);
+                double price = Math.Round(days * Model.Car.PricePerDay, 0);
+                <p>@price SEK</p>
         }
     </dd>
 </dl>

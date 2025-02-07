@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace FribergCarRentals_GOhman.Models
+﻿namespace FribergCarRentals_GOhman.Models
 {
     public class Booking
     {

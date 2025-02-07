@@ -1,6 +1,4 @@
 ﻿using FribergCarRentals_GOhman.Data;
-using FribergCarRentals_GOhman.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FribergCarRentals_GOhman.Controllers
@@ -13,18 +11,18 @@ namespace FribergCarRentals_GOhman.Controllers
         {
             this.carRepo = carRepo;
         }
-        // GET: CarController
+
+        [HttpGet]
         public ActionResult Index()
         {
             return View(carRepo.GetAll());
         }
 
-        // GET: CarController/Details/5
         public ActionResult Details(int id)
         {
             return View(carRepo.GetById(id));
         }
-        
+
         public IActionResult BookCar(int id)
         {
             HttpContext.Session.SetString("carId", id.ToString());

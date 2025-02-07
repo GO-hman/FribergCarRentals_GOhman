@@ -12,7 +12,6 @@ namespace FribergCarRentals_GOhman.Data
             this.userRepo = userRepo;
             this.adminRepo = adminRepo;
         }
-
         public UserAccount GetUser(string username, string password)
         {
             UserAccount user = CheckUsername(username);
@@ -42,11 +41,6 @@ namespace FribergCarRentals_GOhman.Data
             return admin;
 
         }
-        public bool CheckAdmin(bool admin)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool CheckPassword(UserAccount user, string password)
         {
             if (user.Password == password)

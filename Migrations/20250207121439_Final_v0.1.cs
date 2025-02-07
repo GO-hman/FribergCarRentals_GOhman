@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FribergCarRentals_GOhman.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdatedModels : Migration
+    public partial class Final_v01 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

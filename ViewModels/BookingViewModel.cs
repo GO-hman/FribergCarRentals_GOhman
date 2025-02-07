@@ -12,7 +12,7 @@ namespace FribergCarRentals_GOhman.ViewModels
         public List<SelectListItem>? UserAccounts { get; set; }
         public List<SelectListItem>? CarSelectList { get; set; }
         public Car? Car { get; set; }
-        public UserAccount? User {  get; set; }
+        public UserAccount? User { get; set; }
 
         public int? UserId { get; set; }
 

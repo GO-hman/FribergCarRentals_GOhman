@@ -10,13 +10,11 @@ namespace FribergCarRentals_GOhman.Data
         {
             this.applicationDbContext = applicationDbContext;
         }
-
         public void Add(UserAccount user)
         {
             applicationDbContext.Users.Add(user);
             applicationDbContext.SaveChanges();
         }
-
         public void Delete(UserAccount user)
         {
             applicationDbContext.Remove(user);
@@ -37,6 +35,5 @@ namespace FribergCarRentals_GOhman.Data
         {
             return applicationDbContext.Users.FirstOrDefault(u => u.Id == id);
         }
-
     }
 }

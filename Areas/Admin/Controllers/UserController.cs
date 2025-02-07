@@ -1,7 +1,6 @@
 ﻿using FribergCarRentals_GOhman.Data;
 using FribergCarRentals_GOhman.Models;
 using FribergCarRentals_GOhman.Services;
-using FribergCarRentals_GOhman.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
@@ -19,16 +18,19 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             this.adminRepository = adminRepository;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             return View(userRepository.GetAll());
         }
 
+        [HttpGet]
         public ActionResult Details(int id)
         {
             return View(userRepository.GetById(id));
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -65,13 +67,8 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult Edit(int id, bool isAdmin)
+        public ActionResult Edit(int id)
         {
-            if (isAdmin)
-            {
-                return View(adminRepository.GetById(id));
-            }
-
             return View(userRepository.GetById(id));
         }
 
@@ -93,13 +90,12 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
                 return View();
             }
         }
-
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             return View(userRepository.GetById(id));
         }
 
-        // POST: CarController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(UserAccount user)
