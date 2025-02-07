@@ -67,7 +67,6 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
                 bookingVM.CarSelectList = _bookingService.GetCarSelectList();
                 return View(bookingVM);
             }
-
             try
             {
                 Booking b = new Booking();

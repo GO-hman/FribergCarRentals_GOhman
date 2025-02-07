@@ -5,7 +5,16 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <img class="index-logo" src="~/Friberg_LOGO.PNG" alt="white logo">
+    @{
+        if (Context.Session.GetString("style") == "retro")
+        {
+            <img class="index-logo" src="~/Friberg_LOGO_Pixel.png" alt="white logo">
+        }
+        else
+        {
+            <img class="index-logo" src="~/Friberg_LOGO.png" alt="white logo">
+        }
+    }
     <br />
     <a asp-action="MockData" class="btn btn-primary">Add MockData</a>
 </div>

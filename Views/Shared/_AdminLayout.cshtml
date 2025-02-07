@@ -10,23 +10,18 @@
     <title>@ViewData["Title"] - FribergCarRentals_GOhman</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     @{
-        @if (string.IsNullOrEmpty(Context.Session.GetString("style")))
+        @if (string.IsNullOrEmpty(Context.Session.GetString("style")) || Context.Session.GetString("style") == "new")
         {
             <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-            <link rel="stylesheet" href="~/FribergCarRentals_GOhman.styles.css" asp-append-version="true" />
         }
         @if (Context.Session.GetString("style") == "retro")
         {
             <link rel="stylesheet" href="~/css/siteRetro.css" asp-append-version="true" />
-            <link rel="stylesheet" href="~/FribergCarRentals_GOhman.styles.css" asp-append-version="true" />
-        }
-        @if (Context.Session.GetString("style") == "new")
-        {
-            <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-            <link rel="stylesheet" href="~/FribergCarRentals_GOhman.styles.css" asp-append-version="true" />
         }
     }
     <link rel="stylesheet" href="~/FribergCarRentals_GOhman.styles.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/9092ca5d2a.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <header>
@@ -37,8 +32,25 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                <div class="position-absolute end-0 d-flex align-items-center" style="top: 20%; left: 50%; transform: translateY(-50%);">
+                @{
+                    if (SessionHelper.CheckSessionLogin(Context))
+                    {
+                        <h6 style="color: red;">ADMIN ACCESS!</h6>
+                    }
+                }
+                </div>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    @{
+                        if (string.IsNullOrEmpty(Context.Session.GetString("style")) || Context.Session.GetString("style") == "new")
+                        {
+                            <a asp-controller="Home" asp-action="Toggle"><i class="fa-solid fa-moon style-switch"></i> </a>
+                        }
+                        if (Context.Session.GetString("style") == "retro")
+                        {
+                            <a asp-controller="Home" asp-action="Toggle"><i class="fa-regular fa-moon style-switch"></i> </a>
+                        }
+                    }
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a>
@@ -55,13 +67,7 @@
                     </ul>
 
                     <div class="position-absolute end-0 d-flex align-items-center" style="top: 50%; transform: translateY(-50%);">
-                        @{
-                            if (SessionHelper.CheckSessionLogin(Context))
-                            {
-                                <h5 style="color: red;">ADMIN ACCESS!</h5>
-                                <h5>@SessionHelper.GetUserFromSession(Context).Email</h5>
-                            }
-                        }
+
                         @{
                             if (SessionHelper.CheckSessionLogin(Context))
                             {

@@ -12,14 +12,13 @@ namespace FribergCarRentals_GOhman.Controllers
         public HomeController()
         {
         }
-
         public IActionResult Index()
         {
             if (!SessionHelper.CheckSessionLogin(HttpContext))
             {
                 try
                 {
-                    string cookie = Request.Cookies["LoggedInCookie"];
+                    string cookie = Request.Cookies["LoggedInCookie"]!;
                     HttpContext.Session.SetString("LoggedInAccount", cookie);
                 }
                 catch(Exception e)

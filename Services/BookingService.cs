@@ -43,7 +43,6 @@ namespace FribergCarRentals_GOhman.Services
         }
         public List<Car> GetAvailableCars(DateTime start, DateTime stop)
         {
-            
             List<Car> availableCars = carRepo.GetAll().ToList();
 
             foreach (Booking b in bookingRepo.GetAll())

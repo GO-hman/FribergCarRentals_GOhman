@@ -4,26 +4,29 @@ h1 {
 
 body {
     background-color: #b9bfc2;
-
 }
 
 
 footer {
-  /*  background-color: #f8f9fa;*/
     background-color: #292929;
 }
+
+    footer .container {
+        color: white;
+    }
 
 .alert {
     margin: 1em 0;
     max-width: 30em;
 }
 
-.form-group{
+.form-group {
     margin-bottom: 0.5em;
 }
-.form-group select{
-    margin-bottom: 0.5em;
-}
+
+    .form-group select {
+        margin-bottom: 0.5em;
+    }
 
 .mt-auto {
     margin-top: auto;
@@ -32,14 +35,16 @@ footer {
 html {
     font-size: 14px;
 }
+
 html {
     position: relative;
     min-height: 100%;
 }
 
-.dropdown-custom{
+.dropdown-custom {
     min-width: 10em;
 }
+
 .index-logo {
     height: 60%;
     width: 60%;
@@ -51,18 +56,18 @@ html {
 
 header {
     background-color: #292929;
-/*    background-color: #e3ebee;*/
     border-bottom: solid;
     border-color: #f49f22;
     margin-bottom: 1em;
 }
+
 .nav-item {
     margin: 0 1em;
     color: yellow;
     font-weight: bold;
 }
 
-.nav-link{
+.nav-link {
     color: yellow !important;
 }
 
@@ -71,7 +76,7 @@ header {
     max-width: 8em;
 }
 
-.img-gallery{
+.img-gallery {
     height: 20em;
     width: 30em;
 }
@@ -103,7 +108,7 @@ input {
 
 
 body {
- margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .btn {
@@ -124,7 +129,7 @@ body {
     background-color: #3d3d3d;
 }
 
-.card-footer{
+.card-footer {
 }
 
 .card-container {
@@ -171,9 +176,8 @@ body {
     font-weight: bold;
     border-style: none;
     box-shadow: 5px 5px 0px black;
-/*    padding: 2px 2em;
-    margin: 1em 0;*/
 }
+
 .btn-success {
     border-radius: 0;
     color: white !important;
@@ -200,19 +204,9 @@ body {
     box-shadow: 5px 5px 0px black;
 }
 
-
     .btn-link:hover {
         background-color: #3d3d3d;
     }
-
-.txt-marked {
-    mark
-
-{
-    background-color: aqua;
-}
-
-}
 
 .btn-primary:hover {
     background-color: #3d3d3d;
@@ -318,11 +312,11 @@ a:hover {
     font-weight: bold;
     padding: 0.5em;
 }
-.form-control{
+
+.form-control {
     font-weight: bolder;
     background-color: #000055;
     padding: 0.5em;
-    
     max-width: 400px;
     min-width: 25em;
     margin-bottom: 1em;
@@ -330,6 +324,7 @@ a:hover {
     border-style: none;
     box-shadow: 1px 1px 1px black;
 }
+
     .form-control:focus {
         background-color: #000055;
         color: white;
@@ -343,31 +338,9 @@ a:hover {
     border-width: 1px;
 }
 
-    .input-form label {
-        font-size: normal;
-    }
-
 .btn-radio,
 .btn-chk {
     accent-color: #aa0000;
-}
-
-.color-boxes {
-    height: 5em;
-    width: 50%;
-    margin: 1em 1em;
-    border-style: outset;
-    border-color: black;
-    padding: 1rem;
-    text-align: center;
-    border-width: 1px;
-    p
-
-{
-    font-weight: bold;
-    text-shadow: 1px 1px 1px black;
-}
-
 }
 
 .color1 {
@@ -435,7 +408,9 @@ th {
 
 ul {
     padding-left: 1em;
-    li
+}
+    
+ul li
 
 {
     padding-left: 1em;
@@ -460,17 +435,17 @@ li::marker {
     box-shadow: 5px 5px 1px black;
 }
 
-    .panel h4 {
-        text-align: center;
-        margin: 0;
-        border-bottom: solid;
-        text-shadow: 1px 1px 1px black;
-    }
+.panel h4 {
+    text-align: center;
+    margin: 0;
+    border-bottom: solid;
+    text-shadow: 1px 1px 1px black;
+}
 
-    .panel p {
-        padding: 0 1em;
-        font-size: small;
-    }
+.panel p {
+    padding: 0 1em;
+    font-size: small;
+}
 
 .danger {
     color: red;
@@ -480,6 +455,7 @@ li::marker {
     border-width: 1px;
     color: white;
 }
+
 h4 {
     font-weight: bolder;
     font-size: 22px;
@@ -507,40 +483,3 @@ h4 {
         padding: 0 1em;
         font-size: small;
     }
-
-
-/* Loader shamefully stolen from the internet... But modified a bit! (https://css-loaders.com/classic/)*/
-.loader {
-    width: fit-content;
-    font-weight: bold;
-    font-size: 1em;
-    clip-path: inset(0 3ch 0 0);
-    animation: l4 3s steps(4) infinite;
-}
-
-    .loader:before {
-        content: "Loading..."
-    }
-
-@keyframes l4 {
-    to {
-        clip-path: inset(0 -1ch 0 0)
-    }
-}
-
-
-
-/*Stolen section ended!*/
-
-/*.navbar-nav li {
-
-    display: block;
-    margin-bottom: 1em;
-    margin-right: 1em;
-    border-style: outset;
-    border-top: #292929;
-    border-left: #292929;
-    border-color: gray;
-    font-weight: bolder;
-
-}*/
