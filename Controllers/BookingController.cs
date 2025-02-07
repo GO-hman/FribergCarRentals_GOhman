@@ -20,6 +20,7 @@ namespace FribergCarRentals_GOhman.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            HttpContext.Session.Remove("carId");
             if (SessionHelper.CheckSessionLogin(HttpContext))
             {
                 int userID = SessionHelper.GetUserFromSession(HttpContext).Id;
@@ -49,6 +50,7 @@ namespace FribergCarRentals_GOhman.Controllers
             {
                 bookingVM.CarId = parseId;
             }
+            HttpContext.Session.Remove("carId");
             return View(bookingVM);
         }
 
