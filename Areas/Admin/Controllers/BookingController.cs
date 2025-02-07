@@ -3,7 +3,6 @@ using FribergCarRentals_GOhman.Models;
 using FribergCarRentals_GOhman.Services;
 using FribergCarRentals_GOhman.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
 {
