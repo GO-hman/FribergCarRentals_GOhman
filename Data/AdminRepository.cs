@@ -2,7 +2,7 @@
 
 namespace FribergCarRentals_GOhman.Data
 {
-    public class AdminRepository: IAdmin
+    public class AdminRepository : IAdmin
     {
         private readonly ApplicationDbContext applicationDbContext;
 

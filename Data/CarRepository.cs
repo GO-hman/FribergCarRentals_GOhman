@@ -6,7 +6,7 @@ namespace FribergCarRentals_GOhman.Data
     {
         private readonly ApplicationDbContext applicationDbContext;
 
-        public CarRepository(ApplicationDbContext applicationDbContext) 
+        public CarRepository(ApplicationDbContext applicationDbContext)
         {
             this.applicationDbContext = applicationDbContext;
         }

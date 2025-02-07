@@ -6,7 +6,5 @@ namespace FribergCarRentals_GOhman.Data
     {
         UserAccount CheckUsername(string userName);
         bool CheckPassword(UserAccount user, string password);
-
-        bool CheckAdmin(bool admin);
     }
 }

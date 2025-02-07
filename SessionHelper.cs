@@ -1,6 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using FribergCarRentals_GOhman.Models;
 using Newtonsoft.Json;
-using FribergCarRentals_GOhman.Models;
 
 namespace FribergCarRentals_GOhman
 {

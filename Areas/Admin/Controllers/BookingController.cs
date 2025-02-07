@@ -18,19 +18,18 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             _bookingService = bookingService;
             _bookingRepo = bookingRepo;
         }
-        // GET: BookingController
+        [HttpGet]
         public ActionResult Index()
         {
             return View(_bookingRepo.GetAll());
         }
 
-        // GET: BookingController/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
             return View(_bookingRepo.GetById(id));
         }
-
-        // GET: BookingController/Create
+        [HttpGet]
         public ActionResult Create(BookingViewModel bookingVM)
         {
             bookingVM.Car = _bookingService.GetCar(bookingVM.CarId);
@@ -40,7 +39,6 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             return View(bookingVM);
         }
 
-        // POST: BookingController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(BookingViewModel bookingVM, int id)
@@ -92,13 +90,12 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             return View(_bookingRepo.GetById(b.Id));
         }
 
-        // GET: BookingController/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             return View(_bookingRepo.GetById(id));
         }
 
-        // POST: BookingController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Booking booking)
@@ -117,13 +114,12 @@ namespace FribergCarRentals_GOhman.Areas.Admin.Controllers
             }
         }
 
-        // GET: BookingController/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             return View(_bookingRepo.GetById(id));
         }
 
-        // POST: BookingController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Booking booking)

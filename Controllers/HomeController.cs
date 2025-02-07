@@ -1,8 +1,5 @@
-using FribergCarRentals_GOhman.Data;
 using FribergCarRentals_GOhman.Models;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace FribergCarRentals_GOhman.Controllers
@@ -12,6 +9,7 @@ namespace FribergCarRentals_GOhman.Controllers
         public HomeController()
         {
         }
+        [HttpGet]
         public IActionResult Index()
         {
             if (!SessionHelper.CheckSessionLogin(HttpContext))
@@ -21,13 +19,14 @@ namespace FribergCarRentals_GOhman.Controllers
                     string cookie = Request.Cookies["LoggedInCookie"]!;
                     HttpContext.Session.SetString("LoggedInAccount", cookie);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine(e);
                 }
             }
             return View();
         }
+        [HttpGet]
         public IActionResult Privacy()
         {
             return View();
@@ -44,6 +43,12 @@ namespace FribergCarRentals_GOhman.Controllers
                 HttpContext.Session.SetString("style", "retro");
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

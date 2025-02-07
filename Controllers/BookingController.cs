@@ -2,9 +2,7 @@
 using FribergCarRentals_GOhman.Models;
 using FribergCarRentals_GOhman.Services;
 using FribergCarRentals_GOhman.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 
 namespace FribergCarRentals_GOhman.Controllers
 {
@@ -18,22 +16,23 @@ namespace FribergCarRentals_GOhman.Controllers
             this.bookingService = bookingService;
             this.bookingRepo = bookingRepo;
         }
-        // GET: BookingController
+
+        [HttpGet]
         public ActionResult Index()
         {
-            HttpContext.Session.Remove("carId");
             if (SessionHelper.CheckSessionLogin(HttpContext))
             {
                 int userID = SessionHelper.GetUserFromSession(HttpContext).Id;
                 BookingViewModel bookingVM = new BookingViewModel();
-                bookingVM.EarlierBookings = bookingService.GetBookingByUser(userID).Where(b => b.Consumed==true).ToList();
-                bookingVM.ActiveBookings = bookingService.GetBookingByUser(userID).Where(b => b.Active==true).ToList();
-                bookingVM.UpcomingBookings = bookingService.GetBookingByUser(userID).Where(b => b.Active == false && b.Consumed==false).ToList();
+                bookingVM.EarlierBookings = bookingService.GetBookingByUser(userID).Where(b => b.Consumed == true).ToList();
+                bookingVM.ActiveBookings = bookingService.GetBookingByUser(userID).Where(b => b.Active == true).ToList();
+                bookingVM.UpcomingBookings = bookingService.GetBookingByUser(userID).Where(b => b.Active == false && b.Consumed == false).ToList();
                 return View(bookingVM);
             }
             return RedirectToAction("login", "login");
         }
 
+        [HttpGet]
         public ActionResult SelectDate()
         {
 
@@ -50,7 +49,6 @@ namespace FribergCarRentals_GOhman.Controllers
             {
                 bookingVM.CarId = parseId;
             }
-            HttpContext.Session.Remove("carId");
             return View(bookingVM);
         }
 
@@ -91,6 +89,7 @@ namespace FribergCarRentals_GOhman.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult SelectCar(BookingViewModel bookingVM)
         {
             bookingVM.Cars = bookingService.GetAvailableCars(bookingVM.StartDate, bookingVM.StopDate);
@@ -112,13 +111,13 @@ namespace FribergCarRentals_GOhman.Controllers
             }
         }
 
-        // GET: BookingController/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
             return View(bookingRepo.GetById(id));
         }
 
-        // GET: BookingController/Create
+        [HttpGet]
         public ActionResult Create(BookingViewModel bookingVM)
         {
             bookingVM.Car = bookingService.GetCar(bookingVM.CarId);
@@ -153,7 +152,6 @@ namespace FribergCarRentals_GOhman.Controllers
                     }
 
                     bookingRepo.Add(b);
-                    HttpContext.Session.Remove("carID");
                 }
                 return RedirectToAction("Confirmation", b);
             }
@@ -163,13 +161,12 @@ namespace FribergCarRentals_GOhman.Controllers
             }
         }
 
-        // GET: BookingController/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             return View(bookingRepo.GetById(id));
         }
 
-        // POST: BookingController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Booking booking)
@@ -188,13 +185,12 @@ namespace FribergCarRentals_GOhman.Controllers
             }
         }
 
-        // GET: BookingController/Delete/5
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             return View(bookingRepo.GetById(id));
         }
 
-        // POST: BookingController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Booking booking)
