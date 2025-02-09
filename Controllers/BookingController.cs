@@ -20,7 +20,6 @@ namespace FribergCarRentals_GOhman.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            HttpContext.Session.Remove("carId");
             if (SessionHelper.CheckSessionLogin(HttpContext))
             {
                 int userID = SessionHelper.GetUserFromSession(HttpContext).Id;
@@ -50,7 +49,6 @@ namespace FribergCarRentals_GOhman.Controllers
             {
                 bookingVM.CarId = parseId;
             }
-            HttpContext.Session.Remove("carId");
             return View(bookingVM);
         }
 
@@ -58,9 +56,9 @@ namespace FribergCarRentals_GOhman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SelectDate(BookingViewModel bookingVM)
         {
-            if (bookingVM.StartDate > bookingVM.StopDate)
+            if (bookingVM.StartDate > bookingVM.StopDate || bookingVM.StartDate == bookingVM.StopDate)
             {
-                ViewBag.Error = "Starting date cant be higher than stop date";
+                ViewBag.Error = "Starting date cant be higher or the same as stop date";
                 return View();
             }
             else if (bookingVM.StartDate < DateTime.Now.Date)
@@ -218,6 +216,12 @@ namespace FribergCarRentals_GOhman.Controllers
         public IActionResult BookingError()
         {
             return View();
+        }
+
+        [HttpPost]
+        public void ClearCarData()
+        {
+            HttpContext.Session.Remove("carId");
         }
     }
 }

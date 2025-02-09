@@ -13,13 +13,13 @@
             <input type="hidden" asp-for="@Model.CarId" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" value="@DateTime.Today.AddHours(12)" />
+                <label>Start date</label>
+                <input asp-for="StartDate" class="form-control date-input" value="@DateTime.Today.AddHours(12)" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StopDate" class="control-label"></label>
-                <input asp-for="StopDate" class="form-control" value="@DateTime.Today.AddHours(12)" />
+                <label>Stop date</label>
+                <input asp-for="StopDate" class="form-control date-input" value="@DateTime.Today.AddHours(12)" />
                 <span asp-validation-for="StopDate" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -36,10 +36,10 @@
     </div>
 </div>
 
-<script> //Script clears carID from session when leaving page
-    window.addEventListener('beforeunload', function(e)){
-        Context.Session.Remove("carId");
-    }
+<script>
+    window.addEventListener('beforeunload', function (e) {
+        navigator.sendBeacon('/Booking/ClearCarData');
+    });
 </script>
 
 @section Scripts {
