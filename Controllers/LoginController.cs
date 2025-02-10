@@ -59,7 +59,10 @@ namespace FribergCarRentals_GOhman.Controllers
             try
             {
                 httpContextAccessor.HttpContext.Response.Cookies.Delete("LoggedInCookie");
+                string style = HttpContext.Session.GetString("style");
                 HttpContext.Session.Clear();
+                HttpContext.Session.SetString("style", style);
+
                 return RedirectToAction("Index", "Home", null);
             }
             catch
