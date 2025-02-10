@@ -32,9 +32,9 @@ namespace FribergCarRentals_GOhman.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel loginVM)
+        public ActionResult Login(UserAccount user)
         {
-            UserAccount u = authLogin.GetUser(loginVM.Email, loginVM.Password);
+            UserAccount u = authLogin.GetUser(user.Email, user.Password);
 
             if (u is not null)
             {
@@ -83,6 +83,11 @@ namespace FribergCarRentals_GOhman.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if(authLogin.CheckUsername(user.Email) != null)
+                    {
+                        ViewBag.UsernameError = "A user with that email is already registered";
+                        return View();
+                    }
                     userRepo.Add(user);
                     UserAccount currUser = authLogin.GetUser(user.Email, user.Password);
                     HttpContext.Session.SetString("LoggedInAccount", JsonConvert.SerializeObject(currUser));
