@@ -51,6 +51,12 @@ html {
 .login-form {
     margin: 0 auto;
 }
+.login-border {
+    padding: 0.5em;
+    border-style: solid;
+    border-color: #f49f22;
+    border-width: 1px;
+}
 
 header {
     background-color: #e3ebee;

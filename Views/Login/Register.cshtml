@@ -34,7 +34,14 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
                 <a class="btn btn-link" asp-action="Login">Cancel</a>
             </div>
+
         </form>
+        @if (ViewBag.UsernameError != null)
+        {
+            <div class="alert alert-danger transition" role="alert">
+                @ViewBag.UsernameError
+            </div>
+        }
     </div>
 </div>
 

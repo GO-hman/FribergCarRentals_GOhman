@@ -72,7 +72,6 @@ namespace FribergCarRentals_GOhman.Data
             else
                 return null!;
         }
-
         public AdminAccount CheckAdminName(string username)
         {
             AdminAccount a = new AdminAccount();
