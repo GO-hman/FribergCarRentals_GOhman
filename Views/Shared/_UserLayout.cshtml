@@ -63,13 +63,13 @@
                             if (SessionHelper.CheckSessionLogin(Context))
                             {
                                 <div class="nav-item login-nav">
-                                    <a class="text-dark btn btn-danger" asp-controller="Login" asp-action="Index">Logout</a>
+                                    <a class="btn btn-danger" asp-controller="Login" asp-action="Index">Logout</a>
                                 </div>
                             }
                             else
                             {
                                 <div class="nav-item login-nav">
-                                    <a class="text-dark btn btn-primary" asp-controller="Login" asp-action="Login">Login</a>
+                                    <a class="btn btn-primary" asp-controller="Login" asp-action="Login">Login</a>
                                 </div>
                             }
                         }

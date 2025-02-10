@@ -53,16 +53,16 @@
                     }
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark btn" asp-area="Admin" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Car" asp-action="Index">Cars</a>
+                            <a class="nav-link text-dark btn" asp-area="Admin" asp-controller="Car" asp-action="Index">Cars</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
+                            <a class="nav-link text-dark btn" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Booking" asp-action="Index">Bookings</a>
+                            <a class="nav-link text-dark btn" asp-area="Admin" asp-controller="Booking" asp-action="Index">Bookings</a>
                         </li>
                     </ul>
 
@@ -72,13 +72,13 @@
                             if (SessionHelper.CheckSessionLogin(Context))
                             {
                                 <div class="nav-item login-nav">
-                                    <a class="text-dark btn btn-danger" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
+                                    <a class="btn btn-danger" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
                                 </div>
                             }
                             else
                             {
                                 <div class="nav-item login-nav">
-                                    <a class="text-dark btn btn-primary" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
+                                    <a class="btn btn-primary" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
                                 </div>
                             }
                         }

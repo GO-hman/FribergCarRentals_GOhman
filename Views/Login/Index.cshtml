@@ -1,19 +1,19 @@
 ﻿<div class="d-flex flex-column align-items-center">
-@if (SessionHelper.CheckSessionLogin(Context))
-{
+    @if (SessionHelper.CheckSessionLogin(Context))
+    {
         <div class="container d-flex flex-column align-items-center">
-    <h3>Logout user: @SessionHelper.GetUserFromSession(Context).Email</h3>
-    <div>
+            <h3>Logout user: @SessionHelper.GetUserFromSession(Context).Email</h3>
+            <div>
 
-    <a class="btn btn-danger" asp-action="logout" type="submit" >Logout</a>
-    <a class="btn btn-link" asp-controller="home" asp-action="Index">Cancel</a>
-    </div>
-    </div>
-}
-else
-{
-    <h2>Login</h2>
-    <a class="btn btn-primary" asp-action="Login">Login</a>
-    <a class="btn btn-link" asp-action="Register">Register</a>
-}
+                <a class="btn btn-danger" asp-action="logout" type="submit">Logout</a>
+                <a class="btn btn-link" asp-controller="home" asp-action="Index">Cancel</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <h2>Login</h2>
+        <a class="btn btn-primary" asp-action="Login">Login</a>
+        <a class="btn btn-link" asp-action="Register">Register</a>
+    }
 </div>
