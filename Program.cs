@@ -1,6 +1,5 @@
-using FribergCarRentals_GOhman.Data;
+using FribergCarRentals_DAL.Data;
 using FribergCarRentals_GOhman.Services;
-using FribergCarRentals_GOhman.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace FribergCarRentals_GOhman

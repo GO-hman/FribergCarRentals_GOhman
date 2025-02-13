@@ -1,4 +1,4 @@
-﻿using FribergCarRentals_GOhman.Data;
+﻿using FribergCarRentals_DAL.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FribergCarRentals_GOhman.Controllers

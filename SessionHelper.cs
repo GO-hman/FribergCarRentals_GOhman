@@ -1,4 +1,4 @@
-﻿using FribergCarRentals_GOhman.Models;
+﻿using FribergCarRentals_DAL.Models;
 using Newtonsoft.Json;
 
 namespace FribergCarRentals_GOhman

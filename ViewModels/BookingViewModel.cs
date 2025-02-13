@@ -1,4 +1,4 @@
-﻿using FribergCarRentals_GOhman.Models;
+﻿using FribergCarRentals_DAL.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FribergCarRentals_GOhman.ViewModels
